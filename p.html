@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="ZH-TW">
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>PTCG交易圖生成器</title>
+<meta property="og:title" content="實體卡 | PTCG交易圖生成器">
+  <meta property="og:image" content="/meza.png">
+  <meta property="og:description" content="PTCG交易圖生成器，生成各式交易梗圖！">
+    <meta name="description" content="PTCG交易圖生成器，生成各式交易圖！"><meta property="og:url" content="https://m.botdc.cloudns.be/ptcg">
+<meta property="og:site_name" content="PTCG交易圖生成器">
+<link rel="manifest" href="/ptcgmanifest.json">
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "如何在 PTCG 交換清單工具搜尋項目 (卡片或貨幣圖示)？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<ol><li>點擊頁面右下角的「搜尋」按鈕。</li><li>若要搜尋特定卡片：點擊「選擇範圍」，勾選擴充包（可多選），按「完成」。</li><li>若要尋找代表新臺幣的「貨幣圖示」：請確保<strong>沒有</strong>選擇任何擴充包範圍。</li><li>在關鍵字欄位輸入想搜尋的內容（搜尋卡片時可不輸入）。</li><li>按下「搜尋」按鈕。</li></ol><p>注意：如果未選擇任何擴充包就搜尋，結果主要會顯示代表新臺幣的貨幣圖示，讓用戶自行使用，而非特定卡包的卡片。</p>"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何將卡片或貨幣圖示加入「我給你」或「你給我」的清單？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<ol><li>先點選你想加入項目的目標清單區塊（例如「我給你」的白色區域）。</li><li>然後在下方搜尋結果中，點擊你想加入的「卡片圖片」或「貨幣圖示」。該項目就會被加入對應清單。</li></ol><p>提示：每點擊一次，數量會增加一。若要調整數量或移除項目，請點擊已加入清單中的該項目圖示進行操作。</p>"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何產生並客製化我的交換清單圖片？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<ol><li>將所有項目加入清單後，點擊頁面右上角的「下一步」按鈕。</li><li>選擇一個喜歡的背景圖片模板。</li><li>在預覽畫面中，直接按住並拖曳清單中的項目（卡片或貨幣圖示）來調整位置。</li><li>點擊某個項目後，再點下方的「調整角度」按鈕即可旋轉該項目。（提醒：避免設定 90 度角，以免項目看不清楚）。</li><li>排版完成後，建議使用您裝置的「螢幕截圖」功能來保存最終的圖片，這樣比較節省網路資源。</li></ol>"
+      }
+    }
+  ]
+}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "https://m.botdc.cloudns.be/ptcg",
+  "logo": "https://m.botdc.cloudns.be/meza.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "PTCG交易圖生成器",
+      "item": "https://m.botdc.cloudns.be/ptcg"
+    }
+  ]
+}
+</script>
+     <style>
+         html{
+          background:#fff;
+      }
+      img{
+          cursor:pointer;
+              -webkit-user-drag: none;
+      }
+      h1{
+          font-size: 2vh;
+          margin:1vh;
+      }
+      h2{
+          font-size: 1.5vh;
+      }
+      .givt{
+          height:5vh;
+          overflow:hidden;
+          display:flex;
+          align-items:center;
+          margin:0 2vh;
+    user-select:none;
+    -webkit-user-select:none;
+      }
+      #toyou,  #tome{
+          height:16vh;
+          width: 90vw;
+          position: relative;
+          
+          margin:1vh;
+          box-shadow:0 0 1vh #0006;
+          border-radius: 3vh;
+          overflow:scroll;
+         background-size:6vh,16vh;
+    user-select:none;
+    -webkit-user-select:none;
+      }
+      #dex{
+          height:50vh;
+          width: 90vw;
+          position: relative;          
+          margin:1vh;
+          background: linear-gradient(100deg,#eee,#fff, #eee);
+          border-radius: 3vh 3vh 0 0;
+          overflow:hidden;
+      }
+      #dexh{
+          width: 85vw;
+          height: 5vh;
+          position: relative;
+          margin:1vh 2vw;
+          background: #fff;
+          box-shadow:0 0 1vh #0006;
+          border-radius: 3vh;
+          display:flex;
+          align-items: center; 
+      }
+      #list{
+          position: relative;
+          width: 90vw;
+          height: 40vh;
+          overflow:scroll;
+      }
+      #sch{
+          position: absolute;
+          right:1vh;
+          padding:0 1vh;
+         
+          font-size:2vh;
+          margin:0;
+      }
+      #dexc{
+          position: relative;
+          left:1vh;
+          padding:0 1vh;
+          top:0;
+          font-size:2vh;
+          margin:0;
+      }
+      #lowwifi{
+          position: relative;
+          font-size:2vh;
+          margin:0;
+          padding:0 2vh;
+          color:#fff;
+          text-shadow:1px 1px 5px #000;
+    user-select:none;
+    -webkit-user-select:none;
+    cursor:pointer;
+      }
+      #dexd{
+          position: relative;
+          
+          width: calc( 85vw - 10vh);
+          height:3vh;
+          background:#fafafa;
+          border-radius:1vh 0 0 1vh;
+          font-size:2vh;
+          margin:1vh;
+          overflow:scroll;
+      }
+      .greatb{
+          border-radius: 5vh;
+          background:linear-gradient(50deg,#aab5ff,#aab5ff,#aaf4ff,#aab5ff,#aab5ff);
+          background-size:30vh,10vh;
+          padding:0 1vh;
+          box-shadow:0 0 0.5vh #95ccff;
+          animation: gani 10s infinite;
+          user-select:none;
+          -webkit-user-select:none;
+          cursor:pointer;
+      }
+      #next{
+          position: fixed;
+          right:2vw;
+          padding:1vh;
+          top:0.5vh;
+          font-size:2vh;
+          margin:0;
+          user-select:none;
+          -webkit-user-select:none;
+          cursor:pointer;
+      }
+      @keyframes gani {
+    0% {
+        box-shadow:0 0 0.5vh #95ccff;
+        background-position-x:0;
+    }
+    20% {
+        box-shadow:0 0 0.5vh #95ccff;
+        background-position-x:-3vh;
+    }
+    50% {
+    box-shadow:0 0 1vh 0.5vh #95ccff;
+        background-position-x:-10vh;
+        }
+    80%{
+        box-shadow:0 0 0.5vh #95ccff;
+        background-position-x:-13vh;
+    }
+    100% {
+        box-shadow:0 0 0.5vh #95ccff;
+        background-position-x:-20vh;
+    }
+}
+.card{
+    height:10vh;
+    margin:1vh 0vh;
+    overflow:hidden;
+    display: inline-block;
+    cursor:pointer;
+    transition:all 0.5s ease-out;
+}
+.card:hover{
+ animation: cho ease-in 0.2s;
+ transform:translateY(-1vh) rotateY(0deg) rotateX(0deg);
+}
+@keyframes cho{
+ 0%{
+  transform:translateY(0) rotateY(30deg) rotateX(-30deg);
+ }
+ 100%{
+  transform:translateY(-1vh) rotateY(0deg) rotateX(0deg);
+ }
+}
+.card img{
+    height:7vh;
+    position :relative;
+    filter:blur(5vh);
+    transition: filter 0.5s ease-out;
+    user-select:none;
+    -webkit-user-select:none;
+    background: radial-gradient(circle, #bfbfff,#8098ff);
+}
+.card h3{
+    margin:0;
+    width:5vh;
+    font-size:1vh;
+    text-align:center;
+}
+.card>img.load{
+    filter:blur(0);
+}
+.tcard{
+    height:7vh;
+    width:5vh;
+    margin:1vh 0.4vh;
+    position:relative;
+    display: inline-block;
+}
+.tcard:hover{
+ animation: cho ease-in 0.2s;
+ transform:translateY(-1vh) rotateY(0deg) rotateX(0deg);
+}
+.tcard img{
+    height:7vh;
+    position :relative;
+}
+.tcc{
+    font-size:2vh;
+    padding:0 1vh;
+    border-radius:3vh;
+    background:#eee;
+    position:absolute;
+    left:50%;
+    bottom:-1vh;
+}
+#danselb{
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0023; 
+    z-index: 10; 
+    display: none;
+    justify-content: center; 
+    align-items: center;     /* 垂直置中 */
+    -webkit-backdrop-filter:blur(1vh);
+    backdrop-filter:blur(1vh);
+
+    transition: opacity 0.5s ease;
+}
+#dansel{
+    background-color: white;
+    position:relative;
+    width:50vh;
+    display:block;
+    border-radius: 3vh; 
+    max-width: 80vw; 
+    box-shadow: 0 4px 10px #0054; 
+     transition: opacity 1s ease, height 2s ease;
+     overflow:hidden;
+    }
+#dansel h2{
+    text-align:center;
+    margin:1vh;
+    font-size:3.5vh;
+}
+#danclose{
+    padding:0 2vh;
+    position:absolute;
+    font-size:3vh;
+    bottom:15vh;
+    right:2vh;
+}
+#danlist{
+    height:70vh;
+    position:relative;
+    overflow:scroll;
+    display:block;
+    background:#ddd;
+}
+#danlist>div{
+    padding:1vh;
+    border-radius:2vh;
+    margin:1vh;
+    font-size:2vh;
+    user-select:none;
+    -webkit-user-select:none;
+}
+#searb {position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0045; 
+    z-index: 9; 
+    display: none;
+    backdrop-filter:blur(1px);
+
+    -webkit-backdrop-filter:blur(1px);
+    transition: opacity 0.5s ease;
+    user-select:none;
+    -webkit-user-select:none;
+}
+#sear{
+    background-color: #fffe;
+    position:fixed;
+    right:5vh;
+    width:40vh;
+    display:block;
+    border-radius: 3vh 3vh 0 0; 
+    max-width: 80vw; 
+    box-shadow: 0 4px 10px #0054; 
+     transition: opacity 0.4s ease, top 0.5s ease-in-out;
+    }
+#searh{
+    display:flex;
+    width:40vh;
+    font-size:2vh;
+}    
+#searh>*{
+    margin:1vh;cursor:pointer;
+}
+#searh>h3{
+    font-size:3vh;
+}
+#closesear{
+    padding:0 1vh;
+    border-radius: 3vh;
+    box-shadow:0 0 1vh #0004;
+}
+#clsear{
+    color:#5558;
+    text-shadow:0 0 1vh #2004;
+}
+#seart{
+    font-size:2vh;
+    padding:1vh;
+    margin:1vh;
+    max-width:35vh;
+    background:#eee;
+    border-radius: 2vh;
+    box-shadow:0 0 1vh #0004;
+    border:1px solid #fff;
+}
+#seart::placeholder{
+    color:#444;
+}
+#chd{
+    font-size:2vh;
+    padding:1vh;
+    margin:1vh;
+    max-width:35vh;
+    background:#fdfdff;
+    border-radius: 3vh;
+    box-shadow:0 0 1vh #0004;
+    border:1px solid #ddf;
+}
+#coub{
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0023; 
+    z-index: 10; 
+    display: none;
+    justify-content: center; 
+    align-items: center;     /* 垂直置中 */
+    -webkit-backdrop-filter:blur(1vh);
+    backdrop-filter:blur(1vh);
+
+    transition: opacity 0.5s ease;
+}
+#cou{
+    background-color: white;
+    position:relative;
+    width:50vh;
+    height:70vh;
+    display:block;
+    border-radius: 3vh; 
+    max-width: 80vw; 
+    box-shadow: 0 4px 10px #0054; 
+     transition: opacity 0.2s ease, height 0.2s ease;
+     overflow-x:hidden;
+     overflow-y:scroll;
+    user-select:none;
+    -webkit-user-select:none;
+    }
+#cou h2{
+    text-align:center;
+    margin:1vh;
+    font-size:3vh;
+}
+#cou>div{
+    display:flex;
+    justify-content:center;
+}
+#cou>div>*{
+    margin:1vh;
+    padding:0 1.5vh;
+    box-shadow:0 0 1vh #0004;
+    border-radius: 2vh;
+    user-select:none;
+    -webkit-user-select:none;
+    cursor:pointer;
+}
+#cou img{
+    width:30vh;
+    margin:1vh 5vh;
+}
+#coudo,#clr{
+    font-size:3vh;
+}
+#coui{
+    max-width:20vh;
+    font-size:2vh;
+}
+#pls,#min{
+    font-size:2vh;
+}
+#imgs{
+    height:100%;
+    width:100%;
+    background: linear-gradient(50deg,#deefff,#fff,#f4e5ff);
+    z-index:25;
+    position:fixed;
+    top:0;
+    left:0;
+    display:none;
+    transition: opacity 1s ease;
+}
+#ho{
+    padding:0 2vh;
+    border-radius: 3vh;
+    font-size:3vh;
+    margin:1vh 2vh;
+    box-shadow:0 0 1vh #0004;
+}
+#modles{
+    overflow:scroll;
+    height:80vh;
+    background:#0001;
+    -webkit-backdrop-filter:blur(10vh);
+    backdrop-filter:blur(1vh);
+    user-select: none;
+    -webkit-user-select:none;
+}
+.mod{
+    margin:1vh;
+    padding:1vh;
+    border-radius: 2vh;
+    background: #fff;
+    overflow:hidden;
+}
+.mod>img{
+    max-width: calc( 80vw - 4vh );
+    max-height:80vh;
+    border-radius: 2vh;
+    background: #fff;        
+}
+#modles>img{
+    position:relative;
+    display:block;
+    max-width:100vw;
+    max-height:70vh;
+}
+#modles>div{
+    transition: transform 0.1s ease-out;
+}
+#modles>div>img{
+ cursor:all-scroll;
+}
+ #setimg{
+position:fixed;
+     top:75vh;
+     left:2vh;
+     z-index:30;
+}
+#setimg p{
+ font:1.5vh "";
+}
+#outp{
+    padding: 0 1vh;
+    border:none;
+    margin:1vh;
+}
+#modles>h2{
+    font-size:3vh;
+    position:fixed;
+    z-index:100;
+    opacity:0.1;
+    top:60vh;
+    left:1vh;
+    background: linear-gradient(50deg,#006cff,#f800ff);
+ padding: 1vh;
+-webkit-background-clip: text; background-clip: text;
+-webkit-text-fill-color: transparent;
+animation: tx 10s infinite;
+pointer-events:none;
+}
+@keyframes tx {
+    0% {
+        opacity:0.1;
+    }
+    50%{
+     opacity:0.5;
+    }
+    60%{
+     opacity:0.3;
+    }
+    100% {
+       opacity:0.1;
+    }
+}
+#upcard{
+ position:fixed;
+ top:0.5vh;
+ right:1vh;
+ width:15vh;
+ font-size:2vh; 
+ padding: 0.5vh;
+ opacity:0;
+ cursor:pointer;
+}
+#upcardt{
+ position:fixed;
+ text-align:center;
+ top:-0.5vh;
+ right:1vh;
+ width:15vh;
+ font-size:2vh;
+ background: linear-gradient(10deg,#80acff,#ff95fc); 
+ padding:0.5vh;
+ border-radius: 3vh;
+ user-select:none;
+ -webkit-user-select:none;
+}
+#addt{
+ position:fixed;
+ text-align:center;
+ right:20vh;
+ top:-0.5vh;
+ font-size:2vh;
+ background: linear-gradient(10deg,#80acff,#ff95fc); 
+ padding:0.5vh;
+ border-radius: 3vh;
+ user-select:none;
+ -webkit-user-select:none;
+}
+.at{
+ position:fixed;
+ z-index:40;
+ border-radius: 2vh;
+ padding: 1vh;
+}
+#settool{
+    margin:1vh;
+    height:4vh;
+    width:80vw;
+    display:flex;
+    overflow:scroll;
+    user-select:none;
+    -webkit-user-select:none;
+}
+#settool>div{
+    border-radius: 1vh;
+    padding:0.5vh;
+    display:block;
+    margin:0 1vh;
+    font-size:2vh;
+    background:#defd;
+    cursor:pointer;
+}
+#transb{
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0003; 
+    z-index: 32; 
+    display: none;
+    justify-content: center; 
+    align-items: center;     /* 垂直置中 */
+    -webkit-backdrop-filter:blur(1vh);
+    backdrop-filter:blur(1vh);
+
+    transition: opacity 1s ease;
+    user-select:none;
+    -webkit-user-select:none;
+    cursor:pointer;
+}
+#trans{
+   background:radial-gradient(circle, #fff , #d5dfff);
+    position:relative;
+    width:50vh;
+    border-radius: 3vh; 
+    max-width: 80vw; 
+    box-shadow: 0 4px 10px #0054; 
+     transition: opacity 1s ease, height 1s ease;
+     overflow:hidden;
+     display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    flex-direction:column;
+}
+#trans h2{
+    font-size:3vh;
+}
+#transi{
+    font-size:2vh;
+    padding: 1vh;
+    margin: 1vh;
+    border-radius: 2vh;
+    
+}
+#transdo{
+    margin:2vh;
+    padding:0 1vh;
+    flex: 0 0 auto;
+    cursor:pointer;
+}
+*::-webkit-scrollbar{
+    width:0.5vw;
+    height:0.5vh;
+}
+*::-webkit-scrollbar-thumb{
+    background:#95ccff;
+    border-radius:2vh;
+}
+#impy,#impm{
+    font-size:1.3vh;
+    font-weight:999;
+    padding:0 1vh;
+    border-radius: 3vh;
+    background: #c5c5c5;
+    position:absolute;
+    right:5vh;
+}
+#impb{
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0023; 
+    z-index: 10; 
+    display: none;
+    justify-content: center; 
+    align-items: center;     /* 垂直置中 */
+    -webkit-backdrop-filter:blur(1vh);
+    backdrop-filter:blur(1vh);
+
+    transition: opacity 1s ease;
+}
+#imp{
+    background-color: white;
+    position:relative;
+    width:50vh;
+    height:70vh;
+    display:block;
+    border-radius: 3vh; 
+    max-width: 80vw; 
+    box-shadow: 0 4px 10px #0054; 
+     transition: opacity 1s ease, height 1s ease;
+     overflow-x:hidden;
+     overflow-y:scroll;
+      }
+#imp>*{
+    margin: 1vh;
+    border-radius: 2vh;
+    font-size:2vh;
+    padding: 1vh;
+}
+#imp>p{
+    color:#999;
+}
+#udchange{
+ position:absolute;
+ transform:translateX(50%) rotateZ(1deg);
+ right:50vw;
+ transition:all 0.5s ease-in-out;
+ width:3vh;
+ height:3vh;
+    user-select:none;
+    -webkit-user-select:none;
+    cursor:pointer;
+}
+#leri{
+ position:fixed;
+ top:0vh;
+ height:70vh;
+ display:none;
+ border:1px solid #8098ff;
+ z-index:50;
+}
+#chsize{
+ position:fixed;
+ top:0vh;
+ padding:0.5vh 1vh;
+ border-radius: 2vh;
+ font:2vh "";
+ box-shadow:0 0 1vh #2222;
+ color: #8098ff;
+ display:none;
+ z-index:50;
+}
+#tedt{
+ display:none;
+ z-index:70;
+ position:fixed;
+}
+#tedt>.bk{
+ width: 100vw;
+ height: 100vh;
+ position:fixed;
+ top:-10vh;
+ left: 0;
+ background: #aaa5;
+ backdrop-filter:blur(3vh);
+ z-index:60;
+}
+#tedt>input{
+ position:fixed;
+ top:20vh;
+ left:50vw;
+ transform:translateX(-50%);
+ width: 80vw;
+ padding: 1vh;
+ font: 2vh "";
+ background: #fff5;
+ backdrop-filter:blur(10vh);
+ border-radius: 1vh;
+ border:0 solid #fff;
+ border-bottom-width:2px;
+ z-index:70;
+}
+#tedt>.tt{
+ position:fixed;
+ top:5vh;
+ left:50vw;
+ transform:translateX(-50%);
+ padding: 1vh;
+ font: 2vh "";
+ background: #0000;
+ backdrop-filter:blur(10vh);
+ border-radius: 2vh;
+ z-index:70;
+}
+.point{
+ position:fixed;
+ width:0;
+ height:0;
+ z-index:800;
+ border-radius:1vh;
+ transition:top 0.5s ease,left 1s ease,width 1s ease,height 0.5s ease,box-shadow 0.5s linear;
+ pointer-events:none;
+ touch-action:none;
+}
+     </style>
+<body>    
+    <main>
+    <h1>PTCG交易圖生成器</h1>
+    <div class="givt">
+    <h2>我給你</h2><div id="youc">0</div><div id="impy">引入</div></div>
+    <div id="toyou"></div>
+    <div class="givt"><h2>你給我</h2><div id="mec">0</div><img src="https://m.botdc.cloudns.be/svg/ch" alt="上下交換" id="udchange"><div id="impm">引入</div></div>
+    <div id="tome"></div>
+    <div id="dex">
+        <div id ="dexh">
+          <div id="dexc">0</div> <div id="dexd">未選擇彈別</div><div id="sch" class="greatb">搜尋</div>
+        </div><div id="lowwifi">啟用數據節省</div>
+        <div id="list"></div>
+    </div>
+    <div id="next" class="greatb">下一步</div>
+    <div id="coub">
+        <div id="cou">
+            <h1 style="font-size:2.3vh;">歡迎來到PTCG交易圖生成器</h1><h2 style="font-size:2vh;">現在就開始吧！</h2>
+            <p>按下旁邊黑色背景開始使用</p>
+            <h2 style="font-size:2vh;">如何使用？</h2>
+            <h3>搜尋卡片</h3>
+            <p>1. 按下右下角的「搜尋」<br>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br>3. 輸入關鍵字或直接不輸入，按「搜尋」<br>如果未選擇範圍的話，將出現新臺幣。</p>
+            <h3>將卡片加入清單</h3>
+            <p>1. 點選「我給你」或「你給我」的白色區塊。<br>2. 點選搜尋結果中的卡片，將之加入清單<br>點越多，數量越多(淦話)<br>點清單中的卡片可以調整數量或剔除卡片</p>
+            <h3>生出圖片</h3>
+            <p>1. 按右上角「下一步」<br>2. 選擇想要的模板<br>3. 可以按住卡片來拖曳<br>4. 點卡片後再點下方「調整角度」可以改變選轉角度(可以弄成3D的，還有不要設90以免側看看不到)<br>5. 直接截圖，這樣比較省網路</p>
+            <h2 style="font-size:2vh;">現在就開始吧！</h2>
+            <p>按下旁邊黑色背景開始使用</p>
+            </div>
+    </div>
+    <div id="searb">
+        <div id="sear">
+            </div>
+    </div>
+    <div id="impb">
+        <div id="imp">
+            <h3>引入卡牌吧</h3>
+            <p>robots.txt已許可</p>
+        </div>
+    </div>
+    <div id="danselb">
+        <div id="dansel">
+            <h2>選擇彈別</h2>
+            <div id='danlist'></div>
+            <div id ="danclose" class="greatb">完成</div>
+            </div>
+    </div>
+    <div id="imgs"><div id="searh">
+        <div id="ho">&lt;</div>
+        <h3>選擇模板</h3>
+    </div>
+        <div id="modles"></div><div id='setimg'></div>
+    <div id="transb">
+        <div id="trans">
+            </div>
+    </div>
+    </div></main>
+    <footer><h3>搜尋卡片</h3>
+            <p>1. 按下右下角的「搜尋」<br>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br>3. 輸入關鍵字或直接不輸入，按「搜尋」<br>如果未選擇範圍的話，將出現新臺幣。</p>
+            <h3>將卡片加入清單</h3>
+            <p>1. 點選「我給你」或「你給我」的白色區塊。<br>2. 點選搜尋結果中的卡片，將之加入清單<br>點越多，數量越多(淦話)<br>點清單中的卡片可以調整數量或剔除卡片</p>
+            <h3>生出圖片</h3>
+            <p>1. 按右上角「下一步」<br>2. 選擇想要的模板<br>3. 可以按住卡片來拖曳<br>4. 點卡片後再點下方「調整角度」可以改變選轉角度(可以弄成3D的，還有不要設90以免側看看不到)<br>5. 直接截圖，這樣比較省網路</p></footer>
+    <script>var dancard={
+        "新臺幣":[
+        {n:'NTD十元',i:'https://www.cbc.gov.tw/public/data/issue/money/IMAGES/100th10-1.jpg'},{n:'NTD百元',i:'https://www.cbc.gov.tw/public/data/issue/money/images/100-1.jpg'},{n:"NTD五十元",i:"https://www.cbc.gov.tw/public/data/issue/money/images/50-new_1.jpg"},{n:"NTD千元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/1000-2.jpg"},{n:"NTD五元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/5-2.jpg"},{n:"NTD一元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/1-2.jpg"},{n:"HKD500元",i:"https://i.ibb.co/QFzztJW4/Screenshot-20250628-013851-Chrome.jpg"},{n:"HKD100元",i:"https://i.ibb.co/cc2jX0nW/Screenshot-20250628-013500-Chrome.jpg"},{n:"HKD50元",i:"https://i.ibb.co/pvssS4L2/Screenshot-20250628-013219-Chrome.jpg"},{n:"HKD20元",i:"https://i.ibb.co/WWPFwdNt/Screenshot-20250628-012855-Google.jpg"},{n:"HKD5元",i:"https://i.ibb.co/fVfpvJ5t/Doitoogle.jpg"},{n:"HKD1元",i:"https://i.ibb.co/PvB68fQv/Screenshot-20250628-012706-Google.jpg"}
+        ]
+    };
+    var modle=[{n:"測試",width:7,height:6,you:[[0.5,1],[6,1.8]],me:[[0.5,4],[6,1.8]]},{n:"提出交易",width:4,height:5,you:[[2.2,1.2],[1.5,1.7]],me:[[0.1,1.2],[1.6,1.7]]},{n:"可憐豆",width:7,height:7,you:[[0.5,1],[6,1.8]],me:[[0.5,4],[6,1.8]]},{n:"Pocket",width:8,height:18,you:[[0.7,6.7],[3,5.3]],me:[[4.3,4.6],[3,5.5]]},{n:"死皮賴臉",width:4,height:6,you:[[0.1,1.2],[3,1.8]],me:[[0.1,3.5],[3,2.5]]},{n:"GO交換",width:8.2,height:16.7,you:[[0.2,9.8],[5,4.8]],me:[[3,4.2],[5,4.5]]},{n:"工作台",width:23,height:9,you:[[3.9,2],[8.5,8.5]],me:[[15.6,3.6],[3.8,3.8]]},{n:"Jack叔叔",width:7,height:11,you:[[1,3.5],[6,3.1]],me:[[1,8.1],[6,3]]},{n:"Tretta交換",width:6.8,height:3.8,you:[[0.1,1.6],[3.2,2]],me:[[3.2,1.6],[3.2,2]]},{n:"特性交易",width:515,height:720,you:[[20,134],[480,300]],me:[[20,460],[480,300]]}];
+    var dans=[{'s':'超級進化'},{'i':'M1L','n':'超級勇氣'},{'i':'M1S','n':'超級交響樂'},{'s':'合眾地區'},{'i':'SV11B','n':'漆黑伏特'},{'i':'SV11W','n':'純白閃焰'},{s:"2025搭檔時代"},{'i':'SV10','n':'火箭隊的榮光反照'},{"i":"SV9a","n":"強化擴充包「熱風競技場」"},{"i":"SVOD","n":"挑戰牌組 大吾的鐵啞鈴&巨金怪ex"},{"i":"SVOM","n":"挑戰牌組 瑪俐的莫魯貝可&長毛巨魔ex"},{"i":"SV9","n":"擴充包「對戰搭檔」"},{s:"2024太晶:星晶時代"},{"i":"SVM","n":"雙ex初階牌組 Generations"}
+    ,{"i":"SV8a","n":"高級擴充包「太晶慶典ex」"},{"i":"SV8","n":"擴充包「超電突圍」"},{"i":"SV7a","n":"強化擴充包「樂園騰龍」"},{"i":"SVPN","n":"ex特別組合 太晶屬性：星晶 仙子伊布ex"},{"i":"SVPS","n":"ex特別組合 太晶屬性：星晶 蒼炎刃鬼ex"},{"i":"SVK","n":"牌組構築BOX 樂園騰龍"},{"i":"SVI","n":"Trianers Camp"},{"i":"SV7","n":"擴充包「星晶奇跡」"},{"i":"checkbox103","n":"戰術牌組「巨鉗螳螂ex」"},{"i":"checkbox102","n":"戰術牌組「太晶烈咬陸鯊ex」"},{"i":"checkbox101","n":"戰術牌組「沙奈朵ex」"},{"i":"checkbox100","n":"戰術牌組「密勒頓ex」"},{"i":"checkbox99","n":"戰術牌組「太晶噴火龍ex」"},{"i":"checkbox98","n":"戰術牌組「魔幻假面喵ex」"},{s:"2024 北上鄉"},{"i":"SV6a","n":"強化擴充包「黑夜漫遊者」"},{"i":"SV6","n":"擴充包「變幻假面」"},{"i":"SV5a","n":"強化擴充包「緋紅薄霧」"},{'s':'古代未來'},{"i":"SVHK","n":"起始組合「古代故勒頓ex」"},{"i":"SVHM","n":"起始組合「未來密勒頓ex」"},{"i":"SV5M","n":"擴充包「異度審判」"},{"i":"SV5K","n":"擴充包「狂野之力」"},{"i":"SV4a","n":"高級擴充包「閃色寶藏ex」"},{"i":"SV4K","n":"擴充包「古代咆哮」"},{"i":"SV4M","n":"擴充包「未來閃光」"},{"i":"SV4a","n":"強化擴充包「激狂駭浪」"},{"i":"SVEM","n":"起始組合 太晶 超夢ex"},{"i":"SVEL","n":"起始組合 太晶 骨紋巨聲鱷ex"},{"i":"checkbox84","n":"牌組構築BOX黯焰支配者"},{"i":"SV3","n":"擴充包「黯焰支配者」"},{"i":"checkbox82","n":"ex初階牌組"},{"i":"SV2a","n":"強化擴充包「寶可夢卡牌151」"},{"i":"SVP1","n":"ex特別組合"},{"i":"checkbox78","n":"起始組合ex 皮卡丘特別組合"},{"i":"SV2P","n":"擴充包「冰雪險境」"},{"i":"SV2D","n":"擴充包「碟旋暴擊」"},{"i":"SV1a","n":"強化擴充包「三連音爆」"},{"i":"checkbox73","n":"頂級訓練家收藏箱ex"},{"i":"checkbox72","n":"起始組合ex 潤水鴨&謎擬Ｑ ex"},{"i":"checkbox71","n":"起始組合ex 新葉喵&路卡利歐 ex"},{"i":"checkbox70","n":"起始組合ex 呆火鱷&電龍 ex"},{"i":"SV1V","n":"擴充包「紫ex」"},{"i":"SV1S","n":"擴充包「朱ex」"},{"i":"SV-P","n":"特典卡 朱&紫"}];
+    </script>
+<script>
+ var nowdan=[],dcards=[],cards=[],addto='toyou',tcards={'toyou':{},'tome':{}},lowwifi=false;
+    sear('',null,null);
+    gq('#toyou,#tome').forEach(function(e){
+        e.addEventListener('click',function(){
+        addto=this.id;
+        gq('#toyou,#tome').forEach(function(el){css(el,{backgroundImage:
+        'unset'});});
+        css(this,{backgroundImage:
+        'linear-gradient(50deg,#fff,#f5f5f7,#fff)'});
+        }); 
+    });
+    function sear(k,ct,ty){
+       setTimeout(async function () {           
+       await Ldcard();
+        cards=[];
+        let kn= k=='';
+        for (let i of dcards){
+            if (kn || i.n.indexOf(k)!=-1){
+                cards.push(i);
+            }
+        }
+        Lcard();
+        },10);
+    }
+    async function Ldcard(){
+        let d=nowdan.length>0?nowdan:['新臺幣'];
+        dcards=[];
+        
+        for (let i of d){
+            if (dancard[i]!=undefined && dancard.length!=1){
+                for (let j of dancard[i]){
+                    dcards.push(j);
+                }
+            }else{
+            let no= await aFcard(i);
+            console.log(dancard[i]);
+            for (let j of dancard[i]){
+                    dcards.push(j);
+                }
+                
+            }
+        }
+    }
+async function aFcard(d) {
+    try{let response = await fetch(`/get_s/${d}`);
+
+    if (!response.ok) {
+      dancard[d]=[{n:"網路錯誤"}];
+      return dancard[d];
+    }
+
+    
+    let data = await response.json();
+    dancard[d]=data;
+    
+    return data || [];
+    }
+        catch(e){console.log(e);return [{n:e}];}
+}
+    function Lcard(){
+        let dl=gi('list'),sm=0;
+        dl.innerHTML='';
+        for (let i of cards){
+            sm+=1;
+            let cc=document.createElement('div');
+            cc.className='card';
+            cc.dataset.i=i.i;
+            cc.innerHTML=lowwifi?`<img><h3>${i.n}</h3>`:`
+            <img src='${i.i.startsWith('http') ?i.i: `https://asia.pokemon-card.com/tw/card-img/tw${i.i.padStart(8, '0')}.png`}' alt='${i.n}'>
+            <h3>${i.n}</h3>
+            `;
+            dl.appendChild(cc); 
+            cc.addEventListener('click',function(){
+                if (tcards[addto][this.dataset.i] === undefined) {
+         tcards[addto][this.dataset.i] = 0;
+         }
+       tcards[addto][this.dataset.i] += 1;
+                Ltcard(addto);
+            });
+        }
+        gi("dexc").innerText=sm;
+        if (sm==0)dl.innerHTML="沒有結果";
+        for (let cc of gq(".card>img")){
+            cc.addEventListener('load', imageLoad);
+        cc.addEventListener('error', imageLoad);
+        }
+    }
+function imageLoad() {
+    this.classList.add("load");
+}
+function Ltcard(qr){
+    let ta=gi(qr);
+    ta.innerHTML='';
+    let ca=tcards[addto],s=0;
+    for (let i in ca){
+        let cc=document.createElement('div');
+            cc.className='tcard';
+            cc.dataset.i=i;
+            cc.innerHTML=`
+            <img src='${i.startsWith('http') ?i: `https://asia.pokemon-card.com/tw/card-img/tw${i.padStart(8, '0')}.png`}' alt='點一下調數量'>
+            <p class='tcc'>${ca[i]}</p>
+            `;
+            ta.appendChild(cc);
+            cc.addEventListener("click",function() {Lcou(this.dataset.i) ;
+            });
+            s+=ca[i];
+    }
+    gi(`${qr.slice(2)}c`).innerText=s;
+}
+gi("udchange").on("click",()=>{
+css(gi('udchange'),{width:'5vh',height:'5vh',transform:"rotateZ(179deg) translateX(-50%)"});
+setTimeout(()=>{
+let toy=tcards['toyou']; tcards['toyou']=tcards['tome'];
+tcards['tome']=toy;
+ tcards['toyou'],tcards['tome']=tcards['tome'],tcards['toyou'];
+ addto='toyou'
+ Ltcard('toyou');
+ addto='tome'
+ Ltcard('tome');
+ css(gi('udchange'),{transform:"rotateZ(358deg) translateX(50%)"});
+ },500);
+ setTimeout(()=>{css(gi('udchange'),{width:'3vh',height:'3vh',transform:" translateX(50%)"});},1100);
+});
+
+gi("dexd").on("click", Ldan); 
+gi("danclose").on("click",function(){Hdan();
+sear("",null,null)});
+
+//Rdan
+function Rdan(){
+gi("danlist").innerHTML="";
+gi("dexd").innerText="請選擇彈別";
+for (let d of dans){
+    let cc=document.createElement('div');
+    if (d.s){
+        cc.innerText=d.s;
+      gi("danlist").appendChild(cc);
+      cc.style.fontSize="1vh";
+      continue;
+    }
+            cc.dataset.i=d.i;
+            cc.innerText=d.n;
+            gi("danlist").appendChild(cc);
+            cc.addEventListener("click",function(){
+                if (nowdan.includes(this.dataset.i )){
+                    nowdan = nowdan.filter(d => d!== this.dataset.i);
+                    css(this,{background:"#fff0"});
+                }else{
+                    nowdan.push(this.dataset.i);
+                    css(this,{background:"#abd"});
+                }
+            
+            gi("dexd").innerText=nowdan.length==0?"未選擇彈別":`已選${nowdan.length}個`
+            });
+}
+}
+Rdan();
+function Ldan(){
+    css(gi("danselb"),{display:'flex',opacity:1});
+    css(gi("dansel"),{height:"10vh",opacity:0.1});
+    setTimeout(function(){
+        css(gi("dansel"),{height:"80vh",opacity:1});
+    },200);
+ }
+gi('danselb').on('click', function(event) {
+    if (event.target === gi('danselb')) {
+        Hdan();
+    }
+});
+
+function Hdan(){
+    css(gi("danselb"),{opacity:0});
+    setTimeout(function(){
+     css(gi("danselb"),{display:'none'});
+     },500);
+}
+gi("sch").on("click", Ssear); 
+function Ssear(){
+    css(gi("searb"),{display:'block',opacity:1});
+    css(gi("sear"),{height:"10vh",top:"90vh",opacity:0.1});
+    setTimeout(function(){
+        css(gi("sear"),{height:"70vh",top:"30vh",opacity:1});
+    },200);
+}
+gi('searb').on('click', function(event) {
+    if (event.target === gi('searb')) {
+        Hsear();
+    }
+});
+function Hsear(){
+    css(gi("sear"),{top:"90vh"});
+    setTimeout(function(){
+     css(gi("searb"),{display:'none'});
+     },500);
+}
+
+Lsear();
+
+function Lsear(){
+    gi('sear').innerHTML=`
+    <div id="searh">
+    <div id="closesear"><</div>
+    <div id="clsear">清除</div>
+    <div id="startsear" class="greatb">搜尋</div>
+    </div>
+    <input type="text" placeholder="搜尋範圍內卡牌" id="seart">
+    <div id="chd">選擇範圍（不然搜不到)</div>
+    
+    `;
+     nowdan=[];
+     Rdan(); r={chd:Ldan,"closesear":Hsear,clsear:Lsear,startsear:function(){Hsear();sear(gi("seart").value,null,null);}};
+    for (let i in r){
+        gi(i).on("click",r[i]);
+    }
+}
+
+
+var seton="";
+function Lcou(idd){
+    if(tcards[addto][idd]===undefined)return;
+    css(gi("coub"),{display:'flex',opacity:1});
+    gi("cou").innerHTML=`<h2>調整數量</h2><img src="${idd.startsWith('http') ?idd: `https://asia.pokemon-card.com/tw/card-img/tw${idd.padStart(8, '0')}.png`}" alt="圖片">
+    <div><div id="min">-</div><input type="number" id="coui" value="${tcards[addto][idd]}"><div id="pls">+</div></div><div><div id="clr">清0</div><div id="coudo" class="greatb">完成</div></div>`;
+    seton=idd;
+    r={coudo:function(){Hcou();tcards[addto][seton]=pInt(gi("coui").value);Ltcard(addto);},clr:function () {
+        Hcou();delete tcards[addto][seton];Ltcard(addto);
+    },pls:function () {
+        gi("coui").value=pInt(gi("coui").value)+1;
+    },min:function () {
+        gi("coui").value=pInt(gi("coui").value)-1;
+    }};
+    for (let i in r){
+        gi(i).on("click",r[i]);
+    }
+    css(gi("cou"),{height:"10vh",opacity:0.1});
+    setTimeout(function(){
+        css(gi("cou"),{height:"70vh",opacity:1});
+    },200);
+}
+gi('coub').on('click', function(event) {
+    if (event.target === gi('coub')) {
+        Hcou();
+    }
+});
+function Hcou(){
+    css(gi("coub"),{opacity:0});
+    setTimeout(function(){
+     css(gi("coub"),{display:'none'});
+     },500);
+}
+function pInt(t){
+    ct="";
+    for (let c of t){
+        if ("1234567890".indexOf(c)!=-1){
+            ct+=c;
+        }
+    }
+    ct=Number(ct);
+    if (isNaN(ct))ct=1;
+    return ct;
+}
+
+gi("lowwifi").on("click",function () {lowwifi=!lowwifi;
+    if (lowwifi){this.innerText="已隱藏圖片-關閉數據節省(重新搜尋才會套用)";}else{
+        this.innerText="啟用數據節省(重新搜尋才會套用)";
+    }})
+gi("next").on("click",function () {
+    css(gi("imgs"),{display:"block",opacity:0.1});
+    gq("#imgs h3")[0].innerHTML="選擇模板";
+    gi("modles").innerHTML="";
+    gi("setimg").innerHTML="";
+    setTimeout(function(){
+        css(gi("imgs"),{opacity:1}); gi("modles").style.touchAction="pan-y";
+        let el=document.createElement("input");
+            el.innerHTML=`<h2>上傳檔案</h2>`
+            el.className="mod";
+            el.accept="image/*";
+            el.type="file";
+            el.dataset.i="up";
+    gi("modles").appendChild(el);
+            el.addEventListener("change",function () {
+            const file = event.target.files[0]; // 獲取使用者選擇的第一個檔案 
+        let src;
+        if (file) {
+            const reader = new FileReader(); 
+            reader.onload = function(e) {src = e.target.result;let fil={n:src,width:10,height:10,you:[[1,1],[8,4]],me:[[1,6],[8,4]]};
+     modle.push(fil);
+             readm(src);}; 
+ reader.readAsDataURL(file); // 以 Data URL 的形式讀取檔案內容
+        } else {return }
+            });
+        for (let m of modle){
+            let el=document.createElement("div");
+            el.innerHTML=`<img src="${m.n.startsWith('data')?'':'/ptcb/'}${m.n}" alt="${m.n}"><h2>${m.n.startsWith('data')?'歷史紀錄':m.n}</h2>`
+            el.className="mod";
+            el.dataset.i=m.n; gi("modles").appendChild(el);
+            el.addEventListener("click",function () {
+      readm(this.dataset.i);
+            });
+        }
+    },200);
+});
+gi("ho").on("click",function () {
+    css(gi("imgs"),{opacity:0});
+    setTimeout(function(){
+        css(gi("imgs"),{display:"none"});
+    },100);
+});
+
+function readm(ds) {
+   let r;
+    for (let i of modle){
+     if (i.n==ds){
+         r=i;
+         break;
+     }
+    }
+    const bez=Math.min(window.innerWidth/r.width,window.innerHeight*0.7/r.height);
+    let im=document.createElement("img");
+    im.src=r.n.startsWith("data")?r.n:`/ptcb/${r.n}`;
+    im.alt="背景圖片，理論上一定要出現";
+    gi("modles").innerHTML="";
+    gi("modles").appendChild(im);
+    gi("modles").style.touchAction="none";
+    css(im,{height:r.height*bez+'px',width:r.width*bez+'px'});
+    gq("#imgs h3")[0].innerHTML="編輯圖片";
+    cSize(tcards.toyou,r.you,bez);
+    cSize(tcards.tome,r.me,bez);
+    gi("setimg").innerHTML="<div id='settool'></div><p>點擊來調整角度，拖曳改變位置，雙指或拉」條角度大小，請直接截圖。拖曳到下方將能刪除物件</p><button id='outp' class='greatb'>請自行截圖</button><p id='upcardt'>加入圖片</p><p id='addt'>Tt</p><input type='file' accept='image/*' id='upcard'>";
+    gi("outp").on("click",outp);
+  gi('upcard').on("change",function () {
+   for (const file of event.target.files){
+    if (file) {
+     const reader = new FileReader(); 
+     reader.onload = function(e) {
+      let src={};
+      src [e.target.result]=1;
+      
+      cSize(src,[[parseInt(r.width*0.1),parseInt(r.height*0.1)],[parseInt(r.width*0.8),parseInt(r.width*0.8)]],bez);
+     }
+     reader.readAsDataURL(file); // 以 Data URL 的形式讀取檔案內容
+    } else { return }
+   }
+  });
+    let h2el=document.createElement("h2");
+    h2el.innerText="PTCG交易圖生成器-要將這網頁加星星歐。";
+    
+    gi("modles").appendChild(h2el);
+    let leri=document.createElement("div");
+    leri.id="leri";
+    gi("modles").appendChild(leri);
+    let tedt=document.createElement("div");
+    tedt.id="tedt";
+    tedt.innerHTML="<div class='bk'></div><input type='text'><div class='tt' data-c='0'>[T]</div>"
+    gi("modles").appendChild(tedt);
+    gq("#tedt>.bk")[0].addEventListener("click",function () {
+    css(gi("tedt"),{display:"none"});
+    });
+    gq("#tedt>.tt")[0].addEventListener("click",function () {
+     let c=Number(this.dataset.c);
+     c++
+     if (c>3)c=0;
+     let tocs={background:c==2?"#fff":"#0000",boxShadow:c==3?"0 0 1vh #fff9":"none",textShadow:c==1?"0 0 1vh #fff9":"none"};
+     css(gq("#tedt>input")[0],tocs);
+     css(dragItem,tocs);
+     this.dataset.c=c;
+    });
+    gq("#tedt>input")[0].addEventListener("input",function () {
+    dragItem.innerText=this.value;
+    });
+    gq("#tedt>*").forEach(i=>{i.addEventListener("click",e=>{e.preventDefault();});
+});
+    let chsize=document.createElement("div");
+    chsize.id="chsize";
+    chsize.innerText="」";//⨁
+    gi("modles").appendChild(chsize);
+    chsize.addEventListener("pointerdown",SDMove);
+ gi("addt").on("click",function () {
+ let el=document.createElement("p");
+ el.className="at";
+ el.innerText="點擊編輯文字";
+  gi("modles").appendChild(el);
+  css(el,{top:window.innerHeight*0.4+"px",left:"10px"});
+ el.addEventListener("pointerdown",moveStart);
+ el.addEventListener("click",function () {
+  dragItem=this;
+  css(gi("tedt"),{display:"block"});
+  gq("#tedt>input")[0].value=this.innerText.replace("點擊編輯文字",'');
+  gq("#tedt>input")[0].focus()
+ });
+ });
+ 
+}
+
+//透過滑鼠改變大小角度
+var dsx,dsy,ort;
+function SDMove() {
+let tit;
+if (dragItem.nodeName=="DIV"){tit=dragItem.querySelector(".printc");}else{
+ tit=dragItem;
+}
+dsx=tit.getBoundingClientRect().left +tit.offsetWidth/2;
+dsy=tit.getBoundingClientRect().top+tit.offsetHeight/2+0.1*window.innerHeight;
+ort=undefined;
+ document.addEventListener('pointermove', Dmove);
+    document.addEventListener('pointerup', Dend);
+}
+function Dmove(e) {
+let dX = e.clientX || e.touches[0].clientX;
+ let dY = e.clientY || e.touches[0].clientY;
+ if (ort===undefined){
+ ort=Math.atan((dY-dsy)/(dX-dsx));
+ }else{
+ let cW=((dX-dsx)**2+(dY-dsy)**2)**0.5*2;
+ cW=cW*Math.cos(Math.atan(ort));
+ if (dragItem.nodeName=="DIV"){
+ let ct=dsy-cW/2*dragItem.querySelector(".printc").offsetHeight/dragItem.querySelector(".printc").offsetWidth-0.1*window.innerHeight;
+ css(dragItem.querySelector(".printc"),{width:`${cW}px`});
+   css(dragItem,{width:`${cW}px`,left:dsx-cW/2+"px",top:ct+"px"});
+ }else{
+  let ct=dsy-cW/2*dragItem.offsetHeight/dragItem.offsetWidth-0.1*window.innerHeight;
+ 
+   css(dragItem,{fontSize:`${cW/10}px`,left:dsx-cW/2+"px",top:ct+"px"});
+ } 
+
+ tanadd(dragItem,"rotateZ",`${(Math.atan((dY-dsy)/(dX-dsx))-ort)/Math.PI*180}deg`);
+}
+Lchsize();
+}
+function Dend() {
+ document.removeEventListener('pointermove', Dmove);
+    document.removeEventListener('pointerup', Dend);
+}
+
+
+//加入卡牌
+function cSize(ntc,ru,bez){
+    ntc=Object.entries(ntc);
+    let len=ntc.length;
+    let siz=0;g=[0,0];
+    for (let x=1;x<=len;x++){
+        let y=Math.ceil(len/x);
+        let ti=Math.min(ru[1][0]/5/x,ru[1][1]/7/y);        
+        if (ti>siz){siz=ti;g=[x,y];}
+    }
+    
+    for (let y=0;y<g[1];y++){
+        for (let x=0;x<g[0];x++){
+            let el=document.createElement("div");           
+            let ncard=ntc[y*g[0]+x];            
+            el.innerHTML=`<img src="${ncard===undefined?"":(ncard[0].startsWith('http')||ncard[0].startsWith('data') ?ncard[0]: `https://asia.pokemon-card.com/tw/card-img/tw${ncard[0].padStart(8, '0')}.png`)}" alt=""  class="printc">${ncard===undefined?"":`<p class='tcc'>${ncard[1]}</p>`}`;
+         gi("modles").appendChild(el);
+         el.addEventListener('pointerdown', moveStart);
+            el.addEventListener("click",dragclick);
+            css(el
+                ,{width:`${5*siz*bez}px`,position:"fixed",zIndex:26,height:`${7*siz*bez}`,top:`${(y*7*siz+ru[0][1])*bez}px`,left:`${(x*5*siz+ru[0][0])*bez}px`});
+            let leimg=gq(".printc");
+            css(leimg[leimg.length-1],{width:`${5*siz*bez}px`,height:`${7*siz*bez}`});
+        }
+    }
+    
+}
+function Lleri(x,t) {
+ css(gi("leri"),{left:x+"px",display:"block"});
+ gq("#modles>h2")[0].innerText=t;
+ setTimeout(function () {
+  css(gi("leri"),{display:"none"});
+ gq("#modles>h2")[0].innerText="PTCG交易圖生成器";
+ },1000);
+}
+function Lchsize() {
+ let chsize=gi("chsize");
+ let tx=dragItem.offsetWidth+dragItem.offsetLeft-chsize.offsetWidth/2;
+ let ty=dragItem.offsetHeight+dragItem.offsetTop-chsize.offsetHeight/2;
+ css(chsize,{left:tx+"px",top:ty+"px",display:"block"});
+ setTimeout(function () {
+  css(gi("chsize"),{display:"none"});
+ },3000);
+}
+function dragclick() {
+if (dragItem.nodeName=="P")return;
+ if (!this.dataset.r){
+  this.dataset.r="6";
+ }
+ let rr=Number(this.dataset.r);
+ if (rr>5)rr=0
+ let rs=["1vh","3vh","5vh","50%","100vh","0vh"];
+ css(dragItem.querySelector(".printc"),{borderRadius:rs[rr]});
+ this.dataset.r=++rr;
+ Lchsize();
+}
+var dragItem,nowdeg,x1=-1,y1=-1,candel;
+function moveStart(e) {
+
+    //e.preventDefault();
+    dragItem=this;
+    x1=-1,y1=-1;
+    candel=false;
+    document.addEventListener('pointermove', drag);
+    document.addEventListener('pointerup', dragEnd);
+    document.addEventListener('touchmove', dragto);
+   if (dragItem.nodeName=="DIV"){
+    gi("settool").innerHTML="<div id='tranZ'>平面旋轉</div><div id='tranY'>側旋</div><div id='tranX'>上旋</div><div id='tranW'>尺寸</div>";
+    r={tranZ:function () {
+        Strans("Z");
+    },tranX:function () {
+        Strans("X");
+    },tranY:function () {
+        Strans("Y");
+    },tranW:function () {
+        Strans("W");
+    }};
+    for (let i in r){
+        gi(i).on("click",r[i]);
+    }
+   }
+}
+
+function dragto(e){
+ if (e.touches && e.touches[1]){
+  if (x1!=-1){
+  if (dragItem.nodeName=="DIV"){
+   css(dragItem.querySelector(".printc"),{width:`${parseInt(dragItem.querySelector(".printc").style.width)+getS(e.touches[1],e.touches[0])-x1}px`});
+   css(dragItem,{width:`${parseInt(dragItem.querySelector(".printc").style.width)+getS(e.touches[1],e.touches[0])-x1}px`});
+   }else{
+    css(dragItem,{fontSize:`${getS(e.touches[1],e.touches[0])/10}px`});
+   }
+  }
+  x1=getS(e.touches[0],e.touches[1]);
+if (y1==-1){ y1=getA(e.touches[0], e.touches[1]);}else{
+ tanadd(dragItem,`rotateZ`,`${getA(e.touches[0], e.touches[1])-y1}deg`);
+}
+ 
+ dx = (e.touches[0].clientX+e.touches[1].clientX)/2;
+ dy = (e.touches[0].clientY+e.touches[1].clientY)/2;
+ let md=gq("#modles>img")[0].offsetWidth/2;
+ if (Math.abs(dx-md)<3){}Lleri(md,"已達中間位置");
+ if (dragItem.nodeName=="DIV"){ dy-=parseInt(dragItem.querySelector(".printc").offsetHeight)/2+0.1*window.innerHeight;
+ dx-=parseInt(dragItem.querySelector(".printc").offsetWidth)/2;
+ }else{
+  dy-=dragItem.offsetHeight/2+window.innerHeight*0.1;
+  dx-=parseInt(dragItem.offsetWidth)/2;
+ } 
+ 
+ dragItem.style.left = dx + 'px';
+ dragItem.style.top = dy + 'px';
+ if (Math.abs(dx-md)<3)Lleri(md,"左方已達中間位置");
+ Lchsize();
+}
+}
+
+function drag(e) {
+ e.preventDefault();
+ let currentX = e.clientX || e.touches[0].clientX;
+ let currentY = e.clientY || e.touches[0].clientY;
+ dx = currentX;
+ dy = currentY;
+ if (dragItem.nodeName=="DIV"){ dy-=parseInt(dragItem.querySelector(".printc").offsetHeight)/2+0.1*window.innerHeight;}
+ else{dy-=parseInt(dragItem.offsetHeight)/2+0.1*window.innerHeight;}
+  let md=gq("#modles>img")[0].offsetWidth/2;
+  if (Math.abs(dx-md)<3)Lleri(md,"已達中間位置");
+  if (dragItem.nodeName=="DIV"){ dx-=parseInt(dragItem.querySelector(".printc").offsetWidth)/2;}
+  else{
+   dx-=parseInt(dragItem.offsetWidth)/2;
+  }
+  
+ css(dragItem,{left:dx + 'px',top:dy + 'px'});
+ if (Math.abs(dx-md)<3)Lleri(md,"左方已達中間位置");
+ Lchsize();
+ 
+ if (currentY>window.innerHeight*0.8){
+  candel=true;
+  Lleri(md,"放開後刪除");
+ }else{
+  candel=false;
+ }
+  }
+
+function dragEnd() { 
+ document.removeEventListener('pointermove', drag);
+ document.removeEventListener('touchmove', dragto);
+ document.removeEventListener('pointerup', dragEnd);
+ gi("modles").appendChild(dragItem);
+if (candel){
+ gi("modles").removeChild(dragItem);
+}
+
+}
+
+function getA(touch1, touch2) {
+        const dx = touch2.clientX - touch1.clientX;
+        const dy = touch2.clientY - touch1.clientY;
+        return Math.atan2(dy, dx) * 180 / Math.PI; // 弧度轉角度
+ }
+ function getS(touch1, touch2) {
+        const dx = touch2.clientX - touch1.clientX;
+        const dy = touch2.clientY - touch1.clientY;
+        return (dx**2+dy**2)**0.5
+ }
+    
+function Strans(t){
+    css(gi("transb"),{display:'flex',opacity:1});
+    css(gi("trans"),{height:"10vh",top:"920vh",opacity:0.1});
+    nowdeg=t;
+    gi("trans").innerHTML=`<h2>量化角度</h2><input type="number" placeholder="輸入酷炫的角度0-360[只需要數字]" id="transi"><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+    if (t=='W'){
+        gq('#trans h2')[0].innerText='量化大小';
+        let ww=window.innerWidth;
+        gi('transi').placeholder=`建議範圍在${parseInt(ww*0.01)}~${ww}之間`;
+    }
+    gi("transi").focus();
+    r={transdo:function () {
+        Htrans();
+        if (nowdeg=='W'){
+            dragItem.style.width=`${gi("transi").value}px`;
+            dragItem.querySelector("img").style.width=`${gi("transi").value}px`;
+            return;
+        }
+         tanadd(dragItem,`rotate${nowdeg}`,`${gi("transi").value}deg`);
+    },transall:function () {
+        Htrans();
+        gq("#modles>div").forEach(function (e) {
+        if (nowdeg=='W'){
+            e.style.width=`${gi("transi").value}px`;
+            e.querySelector("img").style.width=`${gi("transi").value}px`;
+            return;
+        }
+         tanadd(e,`rotate${nowdeg}`,`${gi("transi").value}deg`);
+         });
+    }};
+    for (let i in r){
+        gi(i).on("click",r[i]);
+    }
+    setTimeout(function(){
+        css(gi("trans"),{height:"80vh",top:"20vh",opacity:1});
+    },200);
+}
+function Htrans(){
+    css(gi("transb"),{opacity:0});
+    setTimeout(function(){
+     css(gi("transb"),{display:'none'});
+     },500);
+}
+
+async function outp() {
+    this.disabled = true;
+    alert("直接截圖比較快，window7:剪取工具，window10,11:win+shift+s，安卓音量減+開機鍵，ios:開機鍵+音量加、主畫面按鈕+開機鍵");
+    this.textContent = '生成中...';
+    try{const html2canvas = await loadHtml2canvas();
+    console.log(html2canvas);
+    const canvas = await html2canvas(gi("modles"), {scale: window.devicePixelRatio, useCORS: true, 
+        });
+        const dataUrl = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'ptcg.png';
+     document.body.appendChild(link);
+        link.click(); 
+      document.body.removeChild(link);
+      }catch(e){
+          this.textContent = '無法儲存，請直接截圖';
+      }
+      this.disabled = false;
+}
+
+function tanadd(e, n, a) {
+  let c = e.style.transform || '';
+  if (c === 'none') c = '';
+  let r = [];
+  let p = c.match(/(\w+)\([^)]*\)/g);
+  let xM=0,yM=0;
+  if (p) {
+    for (let i = 0; i < p.length; i++) {
+      let s = p[i];
+      if (!s.startsWith(n + '(')) {
+        r.push(s);
+      }
+      
+    }
+  }
+  
+  r.push(`${n}(${a})`);
+  for (let i = 0; i < r.length; i++) {
+     let s = r[i];
+     if (s.startsWith("rotateX")){
+       let n=s.replace("rotateX(","").replace("deg)","");
+       n=Number(n);
+       yM=-Math.sin(n/180*Math.PI);
+     }else if (s.startsWith("rotateY")){
+       let n=s.replace("rotateY(","").replace("deg)","");
+       n=Number(n);
+       xM=Math.sin(n/180*Math.PI);
+     }
+  }
+  e.style.transform = r.join(' ');
+  css(e,{boxShadow:`${xM*4}vh ${yM*4}vh  1vh #ffbfff51`});
+  
+}
+
+var html2canvasLoadPromise = null;
+function loadHtml2canvas() {
+    if (html2canvasLoadPromise) {
+        return _html2canvasLoadPromise;
+    }
+    html2canvasLoadPromise = new Promise((resolve, reject) => {
+        if (window.html2canvas) {
+            resolve(window.html2canvas);
+            return; 
+        }
+
+        // 創建 script 元素
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+
+        script.onload = function(){
+           
+            if (window.html2canvas) {
+                resolve(window.html2canvas);
+            } else {console.log("成功但不可用");
+            }
+        };
+
+        // 設定載入失敗時的回調
+        script.onerror = function(error)  {
+            console.error('html2canvas 載入失敗:', error);
+            reject(new Error(`Failed to load html2canvas script: ${error.message || ''}`));
+        };
+document.head.appendChild(script);
+    });
+    return html2canvasLoadPromise;
+}
+
+gi("impy").on("click",function () {
+    Limp("toyou");
+});
+gi("impm").on("click",function () {
+    Limp("tome");
+});
+var impto="";
+function Limp(idd){
+    css(gi("impb"),{display:'flex',opacity:1});
+    gi("imp").innerHTML=`<h2>引入卡牌</h2>
+<p style="color:red;font-size:4vh;">由於在更新時發生了奇怪的錯誤，目前維修中</p>
+    <input type="text" id="impi" value="" placeholder="lZsVov-xHWzGL-UtJTvn"><p>說明:目前只支援asia.pokemon-card.com/tw/的牌組</p><div id="impdo" class="greatb">完成</div><p>更多細節:套用後將部分覆蓋<br>格式為：https://asia.pokemon-card.com/tw/deck-build/recipe/lZsVov-xHWzGL-UtJTvn/ 或是 lZsVov-xHWzGL-UtJTvn 請注意大小寫，必須含有兩個-(半形)</p><p>請合理使用，<a href="https://asia.pokemon-card.com/robots.txt">不允許讀取名單</a>，且代理瀏覽不屬於機器人</p></div>`;
+    impto=idd;
+    r={impdo:async function () {
+       let fid= gi("impi").value;
+       fid=fid.split("/");
+       fid=fid[fid.length-1]
+       if (fid.split("-").length<3 || fid.length<9) fid="lZsVov-xHWzGL-UtJTvn";
+       Himp();
+       try{let response = await fetch(`/get_p/${fid}`);
+    let data;
+    if (!response.ok) {
+       data=[{i:"https://g.botdc.cloudns.be/404.svg",c:1}];
+    }else{
+    data = await response.json();
+    }
+   for (let i of data || []){
+       tcards[impto][i.i]=i.c;
+   }
+   Ltcard(impto);
+   
+    }
+        catch(e){console.log(e);gi("imp").innerText=e;}
+
+    }};
+    for (let i in r){
+        gi(i).on("click",r[i]);
+    }
+    css(gi("imp"),{height:"10vh",opacity:0.1});
+    setTimeout(function(){
+        css(gi("imp"),{height:"70vh",opacity:1});
+    },200);
+}
+gi('impb').on('click', function(event) {
+    if (event.target === gi('impb')) {
+        Himp();
+    }
+});
+function Himp(){
+    css(gi("impb"),{opacity:0});
+    setTimeout(function(){
+     css(gi("impb"),{display:'none'});
+     },500);
+}
+
+var ledr=0,calcw=window.innerHeight*0.03;
+document.addEventListener(
+ "pointermove",function (e) {
+  let nt=parseInt(Date.now());
+  if (nt-ledr<50)return;
+  ledr=nt;
+  let el=cdom("div",0,"point");
+  let dx=e.clientX;
+  let dy=e.clientY;
+  css(el,{top:dy+"px",left:dx+"px",boxShadow:"0 0 1vh 1vh #80acff70"});
+  document.body.appendChild(el);
+  setTimeout(()=>{css(el,{top:dy-calcw/2+"px",left:dx-calcw/2+"px",height:"3vh",width:"3vh",boxShadow: "0 0 3vh #ff95e770"});},10);
+  setTimeout(()=>{
+   document.body.removeChild(el);
+  },600);
+ }
+);
+
+
+function cdom(ty,id,cl,it,ih) {
+ let el=document.createElement(ty);
+ if (id)el.id=id;
+ if (typeof(cl)==typeof("")){
+  el.className=cl;
+ }else{
+  for (let c in cl){
+   el.classList.add(e)
+  }
+ }
+ if (it)el.innerText=it;
+ if (ih)el.innerHTML=ih;
+ el.on=function (ev,lis) {
+  this.addEventListener(ev,lis);
+ };
+ return el;
+}
+function gi(t) { 
+let el=document.getElementById(t);
+if (el){
+ el.on=function (ev,lis) {
+  this.addEventListener(ev,lis);
+ }}else{console.log(`Ungi(${t})`);}
+return el; }
+function gq(t) { return Array.from(document.querySelectorAll(t)); }
+function css(element, rules){
+     for (let property in rules){
+      if (rules.hasOwnProperty(property)){
+       element.style[property] = rules[property];
+      }
+     }
+}
+</script>
+ 
