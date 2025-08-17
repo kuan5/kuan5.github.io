@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+ <meta charset="UTF-8">
+ <title>卡序-Poke Meza 卡匣情報站-零廣告</title>
+<meta property="og:title" content="卡序-Poke Meza 卡匣情報站">
+  <meta property="og:image" content="/meza.png">
+  <meta property="og:description" content="Poke Meza 卡匣情報站，提供卡匣出卡順序及寶可夢叫聲">
+    <meta name="description" content="提供卡匣出卡順序及寶可夢叫聲，在你的Mezastar大師之路上助你一臂之力">
+  <link rel="icon" href="/meza.ico" type="image/x-icon" ><meta name="viewport" content="width=device-width">
+ <meta property="og:url" content="https://m.botdc.cloudns.be/desk">
+<meta property="og:site_name" content="Poke Meza卡匣情報站">
+<meta property="og:type" content="website"><meta property='twitter:creator' content='Poke Meza卡匣情報站'><meta name="theme-color" content="#c0a000">
+ <meta name="google-site-verification" content="q00ymdmOoM-JCcEG9NRuuIZc-7rUMjvjHmbjO86GHbs" >
+    <link rel="manifest" href="/manifest.json">
+     <link rel="canonical" href="https://m.botdc.cloudns.be/desk" >
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "https://m.botdc.cloudns.be/",
+  "logo": "https://m.botdc.cloudns.be/meza.png"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁 poke meza卡匣情報站",
+      "item": "https://m.botdc.cloudns.be/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "出卡卡序及叫聲",
+      "item": "https://m.botdc.cloudns.be/desk"
+    }
+  ]
+}
+</script>
+ <style>
+  header{
+         position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background: #fff5;
+    backdrop-filter:blur(1vh);
+    box-shadow: 0 1vh 1vh #0004;
+    height: 7vh;
+    justify-items: right;
+    justify-content: flex-start;
+    display: inline-flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+     }
+     header a{
+         margin: 0 1vh;
+    color: #000;
+    font-size: 2.5vh;
+    align-content: center;
+    text-wrap: nowrap;
+    border-color:#fc0;
+    font-weight:500;
+     }
+     header img{
+         height:3vh;
+     }
+     a{
+         background: #0000;
+         padding:2px 0.5vh;
+         border-radius:1px;
+         border:0px solid #fc0;
+         border-bottom-width:1px;
+         text-decoration: none;
+     }
+     html{
+         background:#fff;
+     }
+     main{
+         position: relative;
+         padding: 7vh 2vh 0 1vh;
+         display: block;
+     }
+     h1{
+         font-size: 3vh;
+     }
+     h2{
+         font-size: 2.2vh;
+     }
+     p{
+         position: relative;
+         font-size: 2vh;
+     }
+     .buttom{
+         position: relative;
+         background:linear-gradient(50deg,#0000,#0000,#0000,#ca01,#0000,#0000,#0000,#0000);
+          background-size:300vw,10vh;
+          animation:bu linear 10s infinite;
+         box-shadow:0 0 1vh #2222;
+         padding: 1vh;
+         border-radius: 1vh;
+         font-size: 3vh;
+         margin: 1vh;
+         cursor:pointer;
+         color:#000;
+     }
+     @keyframes bu{
+    0% {
+        background-position-x:0;
+    }
+    100% {
+        background-position-x:-200vw;
+    }
+}
+     *{
+         color: #000;
+         font-family:'微軟正黑體', Arial, Helvetica, sans-serif;
+     }
+     *::selection{
+         background:#ca09;
+         color:#000;
+         text-shadow:0 0 1vh #fff;
+     }
+     *::-webkit-scrollbar{
+     width: 1vw;
+     height: 1vh;
+     
+     }
+     *::-webkit-scrollbar-track{
+     display:none;
+     }
+     *::-webkit-scrollbar-thumb{
+     background-color:#ca09;
+     border-radius:5vh;
+     box-shadow:0 0 1vh #ca0;
+        }
+        #chdan{
+         position: fixed;
+         width: 50vh;
+         height: 80vh;
+         box-shadow:0 0 1vh #2225;
+         max-width: 80vw;
+         right: 10vw;
+         top:10vh;
+         backdrop-filter: blur(1vh);
+         -webkit-backdrop-filter: blur(5vh);
+         background: #fff5;
+         z-index: 50;
+         border-radius: 5vh;
+         transition: height 1s ease-in-out , opacity 0.5s ease-in;
+         display: none;
+      }
+     #chdan>*{
+         transition: opacity 1s ease;
+         margin: 2vh;
+         text-align: center;
+         cursor:pointer;
+         user-select:none;
+         -webkit-user-select:none;
+         font-size:3vh;
+     }
+footer>*{
+ text-align:center;
+}
+#disklist{
+ display:flex;
+ width:90vw;
+ overflow:scroll;
+}
+#disklist>ol{
+ margin: 1vh;
+ border-radius: 3vh;
+ box-shadow:0 0 1vh #2222;
+ font:2vh "";
+}
+#disklist>ol:hover{
+ border:0 solid #5502;
+ border-top-width:2px;
+}
+#disklist li:hover{
+ box-shadow:0 0 1vh #2222;
+ border-radius: 3vh;
+}
+#disklist h3{
+ font:2vh "";
+ margin: 0;
+ text-align:center;
+}
+#disklist li{
+ padding:1vh;
+ margin:1vh;
+}
+#disklist img{
+ width:20vh;
+}
+#disklist audio{
+ width:20vh;
+ height:10vh;
+ font:2vh;
+}
+  </style>
+</head>
+<body>
+  <header>
+        
+        <a href="/"><img src="/meza.ico" alt="首頁">卡匣列表</a>
+        <a href="/game"><img src="/svg/game" alt="+50">練習場</a>
+        <a href="/qr"><img src="/svg/QR" alt="支援寶可夢卷 寶可夢卡匣 機台 支援卷">支援券</a>
+        <a href="/map" ><img src="/svg/map" alt="map">店舖及時通</a>
+        <a href="https://m.botdc.cloudns.be/ptcg"><img src="/svg/ch" alt="ptcg交易圖生成器 拯救大家的手指">PTCG交易圖生成器</a>
+        <a href="https://g.botdc.cloudns.be/=m"><img src="https://g.botdc.cloudns.be/gg.svg" alt="Guild Gate伺服器之門">加入官方Discord</a>
+    </header>
+ <main>
+        <h1>歡迎來到Poke Meza卡匣情報站</h1>
+        <p>Poke Meza 卡匣情報站，提供卡匣出卡順序及寶可夢叫聲</p>
+        <h2 id="danhead">卡序</h2>
+        
+
+        <div id="chdan"></div>
+        <div class="choice buttom">選擇彈別 〉</div>
+<div id="disklist">
+
+</div>
+</main>
+<script>
+var disks=[{n:"0"}],dandisks={2:[
+[{n:"蓋歐卡",c:"https://www.pokemonmezastar.com.tw/uploads/images/0f8c2c979a6f843cb8317ec55afb34b81962c47fd5ed1be661acfde30f8ad3c3.png",s:"ko"},{n:"蓋歐卡",c:"https://www.pokemonmezastar.com.tw/uploads/images/0f8c2c979a6f843cb8317ec55afb34b81962c47fd5ed1be661acfde30f8ad3c3.png",s:"ko"},{n:"故勒呆",c:"https://www.pokemonmezastar.com.tw/uploads/images/0f85b19174d0daf34042e11bb379dfa0a4fffea63d628b2996e5022c9b46354d.png",s:"gl"}],
+[{n:"固拉呆",c:"https://www.pokemonmezastar.com.tw/uploads/images/73997b3c44260121bca35e1b3e9941a0ae213a63245de12f11f67efeef32fa0f.png",
+s:"gd"},{n:"固拉呆",c:"https://www.pokemonmezastar.com.tw/uploads/images/73997b3c44260121bca35e1b3e9941a0ae213a63245de12f11f67efeef32fa0f.png",s:"gd"},{n:"卡比獸",c:"https://www.pokemonmezastar.com.tw/uploads/images/269dc1c99a0ac168b2b6e1b698726ce66a7ccfc75eb53cbcbeff9adbf49d49bb.png",s:"kb"},{n:"卡比獸",c:"https://www.pokemonmezastar.com.tw/uploads/images/269dc1c99a0ac168b2b6e1b698726ce66a7ccfc75eb53cbcbeff9adbf49d49bb.png",s:"kb"}],
+ [{n:"杖尾鱗甲龍",c:"https://www.pokemonmezastar.com.tw/uploads/images/15c1e8eb35a9f1790634151bd4545f06cb2a3441c93540fd889aadcadb212ff4.png",s:"zl"},{n:"杖尾鱗甲龍",c:"https://www.pokemonmezastar.com.tw/uploads/images/15c1e8eb35a9f1790634151bd4545f06cb2a3441c93540fd889aadcadb212ff4.png",s:"zl"},{n:"酋雷姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/0fbb86a6bff7b53e366ecc9e9e9c7debd5041f412fba90aa369533ed2deba86a.png",s:"qr"},{n:"酋雷姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/0fbb86a6bff7b53e366ecc9e9e9c7debd5041f412fba90aa369533ed2deba86a.png",s:"qr"}]
+ ,[{n:"萊西拉姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/cf55335675c9fbf546c82f2d76aecd18da72ca8b499001b6446886ce1495172b.png",s:"lc"},{n:"萊西拉姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/cf55335675c9fbf546c82f2d76aecd18da72ca8b499001b6446886ce1495172b.png",s:"lc"},{n:"捷克羅姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/87a761d92599df107b9dca40b67baf9c694947d1980cc050210c134c1c624ab5.png",s:"jk"}],
+ [{n:"捷克羅姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/87a761d92599df107b9dca40b67baf9c694947d1980cc050210c134c1c624ab5.png",s:"jk"},{n:"捷克羅姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/87a761d92599df107b9dca40b67baf9c694947d1980cc050210c134c1c624ab5.png",s:"jk"},{n:"酋雷姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/0fbb86a6bff7b53e366ecc9e9e9c7debd5041f412fba90aa369533ed2deba86a.png",s:"qr"}]
+ ,[{n:"卡比獸",c:"https://www.pokemonmezastar.com.tw/uploads/images/269dc1c99a0ac168b2b6e1b698726ce66a7ccfc75eb53cbcbeff9adbf49d49bb.png",s:"kb"},{n:"卡比獸",c:"https://www.pokemonmezastar.com.tw/uploads/images/269dc1c99a0ac168b2b6e1b698726ce66a7ccfc75eb53cbcbeff9adbf49d49bb.png",s:"kb"},{n:"皮卡丘",c:"https://www.pokemonmezastar.com.tw/uploads/images/33470f1e09791afb96e9d114c2ad21074f7dd7260c7bbb711c0188171cdecbd8.png",s:"pk"}],[{n:"沙奈朵",c:"https://www.pokemonmezastar.com.tw/uploads/images/8c6d80d28ba54843a8b4a66769c6fc9ea917197493ab8be6ee6eb3a6fd054dcd.png",s:"sn"},{n:"沙奈朵",c:"https://www.pokemonmezastar.com.tw/uploads/images/8c6d80d28ba54843a8b4a66769c6fc9ea917197493ab8be6ee6eb3a6fd054dcd.png",s:"sn"},{n:"杖尾鱗甲龍",c:"https://www.pokemonmezastar.com.tw/uploads/images/15c1e8eb35a9f1790634151bd4545f06cb2a3441c93540fd889aadcadb212ff4.png",s:"zl"},{n:"杖尾鱗甲龍",c:"https://www.pokemonmezastar.com.tw/uploads/images/15c1e8eb35a9f1790634151bd4545f06cb2a3441c93540fd889aadcadb212ff4.png",s:"zl"}],
+ [{n:"皮卡丘",c:"https://www.pokemonmezastar.com.tw/uploads/images/33470f1e09791afb96e9d114c2ad21074f7dd7260c7bbb711c0188171cdecbd8.png",s:"pk"},{n:"皮卡丘",c:"https://www.pokemonmezastar.com.tw/uploads/images/33470f1e09791afb96e9d114c2ad21074f7dd7260c7bbb711c0188171cdecbd8.png",s:"pk"},{n:"沙奈朵",c:"https://www.pokemonmezastar.com.tw/uploads/images/8c6d80d28ba54843a8b4a66769c6fc9ea917197493ab8be6ee6eb3a6fd054dcd.png",s:"sn"},{n:"萊西拉姆",c:"https://www.pokemonmezastar.com.tw/uploads/images/cf55335675c9fbf546c82f2d76aecd18da72ca8b499001b6446886ce1495172b.png",s:"lc"}]
+]},loadimg=true,nowdisks={},dans=["2"];
+var trule={"1":"一", "2":"二", "3":"三", "4":"四", "5":"五", "dc":"聯擊","dst":"閃耀之星"};
+loaddan([dans[0]]);
+
+function trans(t) {
+    for (let i in trule){
+        t=t.replace(i,trule[i]);
+    }
+    return t;
+}
+function loaddan(dans){
+    disks=[];let ndans=[];
+    for (let t of dans){
+        ndans.push(trans(t));
+        if (dandisks[t]){
+            for (let i of dandisks[t]){
+                disks.push(i);
+            }
+        }else{
+            fetchdan(t);
+        }
+    }
+    loaddisk(disks);
+    gi('danhead').innerText=`第${ndans.join("、")}彈`;
+}
+function fetchdan(dan){
+fetch('/api/v1/getdesk',
+{
+headers: {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json'
+},
+method: "POST",
+body: JSON.stringify({t:dan})
+}).then(function (re) {return re.json();}).then(function(d){
+    d=d.disk;
+    dandisks[dan]=d;
+    for (let t of d){
+    disks.push(t);}
+    loaddisk(disks);
+}).catch(function(e) {
+});
+}
+function loaddisk(disk){
+    nowdisks=disk;
+    gi("disklist").innerHTML=disk.length>0 ?"":"正在載入";
+    let co=1;
+    for (let i of disk){
+      let ol=cdom("ol",0,0,0,`<p>第${co}條</p>`);
+      co++;
+      for (let d of i){
+        let li=cdom("li");
+        t=loadimg?`<img src="${d.c.startsWith("https")?d.c:`https://webassets-pokemonmezastar.marv.jp/assets/img/ver1/pm_en_${d.c}_f.png`}" alt="${d.n}-未提供圖片" title="${d.n}" >`:''
+        li.innerHTML=`${t}<h3><weak>${d.c?(d.c.startsWith("http")?"":d.c):""}</weak> ${d.n}</h3>${d.s?`<audio src="/sd/${d.s}.mp3" preload="auto" controls="auto"></audio>`:""}`;
+        ol.appendChild(li);
+      }
+      gi("disklist").appendChild(ol);
+    }
+}
+
+
+gq('.choice').forEach(function(e){
+        e.addEventListener('click',function(e){
+            var chdan=gi('chdan');
+            css(chdan,{display:'block',opacity:1,height:'20vh'});
+            chdan.innerHTML='<p>選擇彈別</p>';
+            setTimeout(function () {
+                css(chdan,{height:'50vh'});
+                var times=0;
+                for (let i of dans){
+                    times++;
+                  setTimeout(function(){
+                    let el=document.createElement("h3");
+                    el.innerHTML=`第${trans(i)}彈`;
+                    el.dataset.d=i;
+                    el.style.opacity=0;
+                    el=chdan.appendChild(el);
+                    el.addEventListener('click',function(){
+                        hidech();loaddan([this.dataset.d]);
+                    });
+                    setTimeout(function () {
+                          el.style.opacity=1;
+                    },100);
+                  },times*100);
+                }
+            },500);
+            e.stopPropagation();
+        });
+    });
+    gi('chdan').addEventListener('click',function(e){e.stopPropagation();});
+    document.addEventListener('click',hidech);
+    function hidech(){
+        css(gi('chdan'),{opacity:0,height:'0'});
+        setTimeout(function () {
+            css(gi('chdan'),{display:'none'});
+        },500);
+    }
+function gi(t) { 
+let el=document.getElementById(t);
+if (el){
+ el.on=function (ev,lis) {
+  this.addEventListener(ev,lis);
+ }}else{console.log(`Ungi(${t})`);}
+return el; }
+function gq(t) { return Array.from(document.querySelectorAll(t)); }
+function css(element, rules){
+ for (let property in rules){
+  if (rules.hasOwnProperty(property)){
+   element.style[property] = rules[property];
+  }
+ }
+}
+function cdom(ty,id,cl,it,ih) {
+ let el=document.createElement(ty);
+ if (id)el.id=id;
+ if (typeof(cl)==typeof("")){
+  el.className=cl;
+ }else{
+  for (let c in cl){
+   el.classList.add(e)
+  }
+ }
+ if (it)el.innerText=it;
+ if (ih)el.innerHTML=ih;
+ el.on=function (ev,lis) {
+  this.addEventListener(ev,lis);
+ };
+ return el;
+}
+</script>
+  <footer><p>Poke Meza卡匣情報站</p><p>圖片是透過連結引用</p><p>可能與日本版稍有不同</p></footer>
+</body>
+</html>
