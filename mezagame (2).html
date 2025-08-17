@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ZH-TW">
+<head>
+ <title>練習場 - Poke Meza 卡匣情報站</title>
+<meta property="og:title" content="想練習手感與反應速度? 我們提供模擬環境練習，幫助你在對戰中獲勝! 練習場|Poke Meza 卡匣情報站">
+<meta name="description" content="練習場-Poke Meza 卡匣情報站，提供 Pokémon MEZASTAR 遊戲練習！幫助你在對戰中獲勝!">
+ <meta property="og:image" content="/meza.ico">
+ <meta property="og:description" content="練習場 - Poke Meza 卡匣情報站"><meta property="og:site_name" content="Poke Meza卡匣情報站">
+ <link rel="icon" href="/meza.ico" type="image/x-icon" /><meta name="viewport" content="width=device-width">
+<meta property="og:type" content="website" /><meta property='twitter:creator' content='Poke Meza'><meta name="theme-color" content="#ffdd00"/>
+    <link rel="manifest" href="/manifest.json">
+     <meta property="og:url" content="https://m.botdc.cloudns.be/game">
+    <link rel="canonical" href="https://m.botdc.cloudns.be/game" />
+ <style>
+header{
+         position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background: #fff5;
+    backdrop-filter:blur(1vh);
+    box-shadow: 0 1vh 1vh #0004;
+    height: 7vh;
+    justify-items: right;
+    justify-content: flex-start;
+    display: inline-flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+      }header img{
+         height:3vh;
+     }
+      header a{
+         margin: 0 1vh;
+    color: #000;
+    font-size: 2.5vh;
+    align-content: center;
+    text-wrap: nowrap;
+    border-color:#fc0;
+    font-weight:500;
+      }
+      a{
+         background: #0000;
+         padding:2px 0.5vh;
+         border-radius:1px;
+         border:0px solid #fc0;
+         border-bottom-width:1px;
+         text-decoration: none;
+      }
+      html{
+          background:#fff;
+      }
+      main{
+          position: relative;
+          padding: 7vh 2vh 0 1vh;
+          height: 100vh;
+          display: block;
+      }
+      h1{
+          font-size: 4vh;
+      }
+      h2{
+          font-size: 3vh;
+      }
+      .game{
+          height: 30vh;
+          border-radius: 2vh;
+          width:70vw;
+          position: relative;
+          left:8vw;
+          background: #ddf;
+          margin:2vh;
+          background-size:50vh,50vh;
+          background-repeat:no-repeat;
+      }
+    .game p{
+        position: absolute;
+        bottom: 1vh;
+        right: 1vh;
+        font-size: 4vh;
+          text-align: center;
+          text-decoration: end;
+          text-shadow:0 0 1vh #f8ffb4;
+      }
+      *{
+         color: #000;
+         font-family:'微軟正黑體', Arial, Helvetica, sans-serif;
+     }
+     *::selection{
+         background: #ca0;
+     }
+     *::-webkit-scrollbar{
+     width: 1vw;
+     height: 1vh;
+     }
+     *::-webkit-scrollbar-track{
+     display:none;
+     }
+     *::-webkit-scrollbar-thumb{
+     background-color:#ca09;
+     border-radius:5vh;
+        }
+      #gspace{
+          position: fixed;
+          z-index: 10;
+          width:90vw;
+          height: 90vh;
+          top:7vh;
+          left: 5vw;
+          background: #fff;
+          border-radius: 2vh;
+          display: none;
+          -webkit-backdrop-filter: blur(1vh);
+          overflow: hidden;
+          -webkit-user-select: none;
+      }
+      .cr{
+          width: 80vw;
+          height: 80vw;
+          border-radius: 55vw;
+          border: #eef solid  15vw;
+          position: fixed;
+          bottom: -62.5vw;
+          left: -7.5vw;
+      }
+      #gamenote{
+          display: fixed;
+          top: 20vh;
+          color: #ca0;
+          text-align: center;
+          font-size: 3vh;
+      }
+      #pitems{
+          width: 110vw;
+          height: 110vw;
+          position: fixed;
+          bottom: -65vw;
+          left:-7.5vw;
+          display: block;
+transform:rotateZ(0deg);
+      }
+      #pitems div{
+        width: 110vw;
+        height: 110vw;
+        position: fixed;
+        transition:opacity 0.5s ease-out , height 0.2s ease-in-out ;
+        opacity: 0;
+      }
+      .outert{
+          font-size:6vw;
+          position: relative;
+          height:10vw;
+          width:10vw;
+          top:-5.5vw;
+          right: -50vw;
+          color: #fff;
+          border-radius: 10vw;
+          padding:1vw;
+background: #c99;
+      }
+      .d20{
+          background: #f58f70;
+      }
+      .d10{
+          background:#5dd;
+      }
+     .d35{
+         background:#fd7373;
+         border-radius:5vw;
+     }
+     #p50{
+         background-image:url("/png/p50"),
+        linear-gradient(250deg,#fff, #66d5)
+  ;
+}
+
+#crl{
+          width: 80vw;
+          height: 80vw;
+          border-radius: 55vw;
+          border: #ddf solid  15vw;
+          position: fixed;
+          bottom: -62.5vw;
+          left: -7.5vw;
+          box-shadow:0 0 1vh #aaf;
+          transition:all 0.1s ease-in-out;
+        opacity:0;
+        z-index:5;
+      }
+      .bM{
+          background:#62d;
+      }
+      .b高{
+          background:#111;
+          color:#a90;
+      }
+      .b超{
+          background:#6bf;
+          color:#d66;
+      }
+      .b精{
+          background:#d66;
+      }
+      #gmax{
+          background-image:url("/png/gmax"),
+
+  linear-gradient(290deg,#fff, #fcc)
+
+  ;
+      }
+      #msb{
+          
+          background-image:url("/png/ball"),
+
+  linear-gradient(200deg,#fff, #dcf)
+
+  ;
+      }
+      #gmball{
+          height:5vh;
+          width:5vh;
+          background:#f44;
+          position:fixed;
+          border-radius:100%;
+          bottom: 45vh;
+          left: calc( 50vw - 5vh );
+          opacity:0.5;
+          transition:all 1s ease;
+      }
+      .gball{
+      position:relative;
+      left:18vh;
+          height:5vh;
+          width:5vh;
+          background:#555;
+          border-radius:100%;
+      }
+      #gmitems>div{
+      position:fixed;
+/*      top:25vh;
+      left: calc( 50vw - 20vh );*/
+         width: 40vh;
+        height: 40vh;
+        position: fixed;        
+        transition:opacity 0.5s ease-out , background 0.2s ease ;
+        opacity: 0; 
+      }
+      #gmitems{
+           position:fixed;
+      top:25vh;
+      left: calc( 50vw - 20vh );
+         width: 40vh;
+        height: 40vh;
+      }
+      #gbtop{
+          position:fixed;
+          height:10vh;
+          width:10vh;
+          border-radius:100%;
+          top:18vh;
+          border:2vh solid #fac;
+          left: calc( 50vw - 7vh );
+          opacity:0.1;
+          transition:all 0.5s ease-in;
+      }
+      #share{
+
+        
+
+        width: 90vw; 
+
+        position:fixed;
+
+        display:none;
+
+        top:1vh;
+
+        right:5vw;
+
+        height:92vh;
+
+        background:#fffd;
+
+        z-index:110;
+
+        backdrop-filter:blur(5vh);
+
+        transition: all 0.5s ease-in-out;
+        border-radius: 2vh;
+        overflow:scroll;
+     }
+     #share h1{
+         font-size: 3vh;
+
+         text-align: start;
+
+         padding: 1vh;
+
+         overflow: hidden;
+
+         position: relative;
+     }
+     #share button{
+         width:85vw;
+         cursor:pointer;
+         padding:1vh;
+         border-radius:3vh ;
+         font-size:3vh ;
+         background:#aab5ff ;
+         margin: 1vh;
+         border:1px solid #000;
+     }
+     #close{
+
+         position: fixed;
+
+         top:1vh;
+
+         right: 1vh;
+
+         font-size: 3vh;
+
+         color: #333;
+         cursor:pointer;
+     }
+     #share p{
+         font-size:2vh;
+     }
+ </style>
+<body>
+<header>
+            <a href="/"><img src="/meza.ico" alt="首頁">卡匣列表</a><a href="/desk">卡序</a>
+        <a href="/game"><img src="/svg/game" alt="+50">練習場</a>
+        <a href="/qr"><img src="/svg/QR" alt="支援寶可夢卷 寶可夢卡匣 機台 支援卷">支援券</a>
+        <a href="/map" ><img src="/svg/map" alt="map">店舖及時通</a>
+        <a href="https://m.botdc.cloudns.be/ptcg"><img src="/svg/ch" alt="">PTCG交易圖生成器</a>
+        </header>
+        <main>
+            <h1>練習場</h1>
+<h2>歡迎來到Poke Meza卡匣情報站</h2>
+<div class="game" id="gmax"><p>超極巨化</p></div>
+<div class="game" id="p50"><p>+35按按練習</p></div>
+<div id="gspace"></div>
+<div class="game" id="msb"><p>丟球練習</p></div>
+            <p>也想分享自己的程式或是影片給大家練習嗎？</p>
+      <ul>
+        <li>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://m.botdc.cloudns.be/qr">
+            <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" width="20" height="20" alt="Facebook"/>
+          分享到fb貼文</a>
+        </li>
+        <li>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKIP7xyleSSc5bg5WGAI--fM6JlBI_Dwr9CEaeIaSfsA&s" alt="discord" style="width:2vh;height:2vh;border-radius:2vh;"/>
+            <a href="https://discord.gg/djNnDjUTrC">加入Discord群組</a></li><li>
+            <a href="https://www.facebook.com/groups/644361268242094/?ref=share&mibextid=NSMWBT"><img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" width="20" height="20" alt="Facebook"/>加入facebook社團</a>
+          </li>
+            
+      </ul>
+      <p>我們將會看到您的分享<br/>感謝您的支持！</p>
+            <a href="https://m.botdc.cloudns.be/ptcg">如果你有在玩PTCG的話可以看看這個https://m.botdc.cloudns.be/ptcg</a>
+      <div id="share">
+          
+          <h1>炫耀自己的成就！</h1>
+          <p id="sharep"></p>
+          <div id="close">略過</div>
+  <button onclick="shareToFacebook()">分享至 Facebook</button>
+  <button onclick="shareToThreads()">分享至 Threads</button>
+  <button onclick="copythis()">複製連結</button>
+  <button onclick="shareThisPage()">分享到應用程式</button>
+
+</div>
+<p>路過，把颱風路徑預測圖放這看看有沒有流量</p>
+ <img src="https://cgi-debate-handheld-madness.trycloudflare.com/forecast.png" alt='pa!沒了' style="width:80vw"/>
+ <p>提供者：eugene526</p>
+</main>
+  <script>
+      window.addEventListener('popstate', function (event) {
+
+    location.reload(); 
+
+});
+  var shareUrl = encodeURIComponent(window.location.href);
+var shareText = encodeURIComponent("這個網站超棒！快來看看！");
+  var gspace=gi("gspace");
+  var roles=[35,20,10,20];
+  var v=0,vmax=4.8,av=0.18,ndeg=0,runid;
+  gi("p50").addEventListener("click",function(){
+      window.history.pushState({ path: '/game?t=p' }, '', '/game?t=p');
+
+      gspace.style.display="block";
+      gspace.innerHTML='<div class="cr"></div><div id="gamenote">按下畫面開始遊戲</div><div id="pitems"></div>';
+      var pitems=gi("pitems");
+      var gamenote=gi("gamenote");
+      let roles=[10,20,10,20,35];
+      for (let i=0;i<3;i++){
+        for (let j=0;j<5;j++){
+            let el=document.createElement("div");
+            el.innerHTML=`<h2 class="outert d${roles[j]}">${roles[j]}</h2>`;
+            el.style.transform=
+            `rotateZ(${i*120+j*24}deg)`;
+            el.style.height="70vw";
+            pitems.appendChild(el);
+            setTimeout(function(){
+                el.style.height="110vw";
+                el.style.opacity=1;
+            },i*100+j*25);
+        }
+      }
+      gspace.addEventListener("click",start);
+  });
+function start(){
+    gspace.removeEventListener("click",start);
+    gspace.addEventListener("click",stop);
+    v=0;
+    ndeg=0;
+    gamenote.innerText="按下畫面決定";
+    runid = setInterval(run,20);
+}
+function run(){
+    if (v==-1)return;
+    ndeg+=v;
+    if (ndeg>360)ndeg-=360;
+    if (v<vmax)v+=av;
+    drew();
+}
+function drew(){
+    pitems.style.transform=
+                `rotateZ(${ndeg}deg)`;
+}
+function stop(){
+    if (v<vmax)return; 
+    gspace.removeEventListener("click",stop);
+    v=-1;
+    clearInterval(runid);
+    let cal=parseInt((ndeg%90-12)/24);
+    if (cal <0)cal=0;
+    ndeg=(1+cal)*24;
+    drew();
+    gamenote.innerText=`${roles[cal]}！按下畫面開始遊戲`;
+   if (roles[cal]==35)share(`我按到了${roles[cal]}！`); gspace.addEventListener("click",start);
+    
+}
+
+  var bnroles={M:"大師球",高:"高級球",超:"超級球",精:"精靈球"},broles;
+  var bv=0,bvmax=5.6,bav=0.28,bndeg=0;
+  gi("msb").addEventListener("click",function(){try{
+  window.history.pushState({ path: '/game?t=b' }, '', '/game?t=b');
+}catch(e){}
+      gspace.style.display="block";
+      gspace.innerHTML='<div class="cr"></div><div id="gamenote">按下畫面開始遊戲</div><div id="pitems"></div><div id="crl"></div>';
+      var pitems=gi("pitems");
+      var gamenote=gi("gamenote");
+       broles=["M","高","精 ","超","精","超","精"
+ ,"M","精"
+       ,"高","超","精","超","精"
+       ,"高","超","精","超"];
+      for (let i=0;i<18;i++){
+            let el=document.createElement("div");
+            el.innerHTML=`<h2 class="outert b${broles[i]}">${broles[i]}</h2>`;
+            el.style.transform=
+            `rotateZ(${i*20}deg)`;
+            el.style.height="70vw";
+            pitems.appendChild(el);
+            setTimeout(function(){
+                el.style.height="110vw";
+                el.style.opacity=1;
+            },i*25);
+        
+      }
+      gspace.addEventListener("click",bstart);
+  });
+function bstart(){
+    gspace.removeEventListener("click",bstart);
+    gspace.addEventListener("click",bstop);
+    bv=0;
+    bndeg=0;
+    gamenote.innerText="按下畫面決定";
+    runid = setInterval(brun,20);
+}
+function brun(){
+    if (bv==-1)return;
+    bndeg+=bv;
+    if (bndeg>360)bndeg-=360;
+    if (bv<bvmax)bv+=bav;
+    bdrew();
+}
+function bdrew(){
+    pitems.style.transform=
+                `rotateZ(${bndeg}deg)`;
+}
+function bstop(){
+    if (bv<bvmax)return; 
+    gspace.removeEventListener("click",bstop);
+    let crl=gi("crl");
+    crl .style.display="block";
+    crl.style.opacity=1;
+    crl.style.boxShadow="0 0 2vw 2vw #ddf";
+    setTimeout(function(){
+    v=-1;
+    clearInterval(runid);
+    let cal=parseInt((bndeg-10)/20);
+    if (cal <0)cal=0;
+    bndeg=(1+cal)*20;
+    bdrew();
+    gamenote.innerText=`${bnroles[broles[17-cal]]}！按下畫面開始遊戲`;
+    if (bnroles[broles[17-cal]]=="大師球")share(`我按到了${bnroles[broles[17-cal]]}！`);
+    },100);
+    setTimeout(function(){
+        crl.style.boxShadow="0 0 0vw 0vw #ddf";
+    crl.style.opacity=0;
+    gspace.addEventListener("click",bstart);
+    },450);
+    }
+    
+var gmball=[1,0,0,1,0,0];
+var nowval=0,gben=0;
+var gbv=0,gbvmax=7.2,gbav=0.288,gbndeg=0;
+
+gi("gmax").addEventListener("click",function(){
+window.history.pushState({ path: '/game?t=g' }, '', '/game?t=g');
+
+      gspace.style.display="block";
+      gspace.innerHTML='<div id="gmball"></div><div id="gamenote">受到星塵影響變大了</div><div id="gmitems"></div><div id="crl"></div>';
+      pitems=gi("gmitems");
+      var gamenote=gi("gamenote");
+      gbndeg=0;
+      gbdrew();
+    
+
+     setTimeout(function(){
+              css( gi("gmball"),{width:"6vh",height:"6vh",background:"#fcc",opacity:0.8,left:"calc( 50vw - 5vh )",boxShadow:"0 0 3vh 3vh #f44"});  
+            },100);
+            setTimeout(function(){
+         for (let i=0;i<6;i++){
+            let el=document.createElement("div");
+            el.innerHTML=`<div class="gball g${i}"></div>`;
+            el.style.transform=
+            `rotateZ(${i*60}deg)`;
+            el.style.opacity=0;
+            pitems.appendChild(el);
+            setTimeout(function(){   
+                el.style.opacity=1;
+            },i*100);
+        
+      }
+            upgb();
+                css( gi("gmball"),{width:"20vh",height:"20vh",background:"radial-gradient(circle, #fdd, #ebb)",opacity:1,left:"calc( 50vw - 10vh )",boxShadow:"0 0  5vh 5vh #fcc"});
+                gspace.addEventListener("click",gmstart);
+                gamenote.innerText="按下畫面開始遊戲";
+           setInterval(gbani,4000);
+            },1000);
+  });  
+  function upgb(){
+    let gerol=[
+        [1,0,0,1,0,0],
+        [2,1,0,2,0,0],
+        [2,2,1,2,0,0],
+        [2,3,2,2,0,0]
+    ]
+    gmball=gerol[Math.floor(gben/10)];    
+    let gbak=['#555','#f7a','#e37','#f22'];
+      for (let i=0;i<6;i++){
+       gq('.gball')[i].style.background= gben%10<5 && gmball[i]!=0?`${gbak[gmball[i]]}${Math.abs((gben%5-3)*3)}`:gbak[gmball[i]];
+       
+       if (gmball[i]>0)gq('.gball')[i].style.boxShadow=`0 0 ${gben%10/2}vh ${gbak[gmball[i]]}`;
+      }
+  }
+  function gmstart() {
+     gben=0; gspace.removeEventListener("click",gmstart);
+      nowval=setInterval(upgb,20);
+      gamenote.innerText="瘋狂點擊螢幕！";
+      gspace.addEventListener("mousedown",gmenp);
+      setTimeout(function(){
+          gspace.removeEventListener("mousedown",gmenp);
+          gben=Math.floor(gben/10)*10+5;
+          upgb();
+          clearInterval(nowval);
+          gamenote.innerText="蓄能完畢";
+         let el=document.createElement('div');
+         el.id='gbtop';
+         gspace.appendChild(el);
+         setTimeout(function(){
+             css(gi('gbtop'),{height:'6vh',width:'6vh',opacity:1,
+                 left:"calc( 50vw - 3.5vh )",top:'24vh',boxShadow:"0 0  1vh  #fcc",border:'1vh solid #fcc'});
+         },100);
+         setTimeout(function(){
+             gamenote.innerText="按下按鈕開始轉動";
+             gspace.addEventListener("click",gbst);
+ 
+         },1000);
+      },4000);
+  }
+  function gmenp(){
+      gben+=1;
+      if(gben>30)gben=30;
+  }
+  function gbani(){
+      css( gi("gmball"),{background:"radial-gradient(circle, #fee, #e7a)",boxShadow:"0 0  2vh 3vh #fac"});
+      setTimeout(function(){
+          css( gi("gmball"),{background:"radial-gradient(circle, #fdd, #e58)",boxShadow:"0 0  5vh 5vh #f7a"});
+      },2000);
+  }
+    
+   function gbst(){
+    gspace.removeEventListener("click",gbst); gspace.addEventListener("click",gbstop); 
+    
+    gbv=0;
+    gbndeg=0;
+    gamenote.innerText="按下畫面決定";
+    nowval = setInterval(gbrun,20);
+}
+function gbrun(){
+    if (gbv==-1)return;
+    gbndeg+=gbv;
+    if (gbndeg>360)gbndeg-=360;
+    if (gbv<gbvmax)gbv+=gbav;
+    gbdrew();
+}
+function gbdrew(){
+    pitems.style.transform=
+                `rotateZ(${gbndeg}deg)`;
+}
+function gbstop(){
+    if (gbv<gbvmax)return; 
+    gspace.removeEventListener("click",gbstop);
+    let cal=parseInt((gbndeg+10)/60);
+    if (cal >5)cal=5;            
+    setTimeout(function(){
+    clearInterval(nowval);   
+    gbndeg=(1+cal)*60; 
+    gbdrew();
+    let gerol=[
+        [0,0,0,1,0,1],
+        [0,0,2,0,1,2],
+        [0,0,2,1,2,2],
+        [0,0,2,2,3,2]
+    ]
+    let gen=['失敗','等級10',"等級50",'等級100'];
+     gmball=gerol[Math.floor(gben/10)] ; 
+     if (gmball[cal]>0)share(`變大成功，${gen[gmball[cal]]}！`);
+     gamenote.innerText=`${gen[gmball[cal]]}！按下畫面開始遊戲`;
+    },parseInt((1+cal)*60-gbndeg)/gbvmax*20-10);
+    console.log(
+        `
+        cal${cal}
+        gbndeg${gbndeg}
+        ${((1+cal)*60-gbndeg)/gbvmax*20}
+        ${[cal]}
+        `
+        
+    );
+    gspace.addEventListener("click",gmstart);
+    
+    }
+  
+
+function shareToFacebook() {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&quote=${shareText}`, '_blank');
+}
+
+function shareToThreads() {
+  window.open(`https://www.threads.net/intent/post?text=${shareText}%20${shareUrl}`, '_blank');
+}
+
+function copythis() {
+  navigator.clipboard.writeText(`${shareText} ${window.location.href}`)
+    .then(() => alert("已複製連結，可貼上至其他地方"))
+    .catch(err => alert("複製失敗：" + err));
+}
+
+gi("close").addEventListener("click",function(){
+
+    css(gi("share"),{top:"-50vh",opacity:0});
+
+    setTimeout(function(){
+
+        css(gi("share"),{display:"none"});
+
+    },500);
+
+});
+
+
+function share(t){
+    shareText=t;
+    gi("sharep").innerText=t;
+    css(gi("share"),{display:"block",top:"30vh",height:"50vh",opacity:0});
+
+    setTimeout(function(){
+
+        css(gi("share"),{top:"1vh",opacity:1,height:"92vh"});
+
+    },100);
+
+}
+
+function shareThisPage() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'Poke Meza練習場',
+      text: shareText,
+      url: window.location.href
+    })
+    .then(() => console.log('已分享'))
+    .catch(err => console.error('分享失敗：', err));
+  } else {
+    alert("你的瀏覽器不支援分享功能");
+  }
+}
+
+function gi(t) { return document.getElementById(t); }
+function gq(t) { return document.querySelectorAll(t); }
+function css(element, rules){
+     for (let property in rules){
+      if (rules.hasOwnProperty(property)){
+       element.style[property] = rules[property];
+      }
+     }
+}
+  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁 Poke Meza卡匣情報站",
+      "item": "https://m.botdc.cloudns.be/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "練習場 pokémon Mezastar按球練習",
+      "item": "https://m.botdc.cloudns.be/game"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Pokémon MEZASTAR 星塵第 1 彈",
+  "releaseDate": "2025-04-02",
+  "description": "Pokémon MEZASTAR 星塵第 1 彈將於 2025 年 4 月 2 日在全台正式上市！",
+  "brand": {
+    "@type": "Brand",
+    "name": "Pokémon MEZASTAR"
+  },
+  "image": [
+    "https://m.botdc.cloudns.be/meza.ico"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "price": "30", 
+    "priceCurrency": "TWD",
+    "url": "https://m.botdc.cloudns.be/game"
+  }
+}
+</script>
+
+</body>
