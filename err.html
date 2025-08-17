@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+  <head>
+    <title>Poke Meza 卡匣情報站：mezastar聚集地</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="Poke Meza 卡匣情報站，提供 Pokémon MEZASTAR 最新卡匣情報與遊戲攻略！">
+    <meta name="theme-color" content="#c0a000">
+    <meta name="google-site-verification" content="q00ymdmOoM-JCcEG9NRuuIZc-7rUMjvjHmbjO86GHbs">
+    <meta name="viewport" content="width=device-width">
+    <meta property="og:title" content="Poke Meza 卡匣情報站">
+    <meta property="og:image" content="/meza.png">
+    <meta property="og:description" content="Poke Meza 卡匣情報站">
+    <meta property="og:url" content="https://m.botdc.cloudns.be/">
+    <meta property="og:site_name" content="Poke Meza">
+    <meta property="og:type" content="website">
+    <meta property="twitter:creator" content="Poke Meza">
+    <link rel="icon" href="/meza.ico" type="image/x-icon">
+    <link rel="manifest" href="https://m.botdc.cloudns.be/manifest.json">
+    <style>
+      a {
+        font-size: 30px;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #000000;
+        color: #ffffff;
+        justify-content: flex-start;
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+        z-index: 100;
+        box-shadow: 0 2px 8px #0001;
+        padding: 0 2vw;
+        height: 7vh;
+        gap: 2vw;
+      }
+
+      header a {
+        display: flex;
+        align-items: center;
+        gap: 0.5vw;
+        margin: 0;
+        color: #ffffff;
+        font-size: 2.5vh;
+        text-decoration: none;
+        background: none;
+        padding: 0.5vh 1vw;
+        border-radius: 1vh;
+        transition: background 0.2s, color 0.2s;
+      }
+      header a:hover {
+        background: #f5f5f5;
+        color: #c90;
+      }
+
+      header img {
+        height: 3vh;
+      }
+
+      main {
+        position: relative;
+        padding: 9vh 2vw 2vw 2vw;
+        display: block;
+        max-width: 100vw;
+        min-height: 80vh;
+      }
+
+      h1 {
+        font-size: 4vh;
+        margin: 2vh 0 1vh 0;
+      }
+
+      h3 {
+        font-size: 2.2vh;
+        margin: 1vh 0;
+      }
+
+      p {
+        font-size: 2vh;
+        margin: 1vh 0;
+      }
+
+      .buttom {
+        background: #ca0;
+        color: #fff;
+        padding: 1vh 2vw;
+        border-radius: 1vh;
+        font-size: 2.2vh;
+        margin: 1vh 0.5vw;
+        cursor: pointer;
+        border: none;
+        transition: background 0.2s;
+      }
+      .buttom:hover {
+        background: #eab308;
+      }
+
+      #sreach {
+        padding: 1vh 2vw;
+        border-radius: 1vh;
+        font-size: 2vh;
+        border: #aaa solid 1px;
+        margin: 1vh 0.5vw;
+        width: 40vw;
+        max-width: 80vw;
+      }
+
+      #disklist {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 2vw;
+      }
+
+      #disklist>div {
+        margin: 1vh 0.5vw;
+        cursor: pointer;
+        background: #fff;
+        border-radius: 1vh;
+        box-shadow: 0 1px 4px #0001;
+        transition: box-shadow 0.2s, border 0.2s;
+        padding: 1vh 1vw;
+      }
+      #disklist>div:hover {
+        border: #fd9 solid 1px;
+        box-shadow: 0 2px 8px #fd90;
+      }
+
+      #disklist img {
+        height: 18vh;
+        margin: 1vh auto;
+        display: block;
+      }
+
+      #disklist h3 {
+        font-size: 2vh;
+        text-align: center;
+        margin: 0.5vh 0 2vh 0;
+      }
+
+      .star { 
+        width: 100%; 
+      }
+
+      footer {
+        background: #fafafa;
+        color: #888;
+        padding: 2vh 1vw;
+        text-align: center;
+        font-size: 1.6vh;
+        border-top: 1px solid #eee;
+        margin-top: 4vh;
+      }
+
+      li {
+        font-size: 30px;
+      }
+
+      nav#site-navigation {
+        display: flex;
+        justify-content: center;
+        background: #fff;
+        border-top: 1px solid #eee;
+        margin-top: 4vh;
+        padding: 1vh 0;
+      }
+      nav#site-navigation ul {
+        display: flex;
+        gap: 2vw;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      nav#site-navigation li a {
+        color: #222;
+        text-decoration: none;
+        padding: 0.5vh 1vw;
+        border-radius: 1vh;
+        transition: background 0.2s, color 0.2s;
+      }
+      nav#site-navigation li a:hover {
+        background: #f5f5f5;
+        color: #c90;
+      }
+
+      html {
+        background: #fff;
+      }
+      body {
+        overflow-x: hidden;
+        margin: 0;
+        background: #fff;
+      }
+      * {
+        color: #222;
+        font-family: '微軟正黑體', Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+      }
+      *::selection {
+        background: #ca0;
+        color: #fff;
+      }
+      *::-webkit-scrollbar {
+        width: 0.7vw;
+        height: 1vh;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: #ca09;
+        border-radius: 5vh;
+      }
+
+      #opimg {
+        padding: 1vh;
+        font-size: 2vh;
+        cursor: pointer;
+        background: #ca05;
+        border-radius: 5vh;
+      }
+
+      #chdan {
+        position: fixed;
+        width: 50vh;
+        height: 80vh;
+        border: 1vh solid #ca0;
+        max-width: 80vw;
+        right: 10vw;
+        top: 10vh;
+        backdrop-filter: blur(5vh);
+        -webkit-backdrop-filter: blur(5vh);
+        background: #ca05;
+        z-index: 50;
+        border-radius: 5vh;
+        transition: height 1s ease-in-out, opacity 0.5s ease-in;
+        display: none;
+      }
+
+      #chdan>h3 {
+        transition: opacity 1s ease;
+        margin: 2vh;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        font-size: 3vh;
+      }
+
+      weak {
+        font-weight: 100;
+        font-family: monospace;
+      }
+
+      #disklist > div .star {
+        width: 100%;
+      }
+      #disklist > div.star-row {
+        flex-basis: 100%;
+        max-width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 頁首區塊：導覽列 -->
+    <header>
+      <h1>緊急情況</h1>
+    </header>
+    <!-- 主要的網頁內容 -->
+    <main>
+      <h1>我們陷入危機了</h1>
+      <h2>由於沒有伺服器可以使用，我們的網站將得進行改造，以符合靜態網站的設計</h2><p>連結將會改變</p>
+      <h3>常用連結</h3>
+      <p>生成交易圖
+        <a href="https://m.botdc.cloudns.be/ptcg">PTCG交易圖生成器</a>
+        <br/>
+        需要支援卷的幫助？
+        <a href="https://m.botdc.cloudns.be/qr">支援券</a>
+        <br/>
+         <p>這是專為 
+        <strong>Pokémon MEZASTAR</strong>
+        愛好者打造的資訊網站，提供最完整的 
+        <strong>寶可夢卡匣遊戲機</strong>
+        最新情報、玩法攻略、卡片收錄資訊，以及玩家心得交流。無論你是新手還是資深玩家，這裡都有你需要的一切！
+      </p>
+      <p>
+        <strong>📢 Pokémon MEZASTAR 星塵第 1 彈 即將上市！</strong>
+      </p>
+
+      <p>🔥 
+        <strong>《Pokémon MEZASTAR 星塵第 1 彈》</strong> 
+        預計將於 
+        <strong>2025 年 4 月 2 日（三）</strong> 
+        在全台灣正式同步上市！這次的新系列將帶來更多
+        <strong>強力寶可夢</strong>
+        、
+        <strong>全新卡匣設計</strong>
+        ，以及 
+        <strong>獨家活動</strong>
+        ，讓玩家們能夠享受全新進化的對戰體驗！
+      </p>
+
+      <p>
+        <strong>📅 上市時間：</strong> 
+        2025 年 4 月 2 日（三）<br>
+        <strong>📍 發售地點：</strong> 
+        全台 Pokémon MEZASTAR 設備店家
+      </p>
+      <p>
+        <strong>Pokémon MEZASTAR 是什麼？</strong>
+      </p>
+      <p>Pokémon MEZASTAR 是由 
+        <strong>Takara Tomy A.R.T.S</strong>
+        和 
+        <strong>MARV</strong> 
+        共同開發的街機遊戲，於 
+        <strong>2020 年 9 月 17 日</strong> 
+        在日本正式上市。遊戲使用獨特的 
+        <strong>卡匣（メザスタタグ）</strong> 
+        來召喚寶可夢，並透過觸控與按鍵操作進行戰鬥。
+      </p>
+
+      <p>
+        <strong>遊戲特色：</strong>
+      </p>
+      <ul>
+        <li>✨ 超過 100+ 張 
+          <strong>寶可夢卡匣</strong>
+          ，可收藏與對戰
+        </li>
+        <li>🎮 直覺式 
+          <strong>手感操作</strong>
+          ，適合新手與老玩家
+        </li>
+        <li>🌟 可與朋友組隊進行 
+          <strong>超級聯動戰</strong>
+        </li>
+        <li>🔥 持續更新，定期推出 
+          <strong>新系列</strong>
+          、
+          <strong>期間限定活動</strong>
+        </li>
+      </ul>
+      <a href="https://m.botdc.cloudns.be/d/1">第一彈</a>
+      <b>
+        <a href="https://m.botdc.cloudns.be/d/2">第二彈</a>
+      </b>
+    </main>
+    <b>
+      <b>
+        <script type="text/javascript">
+          var dans = { "dans": ["1", "2"] }; dans = dans["dans"]
+        </script>
+        <script src="./Poke Meza 卡匣情報站 _ mezastar聚集地_files/error" type="text/javascript"></script>
+        <footer>
+          <p>這並非官方建立的網站</p>
+          <p>圖片是透過連結引用</p>
+          <p>可能與日本版稍有不同</p>
+        </footer>
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://m.botdc.cloudns.be/",
+            "logo": "https://m.botdc.cloudns.be/meza.png"
+          }
+        </script>
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "首頁",
+                "item": "https://m.botdc.cloudns.be/"
+              }
+            ]
+          }
+        </script>
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Pokémon MEZASTAR 星塵第 1 彈",
+            "releaseDate": "2025-04-02",
+            "description": "Pokémon MEZASTAR 星塵第 1 彈將於 2025 年 4 月 2 日在全台正式上市！",
+            "brand": {
+              "@type": "Brand",
+              "name": "Pokémon MEZASTAR"
+            },
+            "image": [
+              "https://m.botdc.cloudns.be/meza.ico"
+            ],
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "price": "30", 
+              "priceCurrency": "TWD",
+              "url": "https://m.botdc.cloudns.be/game"
+            }
+          }
+        </script>
+        
+      </b>
+    </b>
+</body>
+</html>
