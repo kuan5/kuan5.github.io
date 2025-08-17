@@ -282,7 +282,7 @@
     <main>
         <h1>支援卷 支援寶可夢券  </h1><h2>能在Poémon Mezastar上使用的支援寶可夢卷</h2>
         <p>點擊圖片可以放大歐</p>
-      {replace}
+      <div id="replace"></div>
         <h3>除了Gaole變成的支援券外，還有最新的謎擬Q歐</h3>
       <p>也想分享自己的嗎？</p>
       <ul>
@@ -330,6 +330,66 @@
         
     </main>
     <script>
+     var theqr={
+
+  "qr":[
+
+{
+
+"n":"蔥遊兵","t":"草 格鬥","a":"格鬥 流星突擊" ,"au":"我"
+
+    },
+{
+
+"n":"謎擬q","t":"幽靈 妖精","a":"暗影爪" ,"au":"夜間擔架"
+
+    },{
+
+"n":"幫我玩","t":"大家一起","a":"創造全台最強積分" ,"au":"SEGA"
+
+    },
+
+    {"n":"阿爾宙斯","t":"一般 全12","a":"一般 制裁石鑠" ,"au":"Godd"},{
+
+"n":"酋雷姆","t":"冰 龍","a":"冰 冰封世界" ,"au":"latioskuantw"
+
+    },
+    {"n":"固拉多","t":"地面","a":"地面 斷崖之劍" ,"au":"latioskuan"},{
+"n":"酋雷姆","t":"冰 龍","a":"冰 冰封世界" ,"au":"latioskuantw"
+
+    },{
+
+"n":"帝牙盧卡","t":"鋼","a":"鋼 時光咆哮" ,"au":"kuan5"
+
+    },{
+
+"n":"奈克洛茲瑪%20黃昏之鬃","t":"鋼 超能力","a":"超能力 焚天滅世纖光爆" ,"au":"kuan5"
+
+    },{
+
+"n":"p50","t":"<a href='/game'>遊玩+35按按練習</a>","a":"<a href='/game'>按此遊玩</a>" ,"au":"<a href='/game'>遊玩+35按按練習</a>"
+
+    }
+
+  ]
+
+};
+     for (let i of theqr.qr){
+      gi("replace").innerHTML+=`<div class="qr">
+
+        <img src="/qr/${i['n']}" alt="寶可夢 {i['n']} 載入失敗請重刷" title="{i['n']} 可支援你的Pokemon Mezastar" >
+
+       <div> <h3><strong>${i['n']}</strong> {i['t']}</h3>
+
+        <h4>${i['a']}</h4>
+
+        <p>由 ${i['au']} 貢獻</p>
+
+        </div>
+
+    </div>`;
+     }
+
     gi("close").addEventListener("click",function(){
 
     css(gi("input"),{top:"-50vh",opacity:0});
@@ -376,4 +436,5 @@
 }function gi(t) { return document.getElementById(t); }
     </script>
     
+
 </body>
