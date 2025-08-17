@@ -802,7 +802,7 @@ pointer-events:none;
     <div class="givt">
     <h2>我給你</h2><div id="youc">0</div><div id="impy">引入</div></div>
     <div id="toyou"></div>
-    <div class="givt"><h2>你給我</h2><div id="mec">0</div><img src="https://m.botdc.cloudns.be/svg/ch" alt="上下交換" id="udchange"><div id="impm">引入</div></div>
+    <div class="givt"><h2>你給我</h2><div id="mec">0</div><img src="https://m.botdc.cloudns.be/svg/ch.svg" alt="上下交換" id="udchange"><div id="impm">引入</div></div>
     <div id="tome"></div>
     <div id="dex">
         <div id ="dexh">
@@ -1197,7 +1197,7 @@ function readm(ds) {
     }
     const bez=Math.min(window.innerWidth/r.width,window.innerHeight*0.7/r.height);
     let im=document.createElement("img");
-    im.src=r.n.startsWith("data")?r.n:`/ptcb/${r.n}`;
+    im.src=r.n.startsWith("data")?r.n:`/ptcb/${r.n}.jpg`;
     im.alt="背景圖片，理論上一定要出現";
     gi("modles").innerHTML="";
     gi("modles").appendChild(im);
