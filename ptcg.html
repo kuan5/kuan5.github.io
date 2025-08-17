@@ -1171,7 +1171,7 @@ gi("next").on("click",function () {
             });
         for (let m of modle){
             let el=document.createElement("div");
-            el.innerHTML=`<img src="${m.n.startsWith('data')?'':'/ptcb/'}${m.n}" alt="${m.n}"><h2>${m.n.startsWith('data')?'歷史紀錄':m.n}</h2>`
+            el.innerHTML=`<img src="${m.n.startsWith('data')?'':'/ptcb/'}${m.n}.jpg" alt="${m.n}"><h2>${m.n.startsWith('data')?'歷史紀錄':m.n}</h2>`
             el.className="mod";
             el.dataset.i=m.n; gi("modles").appendChild(el);
             el.addEventListener("click",function () {
