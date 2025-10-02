@@ -69,14 +69,13 @@
       }
       img{
           cursor:pointer;
-              -webkit-user-drag: none;
       }
       h1{
           font-size: 2vh;
           margin:1vh;
       }
       h2{
-          font-size: 1.5vh;
+          font-size: 1.7vh;
       }
       .givt{
           height:5vh;
@@ -188,11 +187,11 @@
       }
       @keyframes gani {
     0% {
-        box-shadow:0 0 0.5vh #95ccff;
+        box-shadow:0 0 0.5vh #95ccf;
         background-position-x:0;
     }
     20% {
-        box-shadow:0 0 0.5vh #95ccff;
+        box-shadow:0 0 0.5vh #95ccf;
         background-position-x:-3vh;
     }
     50% {
@@ -200,17 +199,17 @@
         background-position-x:-10vh;
         }
     80%{
-        box-shadow:0 0 0.5vh #95ccff;
+        box-shadow:0 0 0.5vh #95ccf;
         background-position-x:-13vh;
     }
     100% {
-        box-shadow:0 0 0.5vh #95ccff;
+        box-shadow:0 0 0.5vh #95ccf;
         background-position-x:-20vh;
     }
 }
 .card{
     height:10vh;
-    margin:1vh 0vh;
+    margin:1vh vh;
     overflow:hidden;
     display: inline-block;
     cursor:pointer;
@@ -240,7 +239,7 @@
 .card h3{
     margin:0;
     width:5vh;
-    font-size:1vh;
+    font-size:1.5vh;
     text-align:center;
 }
 .card>img.load{
@@ -420,7 +419,7 @@
     box-shadow: 0 4px 10px #0054; 
      transition: opacity 0.2s ease, height 0.2s ease;
      overflow-x:hidden;
-     overflow-y:scroll;
+     overflow-y:scorll;
     user-select:none;
     -webkit-user-select:none;
     }
@@ -477,11 +476,14 @@
 #modles{
     overflow:scroll;
     height:80vh;
+    width:100%;
     background:#0001;
     -webkit-backdrop-filter:blur(10vh);
     backdrop-filter:blur(1vh);
     user-select: none;
     -webkit-user-select:none;
+    display:flex;
+    flex-wrap:wrap;
 }
 .mod{
     margin:1vh;
@@ -492,7 +494,7 @@
 }
 .mod>img{
     max-width: calc( 80vw - 4vh );
-    max-height:80vh;
+    max-height:30vh;
     border-radius: 2vh;
     background: #fff;        
 }
@@ -667,7 +669,7 @@ pointer-events:none;
     border-radius:2vh;
 }
 #impy,#impm{
-    font-size:1.3vh;
+    font-size:1.5vh;
     font-weight:999;
     padding:0 1vh;
     border-radius: 3vh;
@@ -702,7 +704,7 @@ pointer-events:none;
     box-shadow: 0 4px 10px #0054; 
      transition: opacity 1s ease, height 1s ease;
      overflow-x:hidden;
-     overflow-y:scroll;
+     overflow-y:scorll;
       }
 #imp>*{
     margin: 1vh;
@@ -745,17 +747,24 @@ pointer-events:none;
 }
 #tedt{
  display:none;
- z-index:70;
+ z-index:500;
  position:fixed;
+ top:0;
+ left:0;
+ touch-action:none;
+ 
 }
 #tedt>.bk{
+display:block;
  width: 100vw;
- height: 100vh;
+ height: 80vh;
  position:fixed;
- top:-10vh;
+ z-index:200;
+ top:0vh;
  left: 0;
- background: #aaa5;
- backdrop-filter:blur(3vh);
+ background: #0003;
+ -webkit-backdrop-filter:blur(1vh);
+ backdrop-filter:blur(1vh);
  z-index:60;
 }
 #tedt>input{
@@ -771,7 +780,7 @@ pointer-events:none;
  border-radius: 1vh;
  border:0 solid #fff;
  border-bottom-width:2px;
- z-index:70;
+ z-index:300;
 }
 #tedt>.tt{
  position:fixed;
@@ -783,7 +792,7 @@ pointer-events:none;
  background: #0000;
  backdrop-filter:blur(10vh);
  border-radius: 2vh;
- z-index:70;
+ z-index:400;
 }
 .point{
  position:fixed;
@@ -792,8 +801,6 @@ pointer-events:none;
  z-index:800;
  border-radius:1vh;
  transition:top 0.5s ease,left 1s ease,width 1s ease,height 0.5s ease,box-shadow 0.5s linear;
- pointer-events:none;
- touch-action:none;
 }
      </style>
 <body>    
@@ -817,11 +824,11 @@ pointer-events:none;
             <p>按下旁邊黑色背景開始使用</p>
             <h2 style="font-size:2vh;">如何使用？</h2>
             <h3>搜尋卡片</h3>
-            <p>1. 按下右下角的「搜尋」<br>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br>3. 輸入關鍵字或直接不輸入，按「搜尋」<br>如果未選擇範圍的話，將出現新臺幣。</p>
+            <p>1. 按下右下角的「搜尋」<br/>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br/>3. 輸入關鍵字或直接不輸入，按「搜尋」<br/>如果未選擇範圍的話，將出現新臺幣。</p>
             <h3>將卡片加入清單</h3>
-            <p>1. 點選「我給你」或「你給我」的白色區塊。<br>2. 點選搜尋結果中的卡片，將之加入清單<br>點越多，數量越多(淦話)<br>點清單中的卡片可以調整數量或剔除卡片</p>
+            <p>1. 點選「我給你」或「你給我」的白色區塊。<br/>2. 點選搜尋結果中的卡片，將之加入清單<br/>點越多，數量越多(淦話)<br/>點清單中的卡片可以調整數量或剔除卡片</p>
             <h3>生出圖片</h3>
-            <p>1. 按右上角「下一步」<br>2. 選擇想要的模板<br>3. 可以按住卡片來拖曳<br>4. 點卡片後再點下方「調整角度」可以改變選轉角度(可以弄成3D的，還有不要設90以免側看看不到)<br>5. 直接截圖，這樣比較省網路</p>
+            <p>1. 按右上角「下一步」<br/>2. 選擇想要的模板<br/>3. 可以按住卡片來拖曳<br/>4. 點卡片後再點下方「調整角度」可以改變選轉角度(可以弄成3D的，還有不要設90以免側看看不到)<br/>5. 直接截圖，這樣比較省網路</p>
             <h2 style="font-size:2vh;">現在就開始吧！</h2>
             <p>按下旁邊黑色背景開始使用</p>
             </div>
@@ -844,7 +851,7 @@ pointer-events:none;
             </div>
     </div>
     <div id="imgs"><div id="searh">
-        <div id="ho">&lt;</div>
+        <div id="ho"><</div>
         <h3>選擇模板</h3>
     </div>
         <div id="modles"></div><div id='setimg'></div>
@@ -852,20 +859,21 @@ pointer-events:none;
         <div id="trans">
             </div>
     </div>
+    <div  id="tedt"></div>
     </div></main>
-    <footer><h3>搜尋卡片</h3>
-            <p>1. 按下右下角的「搜尋」<br>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br>3. 輸入關鍵字或直接不輸入，按「搜尋」<br>如果未選擇範圍的話，將出現新臺幣。</p>
+    <floorder><h3>搜尋卡片</h3>
+            <p>1. 按下右下角的「搜尋」<br/>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br/>3. 輸入關鍵字或直接不輸入，按「搜尋」<br/>如果未選擇範圍的話，將出現新臺幣。</p>
             <h3>將卡片加入清單</h3>
-            <p>1. 點選「我給你」或「你給我」的白色區塊。<br>2. 點選搜尋結果中的卡片，將之加入清單<br>點越多，數量越多(淦話)<br>點清單中的卡片可以調整數量或剔除卡片</p>
+            <p>1. 點選「我給你」或「你給我」的白色區塊。<br/>2. 點選搜尋結果中的卡片，將之加入清單<br/>點越多，數量越多(淦話)<br/>點清單中的卡片可以調整數量或剔除卡片</p>
             <h3>生出圖片</h3>
-            <p>1. 按右上角「下一步」<br>2. 選擇想要的模板<br>3. 可以按住卡片來拖曳<br>4. 點卡片後再點下方「調整角度」可以改變選轉角度(可以弄成3D的，還有不要設90以免側看看不到)<br>5. 直接截圖，這樣比較省網路</p></footer>
+            <p>1. 按右上角「下一步」<br/>2. 選擇想要的模板<br/>3. 可以按住卡片來拖曳<br/>4. 點卡片後再點下方「調整角度」可以改變選轉角度(可以弄成3D的，還有不要設90以免側看看不到)<br/>5. 直接截圖，這樣比較省網路</p></floorder>
     <script>var dancard={
         "新臺幣":[
-        {n:'NTD十元',i:'https://www.cbc.gov.tw/public/data/issue/money/IMAGES/100th10-1.jpg'},{n:'NTD百元',i:'https://www.cbc.gov.tw/public/data/issue/money/images/100-1.jpg'},{n:"NTD五十元",i:"https://www.cbc.gov.tw/public/data/issue/money/images/50-new_1.jpg"},{n:"NTD千元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/1000-2.jpg"},{n:"NTD五元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/5-2.jpg"},{n:"NTD一元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/1-2.jpg"},{n:"HKD500元",i:"https://i.ibb.co/QFzztJW4/Screenshot-20250628-013851-Chrome.jpg"},{n:"HKD100元",i:"https://i.ibb.co/cc2jX0nW/Screenshot-20250628-013500-Chrome.jpg"},{n:"HKD50元",i:"https://i.ibb.co/pvssS4L2/Screenshot-20250628-013219-Chrome.jpg"},{n:"HKD20元",i:"https://i.ibb.co/WWPFwdNt/Screenshot-20250628-012855-Google.jpg"},{n:"HKD5元",i:"https://i.ibb.co/fVfpvJ5t/Doitoogle.jpg"},{n:"HKD1元",i:"https://i.ibb.co/PvB68fQv/Screenshot-20250628-012706-Google.jpg"}
+        {n:'NTD十元',i:'https://www.cbc.gov.tw/public/data/issue/money/IMAGES/100th10-1.jpg'},{n:'NTD百元',i:'https://www.cbc.gov.tw/public/data/issue/money/images/100-1.jpg'},{n:"NTD五十元",i:"https://www.cbc.gov.tw/public/data/issue/money/images/50-new_1.jpg"},{n:"NTD千元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/1000-2.jpg"},{n:"NTD五元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/5-2.jpg"},{n:"NTD一元",i:"https://www.cbc.gov.tw/public/data/issue/money/IMAGES/1-2.jpg"},{n:"HKD500元",i:"https://i.ibb.co/QFzztJW4/Screenshot-20250628-013851-Chrome.jpg"},{n:"HKD100元",i:"https://i.ibb.co/cc2jX0nW/Screenshot-20250628-013500-Chrome.jpg"},{n:"HKD50元",i:"https://i.ibb.co/pvssS4L2/Screenshot-20250628-013219-Chrome.jpg"},{n:"HKD20元",i:"https://i.ibb.co/WWPFwdNt/Screenshot-20250628-012855-Google.jpg"},{n:"HKD5元",i:"https://i.ibb.co/fVfpvJ5t/Doitoogle.jpg"},{n:"HKD1毫",i:"https://i.ibb.co/FkPPWvR6/Screenshot-20250628-011936-Google.jpg"},{n:"HKD1元",i:"https://i.ibb.co/PvB68fQv/Screenshot-20250628-012706-Google.jpg"}
         ]
     };
-    var modle=[{n:"測試",width:7,height:6,you:[[0.5,1],[6,1.8]],me:[[0.5,4],[6,1.8]]},{n:"提出交易",width:4,height:5,you:[[2.2,1.2],[1.5,1.7]],me:[[0.1,1.2],[1.6,1.7]]},{n:"可憐豆",width:7,height:7,you:[[0.5,1],[6,1.8]],me:[[0.5,4],[6,1.8]]},{n:"Pocket",width:8,height:18,you:[[0.7,6.7],[3,5.3]],me:[[4.3,4.6],[3,5.5]]},{n:"死皮賴臉",width:4,height:6,you:[[0.1,1.2],[3,1.8]],me:[[0.1,3.5],[3,2.5]]},{n:"GO交換",width:8.2,height:16.7,you:[[0.2,9.8],[5,4.8]],me:[[3,4.2],[5,4.5]]},{n:"工作台",width:23,height:9,you:[[3.9,2],[8.5,8.5]],me:[[15.6,3.6],[3.8,3.8]]},{n:"Jack叔叔",width:7,height:11,you:[[1,3.5],[6,3.1]],me:[[1,8.1],[6,3]]},{n:"Tretta交換",width:6.8,height:3.8,you:[[0.1,1.6],[3.2,2]],me:[[3.2,1.6],[3.2,2]]},{n:"特性交易",width:515,height:720,you:[[20,134],[480,300]],me:[[20,460],[480,300]]}];
-    var dans=[{'s':'超級進化'},{'i':'M1L','n':'超級勇氣'},{'i':'M1S','n':'超級交響樂'},{'s':'合眾地區'},{'i':'SV11B','n':'漆黑伏特'},{'i':'SV11W','n':'純白閃焰'},{s:"2025搭檔時代"},{'i':'SV10','n':'火箭隊的榮光反照'},{"i":"SV9a","n":"強化擴充包「熱風競技場」"},{"i":"SVOD","n":"挑戰牌組 大吾的鐵啞鈴&巨金怪ex"},{"i":"SVOM","n":"挑戰牌組 瑪俐的莫魯貝可&長毛巨魔ex"},{"i":"SV9","n":"擴充包「對戰搭檔」"},{s:"2024太晶:星晶時代"},{"i":"SVM","n":"雙ex初階牌組 Generations"}
+    var modle=[{n:"測試",width:7,height:6,you:[[0.5,1],[6,1.8]],me:[[0.5,4],[6,1.8]]},{n:"提出交易",width:4,height:5,you:[[2.2,1.2],[1.5,1.7]],me:[[0.1,1.2],[1.6,1.7]]},{n:"可憐豆",width:7,height:7,you:[[0.5,1],[6,1.8]],me:[[0.5,4],[6,1.8]]},{n:"Pocket",width:8,height:18,you:[[0.7,6.7],[3,5.3]],me:[[4.3,4.6],[3,5.5]]},{n:"死皮賴臉",width:4,height:6,you:[[0.1,1.2],[3,1.8]],me:[[0.1,3.5],[3,2.5]]},{n:"GO交換",width:8.2,height:16.7,you:[[0.2,9.8],[5,4.8]],me:[[3,4.2],[5,4.5]]},{n:"工作台",width:23,height:9,you:[[3.9,2],[8.5,8.5]],me:[[15.6,3.6],[3.8,3.8]]},{n:"Jack叔叔",width:7,height:11,you:[[1,3.5],[6,3.1]],me:[[1,8.1],[6,3]]},{n:"Tretta交換",width:6.8,height:3.8,you:[[0.1,1.6],[3.2,2]],me:[[3.2,1.6],[3.2,2]]},{n:"特_性交易",width:515,height:720,you:[[20,134],[480,300]],me:[[20,460],[480,300]]}];
+    var dans=[{'s':'超級進化'},{'i':'M2','n':'地獄狂火X'},{'i':'MBG','n':'挑戰牌組 超級耿鬼ex'},{'i':'MDB','n':'挑戰牌組 超級帝安希ex'},{'i':'M1L','n':'超級勇氣'},{'i':'M1S','n':'超級交響樂'},{'s':'合眾地區'},{'i':'SV11B','n':'漆黑伏特'},{'i':'SV11W','n':'純白閃焰'},{s:"2025搭檔時代"},{'i':'SV10','n':'火箭隊的榮光反照'},{"i":"SV9a","n":"強化擴充包「熱風競技場」"},{"i":"SVOD","n":"挑戰牌組 大吾的鐵啞鈴&巨金怪ex"},{"i":"SVOM","n":"挑戰牌組 瑪俐的莫魯貝可&長毛巨魔ex"},{"i":"SV9","n":"擴充包「對戰搭檔」"},{s:"2024太晶:星晶時代"},{"i":"SVM","n":"雙ex初階牌組 Generations"}
     ,{"i":"SV8a","n":"高級擴充包「太晶慶典ex」"},{"i":"SV8","n":"擴充包「超電突圍」"},{"i":"SV7a","n":"強化擴充包「樂園騰龍」"},{"i":"SVPN","n":"ex特別組合 太晶屬性：星晶 仙子伊布ex"},{"i":"SVPS","n":"ex特別組合 太晶屬性：星晶 蒼炎刃鬼ex"},{"i":"SVK","n":"牌組構築BOX 樂園騰龍"},{"i":"SVI","n":"Trianers Camp"},{"i":"SV7","n":"擴充包「星晶奇跡」"},{"i":"checkbox103","n":"戰術牌組「巨鉗螳螂ex」"},{"i":"checkbox102","n":"戰術牌組「太晶烈咬陸鯊ex」"},{"i":"checkbox101","n":"戰術牌組「沙奈朵ex」"},{"i":"checkbox100","n":"戰術牌組「密勒頓ex」"},{"i":"checkbox99","n":"戰術牌組「太晶噴火龍ex」"},{"i":"checkbox98","n":"戰術牌組「魔幻假面喵ex」"},{s:"2024 北上鄉"},{"i":"SV6a","n":"強化擴充包「黑夜漫遊者」"},{"i":"SV6","n":"擴充包「變幻假面」"},{"i":"SV5a","n":"強化擴充包「緋紅薄霧」"},{'s':'古代未來'},{"i":"SVHK","n":"起始組合「古代故勒頓ex」"},{"i":"SVHM","n":"起始組合「未來密勒頓ex」"},{"i":"SV5M","n":"擴充包「異度審判」"},{"i":"SV5K","n":"擴充包「狂野之力」"},{"i":"SV4a","n":"高級擴充包「閃色寶藏ex」"},{"i":"SV4K","n":"擴充包「古代咆哮」"},{"i":"SV4M","n":"擴充包「未來閃光」"},{"i":"SV4a","n":"強化擴充包「激狂駭浪」"},{"i":"SVEM","n":"起始組合 太晶 超夢ex"},{"i":"SVEL","n":"起始組合 太晶 骨紋巨聲鱷ex"},{"i":"checkbox84","n":"牌組構築BOX黯焰支配者"},{"i":"SV3","n":"擴充包「黯焰支配者」"},{"i":"checkbox82","n":"ex初階牌組"},{"i":"SV2a","n":"強化擴充包「寶可夢卡牌151」"},{"i":"SVP1","n":"ex特別組合"},{"i":"checkbox78","n":"起始組合ex 皮卡丘特別組合"},{"i":"SV2P","n":"擴充包「冰雪險境」"},{"i":"SV2D","n":"擴充包「碟旋暴擊」"},{"i":"SV1a","n":"強化擴充包「三連音爆」"},{"i":"checkbox73","n":"頂級訓練家收藏箱ex"},{"i":"checkbox72","n":"起始組合ex 潤水鴨&謎擬Ｑ ex"},{"i":"checkbox71","n":"起始組合ex 新葉喵&路卡利歐 ex"},{"i":"checkbox70","n":"起始組合ex 呆火鱷&電龍 ex"},{"i":"SV1V","n":"擴充包「紫ex」"},{"i":"SV1S","n":"擴充包「朱ex」"},{"i":"SV-P","n":"特典卡 朱&紫"}];
     </script>
 <script>
@@ -904,7 +912,7 @@ pointer-events:none;
                 }
             }else{
             let no= await aFcard(i);
-            
+            console.log(dancard[i]);
             for (let j of dancard[i]){
                     dcards.push(j);
                 }
@@ -1083,7 +1091,7 @@ function Lsear(){
     <div id="clsear">清除</div>
     <div id="startsear" class="greatb">搜尋</div>
     </div>
-    <input type="text" placeholder="搜尋範圍內卡牌" id="seart">
+    <input type="text" placeholder="搜尋範圍內卡牌" id="seart"/>
     <div id="chd">選擇範圍（不然搜不到)</div>
     
     `;
@@ -1099,8 +1107,8 @@ var seton="";
 function Lcou(idd){
     if(tcards[addto][idd]===undefined)return;
     css(gi("coub"),{display:'flex',opacity:1});
-    gi("cou").innerHTML=`<h2>調整數量</h2><img src="${idd.startsWith('http') ?idd: `https://asia.pokemon-card.com/tw/card-img/tw${idd.padStart(8, '0')}.png`}" alt="圖片">
-    <div><div id="min">-</div><input type="number" id="coui" value="${tcards[addto][idd]}"><div id="pls">+</div></div><div><div id="clr">清0</div><div id="coudo" class="greatb">完成</div></div>`;
+    gi("cou").innerHTML=`<h2>調整數量</h2><img src="${idd.startsWith('http') ?idd: `https://asia.pokemon-card.com/tw/card-img/tw${idd.padStart(8, '0')}.png`}" alt="圖片"/>
+    <div><div id="min">-</div><input type="number" id="coui" value="${tcards[addto][idd]}"/><div id="pls">+</div></div><div><div id="clr">清0</div><div id="coudo" class="greatb">完成</div></div>`;
     seton=idd;
     r={coudo:function(){Hcou();tcards[addto][seton]=pInt(gi("coui").value);Ltcard(addto);},clr:function () {
         Hcou();delete tcards[addto][seton];Ltcard(addto);
@@ -1148,6 +1156,7 @@ gi("next").on("click",function () {
     css(gi("imgs"),{display:"block",opacity:0.1});
     gq("#imgs h3")[0].innerHTML="選擇模板";
     gi("modles").innerHTML="";
+    css(gi("modles"),{display:"flex"});
     gi("setimg").innerHTML="";
     setTimeout(function(){
         css(gi("imgs"),{opacity:1}); gi("modles").style.touchAction="pan-y";
@@ -1164,7 +1173,7 @@ gi("next").on("click",function () {
         if (file) {
             const reader = new FileReader(); 
             reader.onload = function(e) {src = e.target.result;let fil={n:src,width:10,height:10,you:[[1,1],[8,4]],me:[[1,6],[8,4]]};
-     modle.push(fil);
+     modle.splice(0,0,fil);
              readm(src);}; 
  reader.readAsDataURL(file); // 以 Data URL 的形式讀取檔案內容
         } else {return }
@@ -1188,6 +1197,7 @@ gi("ho").on("click",function () {
 });
 
 function readm(ds) {
+css(gi("modles"),{display:"block"});
    let r;
     for (let i of modle){
      if (i.n==ds){
@@ -1202,11 +1212,11 @@ function readm(ds) {
     gi("modles").innerHTML="";
     gi("modles").appendChild(im);
     gi("modles").style.touchAction="none";
-    css(im,{height:r.height*bez+'px',width:r.width*bez+'px'});
+   // css(im,{height:r.height*bez+'px',width:r.width*bez+'px'});
     gq("#imgs h3")[0].innerHTML="編輯圖片";
     cSize(tcards.toyou,r.you,bez);
     cSize(tcards.tome,r.me,bez);
-    gi("setimg").innerHTML="<div id='settool'></div><p>點擊來調整角度，拖曳改變位置，雙指或拉」條角度大小，請直接截圖。拖曳到下方將能刪除物件</p><button id='outp' class='greatb'>請自行截圖</button><p id='upcardt'>加入圖片</p><p id='addt'>Tt</p><input type='file' accept='image/*' id='upcard'>";
+    gi("setimg").innerHTML="<div id='settool'></div><p>點擊來調整角度，拖曳改變位置，雙指或拉」條角度大小，請直接截圖。拖曳到下方將能刪除物件</p><button id='outp' class='greatb'>請自行截圖</button><p id='upcardt'>加入圖片</p><p id='addt'>Tt</p><input type='file' accept='image/*' id='upcard'/>";
     gi("outp").on("click",outp);
   gi('upcard').on("change",function () {
    for (const file of event.target.files){
@@ -1229,10 +1239,10 @@ function readm(ds) {
     let leri=document.createElement("div");
     leri.id="leri";
     gi("modles").appendChild(leri);
-    let tedt=document.createElement("div");
-    tedt.id="tedt";
-    tedt.innerHTML="<div class='bk'></div><input type='text'><div class='tt' data-c='0'>[T]</div>"
-    gi("modles").appendChild(tedt);
+    let tedt=gi("tedt");
+   
+    tedt.innerHTML="<div class='bk'></div><input type='text' placeholder='輸入文字'/><div class='tt' data-c='0'>[T]</div>"
+    
     gq("#tedt>.bk")[0].addEventListener("click",function () {
     css(gi("tedt"),{display:"none"});
     });
@@ -1246,7 +1256,7 @@ function readm(ds) {
      this.dataset.c=c;
     });
     gq("#tedt>input")[0].addEventListener("input",function () {
-    dragItem.innerText=this.value;
+    dragItem.innerText=this.value==""?"點擊編輯文字":this.value;
     });
     gq("#tedt>*").forEach(i=>{i.addEventListener("click",e=>{e.preventDefault();});
 });
@@ -1254,7 +1264,7 @@ function readm(ds) {
     chsize.id="chsize";
     chsize.innerText="」";//⨁
     gi("modles").appendChild(chsize);
-    chsize.addEventListener("pointerdown",SDMove);
+gi("modles").on("pointerdown",()=>{try{css(gi("chsize"),{display:"none"});}catch(e){}}); chsize.addEventListener("pointerdown",SDMove);
  gi("addt").on("click",function () {
  let el=document.createElement("p");
  el.className="at";
@@ -1262,11 +1272,16 @@ function readm(ds) {
   gi("modles").appendChild(el);
   css(el,{top:window.innerHeight*0.4+"px",left:"10px"});
  el.addEventListener("pointerdown",moveStart);
- el.addEventListener("click",function () {
-  dragItem=this;
+  dragItem=el;
   css(gi("tedt"),{display:"block"});
-  gq("#tedt>input")[0].value=this.innerText.replace("點擊編輯文字",'');
-  gq("#tedt>input")[0].focus()
+  gq("#tedt>input")[0].value="";
+  gq("#tedt>input")[0].focus(); el.addEventListener("click",function () {
+  dragItem=this;
+  if (dragItem.nodeName!="DIV"){
+  css(gi("tedt"),{display:"block"});
+  gq("#tedt>input")[0].value=dragItem.innerText.replace("點擊編輯文字",'');
+  gq("#tedt>input")[0].focus();
+  }
  });
  });
  
@@ -1300,7 +1315,7 @@ let dX = e.clientX || e.touches[0].clientX;
  }else{
   let ct=dsy-cW/2*dragItem.offsetHeight/dragItem.offsetWidth-0.1*window.innerHeight;
  
-   css(dragItem,{fontSize:`${cW/10}px`,left:dsx-cW/2+"px",top:ct+"px"});
+   css(dragItem,{fontSize:`${cW/10}px`,left:dsx-cW/2+"x",top:ct+"x"});
  } 
 
  tanadd(dragItem,"rotateZ",`${(Math.atan((dY-dsy)/(dX-dsx))-ort)/Math.PI*180}deg`);
@@ -1353,9 +1368,9 @@ function Lchsize() {
  let tx=dragItem.offsetWidth+dragItem.offsetLeft-chsize.offsetWidth/2;
  let ty=dragItem.offsetHeight+dragItem.offsetTop-chsize.offsetHeight/2;
  css(chsize,{left:tx+"px",top:ty+"px",display:"block"});
- setTimeout(function () {
+ /*setTimeout(function () {
   css(gi("chsize"),{display:"none"});
- },3000);
+ },3000);*/
 }
 function dragclick() {
 if (dragItem.nodeName=="P")return;
@@ -1371,15 +1386,15 @@ if (dragItem.nodeName=="P")return;
 }
 var dragItem,nowdeg,x1=-1,y1=-1,candel;
 function moveStart(e) {
-
-    //e.preventDefault();
-    dragItem=this;
+    
+    e.preventDefault();
+    dragItem=this;    
     x1=-1,y1=-1;
     candel=false;
     document.addEventListener('pointermove', drag);
     document.addEventListener('pointerup', dragEnd);
     document.addEventListener('touchmove', dragto);
-   if (dragItem.nodeName=="DIV"){
+   if (1||dragItem.nodeName=="DIV"){
     gi("settool").innerHTML="<div id='tranZ'>平面旋轉</div><div id='tranY'>側旋</div><div id='tranX'>上旋</div><div id='tranW'>尺寸</div>";
     r={tranZ:function () {
         Strans("Z");
@@ -1465,6 +1480,7 @@ if (candel){
  gi("modles").removeChild(dragItem);
 }
 
+  
 }
 
 function getA(touch1, touch2) {
@@ -1482,7 +1498,7 @@ function Strans(t){
     css(gi("transb"),{display:'flex',opacity:1});
     css(gi("trans"),{height:"10vh",top:"920vh",opacity:0.1});
     nowdeg=t;
-    gi("trans").innerHTML=`<h2>量化角度</h2><input type="number" placeholder="輸入酷炫的角度0-360[只需要數字]" id="transi"><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+    gi("trans").innerHTML=`<h2>量化角度</h2><input type="number" placeholder="輸入酷炫的角度0-360[只需要數字]" id="transi"/><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
     if (t=='W'){
         gq('#trans h2')[0].innerText='量化大小';
         let ww=window.innerWidth;
@@ -1621,7 +1637,7 @@ function Limp(idd){
     css(gi("impb"),{display:'flex',opacity:1});
     gi("imp").innerHTML=`<h2>引入卡牌</h2>
 <p style="color:red;font-size:4vh;">由於在更新時發生了奇怪的錯誤，目前維修中</p>
-    <input type="text" id="impi" value="" placeholder="lZsVov-xHWzGL-UtJTvn"><p>說明:目前只支援asia.pokemon-card.com/tw/的牌組</p><div id="impdo" class="greatb">完成</div><p>更多細節:套用後將部分覆蓋<br>格式為：https://asia.pokemon-card.com/tw/deck-build/recipe/lZsVov-xHWzGL-UtJTvn/ 或是 lZsVov-xHWzGL-UtJTvn 請注意大小寫，必須含有兩個-(半形)</p><p>請合理使用，<a href="https://asia.pokemon-card.com/robots.txt">不允許讀取名單</a>，且代理瀏覽不屬於機器人</p></div>`;
+    <input type="text" id="impi" value="" placeholder="lZsVov-xHWzGL-UtJTvn"/><p>說明:目前只支援asia.pokemon-card.com/tw/的牌組</p><div id="impdo" class="greatb">完成</div><p>更多細節:套用後將部分覆蓋<br/>格式為：https://asia.pokemon-card.com/tw/deck-build/recipe/lZsVov-xHWzGL-UtJTvn/ 或是 lZsVov-xHWzGL-UtJTvn 請注意大小寫，必須含有兩個-(半形)</p><p>請合理使用，<a href="https://asia.pokemon-card.com/robots.txt">不允許讀取名單</a>，且代理瀏覽不屬於機器人</p></div>`;
     impto=idd;
     r={impdo:async function () {
        let fid= gi("impi").value;
