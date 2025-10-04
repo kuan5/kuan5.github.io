@@ -595,9 +595,11 @@ pointer-events:none;
 }
 #settool{
     margin:1vh;
-    height:4vh;
+    height:10vh;
     width:80vw;
     display:flex;
+    justify-content:flex-start;
+    align-items:flex-start;
     overflow:scroll;
     user-select:none;
     -webkit-user-select:none;
@@ -606,7 +608,7 @@ pointer-events:none;
     border-radius: 1vh;
     padding:0.5vh;
     display:block;
-    margin:0 1vh;
+    margin:0 0.5vh;
     font-size:2vh;
     background:#defd;
     cursor:pointer;
@@ -617,48 +619,100 @@ pointer-events:none;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #0003; 
+    background-color: #ddd1; 
     z-index: 32; 
     display: none;
     justify-content: center; 
     align-items: center;     /* 垂直置中 */
-    -webkit-backdrop-filter:blur(1vh);
-    backdrop-filter:blur(1vh);
+    -webkit-backdrop-filter:blur(1px);
+    backdrop-filter:blur(1px);
 
-    transition: opacity 1s ease;
+    transition: opacity 0.2s ease;
     user-select:none;
     -webkit-user-select:none;
-    cursor:pointer;
+    
 }
 #trans{
-   background:radial-gradient(circle, #fff , #d5dfff);
+   background:radial-gradient(circle,#def,#f4aaff55, #def);
+   -webkit-backdrop-filter:blur(5vh);
+    backdrop-filter:blur(5vh);
     position:relative;
     width:50vh;
     border-radius: 3vh; 
     max-width: 80vw; 
     box-shadow: 0 4px 10px #0054; 
-     transition: opacity 1s ease, height 1s ease;
+     transition: opacity 0.2s ease, height 0.3s ease;
      overflow:hidden;
      display:flex;
     justify-content:flex-start;
     align-items:center;
     flex-direction:column;
 }
+#trans *{
+ box-shadow: 0 0 1vh #ddd5;
+}
 #trans h2{
     font-size:3vh;
+}
+#trans p{
+ font-size:2vh;
+ margin: 1vh 0 0 0;
 }
 #transi{
     font-size:2vh;
     padding: 1vh;
     margin: 1vh;
     border-radius: 2vh;
-    
 }
 #transdo{
     margin:2vh;
     padding:0 1vh;
     flex: 0 0 auto;
     cursor:pointer;
+}
+#transcol{
+ width: 30vh;
+ height: 5vh;
+ border-radius: 2vh;
+ background: #dddddd;
+ box-shadow:0 0 1vh #ddd5;
+}
+#transcol>input{
+
+top:0;
+left:0;
+opacity:0;
+ width: 30vh;
+ height: 5vh;
+}
+.bars{
+ display:flex;
+ margin:0.5vh;
+}
+.ubar{
+ width:3vh;
+ touch-action:none;
+ background: #ccc;
+ height:5vh;
+ border-radius: 2vh 1vh 1vh 2vh;
+ overflow:hidden;
+ margin: 0;
+}
+.obar{
+ width:30vh;
+ touch-action:none;
+ background: #bbb;
+ height:5vh;
+ border-radius:1vh 2vh 2vh 1vh;
+ overflow:hidden;
+ margin:0 0 0 1vh;
+ cursor: col-resize;
+}
+.obar>div{
+ background: #ddd;
+ height:5vh;
+ border-radius: 1vh;
+ width: 0;
 }
 *::-webkit-scrollbar{
     width:0.5vw;
@@ -757,7 +811,7 @@ pointer-events:none;
 #tedt>.bk{
 display:block;
  width: 100vw;
- height: 80vh;
+ height: 70vh;
  position:fixed;
  z-index:200;
  top:0vh;
@@ -1249,7 +1303,8 @@ css(gi("modles"),{display:"block"});
    
     tedt.innerHTML="<div class='bk'></div><input type='text' placeholder='輸入文字'/><div class='tt' data-c='0'>[T]</div>"
     
-    gq("#tedt>.bk")[0].addEventListener("click",function () {
+    gq("#tedt>.bk")[0].addEventListener("pointerup",function (e) {
+    
     css(gi("tedt"),{display:"none"});
     });
     gq("#tedt>.tt")[0].addEventListener("click",function () {
@@ -1281,14 +1336,8 @@ gi("modles").on("pointerdown",()=>{try{css(gi("chsize"),{display:"none"});}catch
   dragItem=el;
   css(gi("tedt"),{display:"block"});
   gq("#tedt>input")[0].value="";
-  gq("#tedt>input")[0].focus(); el.addEventListener("click",function () {
-  dragItem=this;
-  if (dragItem.nodeName!="DIV"){
-  css(gi("tedt"),{display:"block"});
-  gq("#tedt>input")[0].value=dragItem.innerText.replace("點擊編輯文字",'');
-  gq("#tedt>input")[0].focus();
-  }
- });
+  gq("#tedt>input")[0].focus(); 
+ 
  });
  
 }
@@ -1352,7 +1401,7 @@ function cSize(ntc,ru,bez){
             el.innerHTML=`<img src="${ncard===undefined?"":(ncard[0].startsWith('http')||ncard[0].startsWith('data') ?ncard[0]: `https://asia.pokemon-card.com/tw/card-img/tw${ncard[0].padStart(8, '0')}.png`)}" alt=""  class="printc">${ncard===undefined?"":`<p class='tcc'>${ncard[1]}</p>`}`;
          gi("modles").appendChild(el);
          el.addEventListener('pointerdown', moveStart);
-            el.addEventListener("click",dragclick);
+            
             css(el
                 ,{width:`${5*siz*bez}px`,position:"fixed",zIndex:26,height:`${7*siz*bez}`,top:`${(y*7*siz+ru[0][1])*bez}px`,left:`${(x*5*siz+ru[0][0])*bez}px`});
             let leimg=gq(".printc");
@@ -1379,29 +1428,37 @@ function Lchsize() {
  },3000);*/
 }
 function dragclick() {
-if (dragItem.nodeName=="P")return;
- if (!this.dataset.r){
-  this.dataset.r="6";
+if (dragItem.nodeName=="P"){
+  css(gi("tedt"),{display:"block"});
+  gq("#tedt>input")[0].value=dragItem.innerText.replace("點擊編輯文字",'');
+  gq("#tedt>input")[0].focus();
+  return;
+}
+ if (!dragItem.dataset.r){
+  dragItem.dataset.r="6";
  }
- let rr=Number(this.dataset.r);
+ let rr=Number(dragItem.dataset.r);
  if (rr>5)rr=0
  let rs=["1vh","3vh","5vh","50%","100vh","0vh"];
  css(dragItem.querySelector(".printc"),{borderRadius:rs[rr]});
- this.dataset.r=++rr;
- Lchsize();
+ css(dragItem,{borderRadius:rs[rr]})
+ dragItem.dataset.r=++rr;
+
 }
-var dragItem,nowdeg,x1=-1,y1=-1,candel;
+var dragItem,nowdeg,x1=-1,y1=-1,candel,startdragt,ispclick;
 function moveStart(e) {
     
     e.preventDefault();
     dragItem=this;    
     x1=-1,y1=-1;
+    startdragt=Date.now();
+    ispclick=true;
     candel=false;
     document.addEventListener('pointermove', drag);
     document.addEventListener('pointerup', dragEnd);
     document.addEventListener('touchmove', dragto);
    if (1||dragItem.nodeName=="DIV"){
-    gi("settool").innerHTML="<div id='tranZ'>平面旋轉</div><div id='tranY'>側旋</div><div id='tranX'>上旋</div><div id='tranW'>尺寸</div>";
+    gi("settool").innerHTML="<div id='tranZ'>平面旋轉</div><div id='tranY'>側旋</div><div id='tranX'>上旋</div><div id='tranW'>尺寸</div><div id='tranTC'>字顏色</div><div id='tranO'>透明度</div><div id='tranS'>陰影</div><div id='tranP'>邊框</div>";
     r={tranZ:function () {
         Strans("Z");
     },tranX:function () {
@@ -1410,6 +1467,14 @@ function moveStart(e) {
         Strans("Y");
     },tranW:function () {
         Strans("W");
+    },tranO:function () {
+        Strans("O");
+    },tranS:function () {
+        Strans("S");
+    },tranTC:function () {
+        Strans("TC");
+    },tranP:function () {
+        Strans("P");
     }};
     for (let i in r){
         gi(i).on("click",r[i]);
@@ -1456,6 +1521,9 @@ function drag(e) {
  let currentY = e.clientY || e.touches[0].clientY;
  dx = currentX;
  dy = currentY;
+ if (startdragt-Date.now()<-200){
+  ispclick=false;
+ }
  if (dragItem.nodeName=="DIV"){ dy-=parseInt(dragItem.querySelector(".printc").offsetHeight)/2+0.1*window.innerHeight;}
  else{dy-=parseInt(dragItem.offsetHeight)/2+0.1*window.innerHeight;}
   let md=gq("#modles>img")[0].offsetWidth/2;
@@ -1482,6 +1550,11 @@ function dragEnd() {
  document.removeEventListener('touchmove', dragto);
  document.removeEventListener('pointerup', dragEnd);
  gi("modles").appendChild(dragItem);
+ 
+if (ispclick){
+ dragclick();
+}
+ 
 if (candel){
  gi("modles").removeChild(dragItem);
 }
@@ -1499,10 +1572,13 @@ function getA(touch1, touch2) {
         const dy = touch2.clientY - touch1.clientY;
         return (dx**2+dy**2)**0.5
  }
+   
+   
+var tranhasev=false;    
     
 function Strans(t){
     css(gi("transb"),{display:'flex',opacity:1});
-    css(gi("trans"),{height:"10vh",top:"920vh",opacity:0.1});
+    css(gi("trans"),{height:"10vh",top:"50vh",opacity:0.1});
     nowdeg=t;
     gi("trans").innerHTML=`<h2>量化角度</h2><input type="number" placeholder="輸入酷炫的角度0-360[只需要數字]" id="transi"/><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
     if (t=='W'){
@@ -1510,33 +1586,162 @@ function Strans(t){
         let ww=window.innerWidth;
         gi('transi').placeholder=`建議範圍在${parseInt(ww*0.01)}~${ww}之間`;
     }
-    gi("transi").focus();
-    r={transdo:function () {
+    if (t=='O'){
+        gi("trans").innerHTML=`<h2>透明度</h2><div id="transi" class="bars"/></div><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+     mbar(gi("transi"),0,1);
+    }
+    
+    if (t=='S'){
+        gi("trans").innerHTML=`<h2>陰影</h2>
+        <p>陰影顏色</p>
+        <div id="transcol"/><input type="color" value="#dddddd"></div>
+        <p>陰影左右位移</p>
+        <div id="transx" class="bars"/></div>
+        <p>陰影上下位移</p>
+        <div id="transy" class="bars"/></div>
+        <p>陰影擴散</p>
+        <div id="transk" class="bars"/></div>
+        <div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+     mbar(gi("transx"),-5,5);
+     mbar(gi("transy"),-5,5);
+     mbar(gi("transk"),0,5);
+     gq("#transcol>input")[0].addEventListener("input",function(){
+      css(gi("transcol"),{background: `${this.value}`});
+      
+     });
+    }
+    if (t=='P'){
+        gi("trans").innerHTML=`<h2>邊框</h2>
+        <p>顏色</p>
+        <div id="transcol"/><input type="color" value="#dddddd"></div>
+        <p>左右大小</p>
+        <div id="transx" class="bars"/></div>
+        <p>上下大小</p>
+        <div id="transy" class="bars"/></div>
+        <div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+     mbar(gi("transx"),0,5);
+     mbar(gi("transy"),0,5);
+     gq("#transcol>input")[0].addEventListener("input",function(){
+      css(gi("transcol"),{background: `${this.value}`});
+      
+     });
+    }
+    if (t=='TC'){
+        gi("trans").innerHTML=`<h2>文字顏色</h2>
+        <div id="transcol"/><input type="color" value="#dddddd"></div>
+        <p>文字粗細(看字體，部份字體不明顯)</p>
+        <div id="transx" class="bars"/></div>
+        <p>文字大小</p>
+        <div id="transy" class="bars"/></div>
+        <div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+     mbar(gi("transx"),100,900);
+     mbar(gi("transy"),1,8);
+     gq("#transcol>input")[0].addEventListener("input",function(){
+      css(gi("transcol"),{background: `${this.value}`});
+      
+     });
+    }
+    if (t!="O" && t!="S" && t!="TC" && t!="P"){
+      gi("transi").focus();
+    }
+    var r={transdo:function () {
         Htrans();
         if (nowdeg=='W'){
             dragItem.style.width=`${gi("transi").value}px`;
-            dragItem.querySelector("img").style.width=`${gi("transi").value}px`;
+            try{dragItem.querySelector("img").style.width=`${gi("transi").value}px`;}catch(e){}
             return;
         }
+        if (nowdeg=='O'){
+            dragItem.style.opacity=1-parseFloat(gi("transi").dataset.v);
+            
+            return;
+        }
+        if (nowdeg=='S'){
+            dragItem.style.boxShadow=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
+        return;
+        }
+        if (nowdeg=='P'){
+            css(dragItem,{padding:`${gi("transy").dataset.v}vh ${gi("transx").dataset.v}vh`,background: gq("#transcol>input")[0].value});
+            return;
+        }
+        if (nowdeg=='TC'){
+            css(dragItem,{fontWeight:`${gi("transx").dataset.v}`,fontSize:`${gi("transy").dataset.v}vh`,color: gq("#transcol>input")[0].value});
+            return;
+        }
+        
          tanadd(dragItem,`rotate${nowdeg}`,`${gi("transi").value}deg`);
     },transall:function () {
         Htrans();
         gq("#modles>div").forEach(function (e) {
         if (nowdeg=='W'){
             e.style.width=`${gi("transi").value}px`;
-            e.querySelector("img").style.width=`${gi("transi").value}px`;
+            try{e.querySelector("img").style.width=`${gi("transi").value}px`;}catch(e){}
+            return;
+        }
+        if (nowdeg=='O'){
+            e.style.opacity=1-parseFloat(gi("transi").dataset.v);
+            
+            return;
+        }
+        if (nowdeg=='S'){
+            e.style.boxShadow=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
+        return;
+        }
+        if (nowdeg=='P'){
+            css(e,{padding:`${gi("transy").dataset.v}vh ${gi("transx").dataset.v}vh`,background: gq("#transcol>input")[0].value});
+            return;
+        }
+        if (nowdeg=='TC'){
+            css(e,{fontWeight:`${gi("transx").dataset.v}`,fontSize:`${gi("transy").dataset.v}vh`,color: gq("#transcol>input")[0].value});
             return;
         }
          tanadd(e,`rotate${nowdeg}`,`${gi("transi").value}deg`);
          });
+    },test:function () {
+     if (nowdeg=='W'){
+            dragItem.style.width=`${gi("transi").value}px`;
+            try{dragItem.querySelector("img").style.width=`${gi("transi").value}px`;}catch(e){}
+            return;
+        }
+        if (nowdeg=='O'){
+            dragItem.style.opacity=1-parseFloat(gi("transi").dataset.v);
+            
+            return;
+        }
+        if (nowdeg=='S'){
+            dragItem.style.boxShadow=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
+        return;
+        }
+        if (nowdeg=='P'){
+            css(dragItem,{padding:`${gi("transy").dataset.v}vh ${gi("transx").dataset.v}vh`,background: gq("#transcol>input")[0].value});
+            return;
+        }
+        if (nowdeg=='TC'){
+            css(dragItem,{fontWeight:`${gi("transx").dataset.v}`,fontSize:`${gi("transy").dataset.v}vh`,color: gq("#transcol>input")[0].value});
+            return;
+        }
+        
+         tanadd(dragItem,`rotate${nowdeg}`,`${gi("transi").value}deg`);
     }};
     for (let i in r){
-        gi(i).on("click",r[i]);
+       try{
+       gi(i).on("click",r[i]);}catch(e){}
     }
+    if (!tranhasev){
+     gi("trans").on("pointermove",r.test);
+     tranhasev=true;
+     }
     setTimeout(function(){
         css(gi("trans"),{height:"80vh",top:"20vh",opacity:1});
     },200);
 }
+
+    
+gi("transb").on("click",e=>{
+ if (e.target==gi("transb")){
+  Htrans();
+ }
+});
 function Htrans(){
     css(gi("transb"),{opacity:0});
     setTimeout(function(){
@@ -1547,7 +1752,7 @@ function Htrans(){
 async function outp() {
     this.disabled = true;
     alert("直接截圖比較快，window7:剪取工具，window10,11:win+shift+s，安卓音量減+開機鍵，ios:開機鍵+音量加、主畫面按鈕+開機鍵");
-    this.textContent = '生成中...';
+    this.textContent = '請自行截圖';
     try{const html2canvas = await loadHtml2canvas();
     console.log(html2canvas);
     const canvas = await html2canvas(gi("modles"), {scale: window.devicePixelRatio, useCORS: true, 
@@ -1595,7 +1800,7 @@ function tanadd(e, n, a) {
      }
   }
   e.style.transform = r.join(' ');
-  css(e,{boxShadow:`${xM*4}vh ${yM*4}vh  1vh #ffbfff51`});
+  //css(e,{boxShadow:`${xM*4}vh ${yM*4}vh  1vh #ffbfff51`});
   
 }
 
@@ -1704,6 +1909,33 @@ document.addEventListener(
   },600);
  }
 );
+
+
+function mbar(bs,min,max) {
+ let ub=cdom("div",0,"ubar");
+ bs.dataset.v=min;
+ ub.on("click",function () {
+   bs.dataset.v=min;
+   css(this.parentNode.children[1].children[0],{width:0});
+   css(this,{background:"#bbb"});
+  });
+  
+  let sb=cdom("div",0,"obar","","<div></div>");
+  sb.on("pointermove",function(e){
+   let vw=window.innerHeight;
+   let cX = e.clientX || e.touches[0].clientX;
+   let w=cX-this.getBoundingClientRect().left;
+   if (w>0){
+    if (w/vw>0.3)w=0.3*vw;
+    op=w/0.3/vw*(max-min)+min;
+    bs.dataset.v=op;
+    css(this.children[0],{width:w+"px"});
+   }
+   css(this.parentNode.children[0],{background:"#ddd"});
+  });
+  bs.appendChild(ub);
+  bs.appendChild(sb);
+}
 
 
 function cdom(ty,id,cl,it,ih) {
