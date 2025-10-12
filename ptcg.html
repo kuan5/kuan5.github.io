@@ -619,29 +619,28 @@ pointer-events:none;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #ddd1; 
+    background-color: #2222; 
     z-index: 32; 
     display: none;
     justify-content: center; 
     align-items: center;     /* 垂直置中 */
-    -webkit-backdrop-filter:blur(1px);
-    backdrop-filter:blur(1px);
+    
 
-    transition: opacity 0.2s ease;
+    transition: opacity 0.1s ease;
     user-select:none;
     -webkit-user-select:none;
     
 }
 #trans{
-   background:radial-gradient(circle,#def,#f4aaff55, #def);
-   -webkit-backdrop-filter:blur(5vh);
-    backdrop-filter:blur(5vh);
+   background:radial-gradient(circle,#def2,#f4aaff44, #def);
+   -webkit-backdrop-filter:blur(1px);
+    backdrop-filter:blur(1px);
     position:relative;
     width:50vh;
     border-radius: 3vh; 
     max-width: 80vw; 
     box-shadow: 0 4px 10px #0054; 
-     transition: opacity 0.2s ease, height 0.3s ease;
+     transition: opacity 0.1s ease, height 0.2s ease;
      overflow:hidden;
      display:flex;
     justify-content:flex-start;
@@ -649,7 +648,7 @@ pointer-events:none;
     flex-direction:column;
 }
 #trans *{
- box-shadow: 0 0 1vh #ddd5;
+ text-shadow:0 0 1vh #ddd;
 }
 #trans h2{
     font-size:3vh;
@@ -671,18 +670,18 @@ pointer-events:none;
     cursor:pointer;
 }
 #transcol{
- width: 30vh;
+ width: 34vh;
  height: 5vh;
  border-radius: 2vh;
  background: #dddddd;
- box-shadow:0 0 1vh #ddd5;
+ box-shadow:0 0 1vh #2225;
 }
 #transcol>input{
 
 top:0;
 left:0;
 opacity:0;
- width: 30vh;
+ width: 34vh;
  height: 5vh;
 }
 .bars{
@@ -697,6 +696,7 @@ opacity:0;
  border-radius: 2vh 1vh 1vh 2vh;
  overflow:hidden;
  margin: 0;
+ box-shadow:0 0 1vh #2225;
 }
 .obar{
  width:30vh;
@@ -707,6 +707,7 @@ opacity:0;
  overflow:hidden;
  margin:0 0 0 1vh;
  cursor: col-resize;
+ box-shadow:0 0 1vh #2225;
 }
 .obar>div{
  background: #ddd;
@@ -730,6 +731,7 @@ opacity:0;
     background: #c5c5c5;
     position:absolute;
     right:5vh;
+    display:none;
 }
 #impb{
     position: fixed; 
@@ -794,7 +796,7 @@ opacity:0;
  padding:0.5vh 1vh;
  border-radius: 2vh;
  font:2vh "";
- box-shadow:0 0 1vh #2222;
+ box-shadow:0 0 1vh #2225;
  color: #8098ff;
  display:none;
  z-index:50;
@@ -884,7 +886,7 @@ display:block;
             <p>按下旁邊黑色背景開始使用</p>
             <h2 style="font-size:2vh;">如何使用？</h2>
             <h3>搜尋卡片</h3>
-            <p>1. 按下右下角的「搜尋」<br/>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br/>3. 輸入關鍵字或直接不輸入，按「搜尋」<br/>如果未選擇範圍的話，將出現新臺幣。</p>
+            <p>1. 按下右下角的「搜尋」<br/>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br/>3. 輸入關鍵字或直接不輸入，按「搜尋」<br/>如果未選擇範圍的話，將出現貨幣。</p>
             <h3>將卡片加入清單</h3>
             <p>1. 點選「我給你」或「你給我」的白色區塊。<br/>2. 點選搜尋結果中的卡片，將之加入清單<br/>點越多，數量越多(淦話)<br/>點清單中的卡片可以調整數量或剔除卡片</p>
             <h3>生出圖片</h3>
@@ -1445,7 +1447,7 @@ if (dragItem.nodeName=="P"){
  dragItem.dataset.r=++rr;
 
 }
-var dragItem,nowdeg,x1=-1,y1=-1,candel,startdragt,ispclick;
+var dragItem,nowdeg,x1=-1,y1=-1,candel,startdragt,ispclick,pointerrxy;
 function moveStart(e) {
     
     e.preventDefault();
@@ -1454,11 +1456,13 @@ function moveStart(e) {
     startdragt=Date.now();
     ispclick=true;
     candel=false;
+    let sbr=this.getBoundingClientRect();
+    pointerrxy=[e.clientX-sbr.left,e.clientY-sbr.top,this.offsetWidth];
     document.addEventListener('pointermove', drag);
     document.addEventListener('pointerup', dragEnd);
     document.addEventListener('touchmove', dragto);
    if (1||dragItem.nodeName=="DIV"){
-    gi("settool").innerHTML="<div id='tranZ'>平面旋轉</div><div id='tranY'>側旋</div><div id='tranX'>上旋</div><div id='tranW'>尺寸</div><div id='tranTC'>字顏色</div><div id='tranO'>透明度</div><div id='tranS'>陰影</div><div id='tranP'>邊框</div>";
+    gi("settool").innerHTML="<div id='tranZ'>平面旋轉</div><div id='tranY'>側旋</div><div id='tranX'>上旋</div><div id='tranW'>尺寸</div><div id='tranTC'>文字樣式</div><div id='tranO'>透明度</div><div id='tranS'>陰影</div><div id='tranP'>邊框</div><div id='tranPO'>位置</div><div id='tranR'>圓角</div><div id='tranTS'>文字陰影</div><div id='tranB'>朦朧</div>";
     r={tranZ:function () {
         Strans("Z");
     },tranX:function () {
@@ -1475,6 +1479,14 @@ function moveStart(e) {
         Strans("TC");
     },tranP:function () {
         Strans("P");
+    },tranB:function () {
+        Strans("B");
+    },tranPO:function () {
+        Strans("PO");
+    },tranR:function () {
+        Strans("R");
+    },tranTS:function () {
+        Strans("TS");
     }};
     for (let i in r){
         gi(i).on("click",r[i]);
@@ -1524,11 +1536,16 @@ function drag(e) {
  if (startdragt-Date.now()<-200){
   ispclick=false;
  }
- if (dragItem.nodeName=="DIV"){ dy-=parseInt(dragItem.querySelector(".printc").offsetHeight)/2+0.1*window.innerHeight;}
+ if (dragItem.nodeName=="DIV"){ //dy-=parseInt(dragItem.querySelector(".printc").offsetHeight)/2+0.1*window.innerHeight;
+ dy-=pointerrxy[1]+0.075*window.innerHeight;
+ 
+ }
  else{dy-=parseInt(dragItem.offsetHeight)/2+0.1*window.innerHeight;}
   let md=gq("#modles>img")[0].offsetWidth/2;
   if (Math.abs(dx-md)<3)Lleri(md,"已達中間位置");
-  if (dragItem.nodeName=="DIV"){ dx-=parseInt(dragItem.querySelector(".printc").offsetWidth)/2;}
+  if (dragItem.nodeName=="DIV"){ //dx-=parseInt(dragItem.querySelector(".printc").offsetWidth)/2;
+  dx-=pointerrxy[0];
+  }
   else{
    dx-=parseInt(dragItem.offsetWidth)/2;
   }
@@ -1585,16 +1602,28 @@ function Strans(t){
         gq('#trans h2')[0].innerText='量化大小';
         let ww=window.innerWidth;
         gi('transi').placeholder=`建議範圍在${parseInt(ww*0.01)}~${ww}之間`;
+        try{
+         gi("transi").value=parseInt(dragItem.querySelector("img").style.width);
+        }catch(e){}
     }
     if (t=='O'){
         gi("trans").innerHTML=`<h2>透明度</h2><div id="transi" class="bars"/></div><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
-     mbar(gi("transi"),0,1);
+     let set=0;
+     try{
+     
+         set=parseFloat(dragItem.style.opacity);
+         if (dragItem.querySelector("img")){
+             set=parseFloat(dragItem.querySelector("img").style.opacity);
+            }
+        }catch(e){}
+     mbar(gi("transi"),0,1,set);
+     
     }
     
     if (t=='S'){
         gi("trans").innerHTML=`<h2>陰影</h2>
         <p>陰影顏色</p>
-        <div id="transcol"/><input type="color" value="#dddddd"></div>
+        <div id="transcol" style="background: #8098ff;"/><input type="color" value="#8098ff"></div>
         <p>陰影左右位移</p>
         <div id="transx" class="bars"/></div>
         <p>陰影上下位移</p>
@@ -1602,9 +1631,25 @@ function Strans(t){
         <p>陰影擴散</p>
         <div id="transk" class="bars"/></div>
         <div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
-     mbar(gi("transx"),-5,5);
-     mbar(gi("transy"),-5,5);
-     mbar(gi("transk"),0,5);
+     let setx=0,sety=0,setk=0.5;
+     try{
+         let t;
+          
+         if (dragItem.querySelector("img")){
+             t=dragItem.querySelector("img").dataset.boxs.split(" ");
+         
+         }else{
+          t=dragItem.dataset.boxs.split(" ");
+         }
+         setx=parseInt(t[0]);
+         sety=parseInt(t[1]);
+         setk=parseInt(t[2]);
+         gi("transcol").style.background=t[3];
+         gq("#transcol>input")[0].value=t[3];
+        }catch(e){}
+     mbar(gi("transx"),-5,5,setx);
+     mbar(gi("transy"),-5,5,sety);
+     mbar(gi("transk"),0,5,setk);
      gq("#transcol>input")[0].addEventListener("input",function(){
       css(gi("transcol"),{background: `${this.value}`});
       
@@ -1613,67 +1658,141 @@ function Strans(t){
     if (t=='P'){
         gi("trans").innerHTML=`<h2>邊框</h2>
         <p>顏色</p>
-        <div id="transcol"/><input type="color" value="#dddddd"></div>
+        <div id="transcol" style="background: #8098ff;"/><input type="color" value="#8098ff"></div>
         <p>左右大小</p>
         <div id="transx" class="bars"/></div>
         <p>上下大小</p>
         <div id="transy" class="bars"/></div>
         <div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
-     mbar(gi("transx"),0,5);
-     mbar(gi("transy"),0,5);
+     let setx=0,sety=0,setk=0.5;
+     try{
+         let t=dragItem.style.padding.split(" ");
+         if (dragItem.querySelector("p")){
+             t=dragItem.querySelector("p").style.padding.split(" ");
+            }
+         setx=parseInt(t[1]);
+         sety=parseInt(t[0]);
+         gi("transcol").style.background=dragItem.style.background;
+        gq("#transcol>input")[0].value=dragItem.style.background;
+        }catch(e){}
+     mbar(gi("transx"),0,5,setx);
+     mbar(gi("transy"),0,5,sety);
      gq("#transcol>input")[0].addEventListener("input",function(){
       css(gi("transcol"),{background: `${this.value}`});
       
      });
     }
     if (t=='TC'){
-        gi("trans").innerHTML=`<h2>文字顏色</h2>
-        <div id="transcol"/><input type="color" value="#dddddd"></div>
+        gi("trans").innerHTML=`<h2>文字樣式</h2>
+        <p>文字顏色</p>
+        <div id="transcol" style="background: #222;"/><input type="color" value="#222222"></div>
         <p>文字粗細(看字體，部份字體不明顯)</p>
         <div id="transx" class="bars"/></div>
         <p>文字大小</p>
         <div id="transy" class="bars"/></div>
         <div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
-     mbar(gi("transx"),100,900);
-     mbar(gi("transy"),1,8);
+      let fs=3,fw=200;
+      try{
+         let ds=dragItem.style;
+         if (dragItem.querySelector("p")){
+             ds=dragItem.querySelector("p").style;
+            }
+         fs=parseFloat(ds.fontSize);
+         fw=parseInt(ds.fontWeight);
+         
+         gi("transcol").style.background=ds.color;
+         gq("#transcol>input")[0].value=ds.color;
+        }catch(e){}
+     mbar(gi("transx"),100,900,fw);
+     mbar(gi("transy"),1,8,fs);
      gq("#transcol>input")[0].addEventListener("input",function(){
       css(gi("transcol"),{background: `${this.value}`});
       
      });
     }
-    if (t!="O" && t!="S" && t!="TC" && t!="P"){
+    if (t=='PO'){
+        gi("trans").innerHTML=`<h2>量化座標</h2>
+        <p>水平座標</p>
+        <input id="transx" type="number"></input>
+        <p>垂直座標</p>
+        <input id="transy"></input><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部(？)</div>
+        `;
+        
+        let ww=window.innerWidth;
+        gi('transx').placeholder=`建議範圍在${0}~${ww*0.9}之間`;
+        let wh=window.innerHeight;
+        gi('transy').placeholder=`建議範圍在${0}~${wh*0.9}之間`;
+        try{
+         gi("transx").value=parseInt(dragItem.style.left);
+         gi("transy").value=parseInt(dragItem.style.top);
+        }catch(e){}
+    }
+    if (t=='R'){
+        gi("trans").innerHTML=`<h2>圓角</h2><div id="transi" class="bars"/></div><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+     let set=10;
+     try{
+         try{
+         set=parseFloat(dragItem.style.borderRadius);
+         }catch(e){}
+         if (dragItem.querySelector("img")){
+             set=parseFloat(dragItem.querySelector("img").style.borderRadius);
+            }
+        }catch(e){}
+     mbar(gi("transi"),0,100,set);
+     
+    }
+    if (t=='B'){
+        gi("trans").innerHTML=`<h2>朦朧</h2><div id="transi" class="bars"/></div><div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+     let set=0;
+     try{
+         try{
+         set=parseFloat(dragItem.style.filter.slice(5));
+         }catch(e){}
+         if (dragItem.querySelector("img")){
+             set=parseFloat(dragItem.querySelector("img").style.filter.slice(5));
+            }
+        }catch(e){}
+     mbar(gi("transi"),0,3,set);
+     
+    }
+    if (t=='TS'){
+        gi("trans").innerHTML=`<h2>文字陰影</h2>
+        <p>陰影顏色</p>
+        <div id="transcol" style="background: #8098ff;"/><input type="color" value="#8098ff"></div>
+        <p>陰影左右位移</p>
+        <div id="transx" class="bars"/></div>
+        <p>陰影上下位移</p>
+        <div id="transy" class="bars"/></div>
+        <p>陰影擴散</p>
+        <div id="transk" class="bars"/></div>
+        <div id="transdo" class="greatb">套用</div><div id="transall">套用至全部</div>`;
+     let setx=0,sety=0,setk=0.5;
+     try{
+         try{let t=dragItem.dataset.txts.split(" ");
+         }catch(e){}
+         if (dragItem.querySelector("p")){
+             t=dragItem.querySelector("p").dataset.txts.split(" ");
+            }
+         setx=parseInt(t[0]);
+         sety=parseInt(t[1]);
+         setk=parseInt(t[2]);
+         gi("transcol").style.background=t[3];
+         gq("#transcol>input")[0].value=t[3];
+        }catch(e){}
+     mbar(gi("transx"),-5,5,setx);
+     mbar(gi("transy"),-5,5,sety);
+     mbar(gi("transk"),0,5,setk);
+     gq("#transcol>input")[0].addEventListener("input",function(){
+      css(gi("transcol"),{background: `${this.value}`});
+      
+     });
+    }
+    if (t=="W" || t=="X" || t=="Y" || t=="Z" ){
       gi("transi").focus();
     }
-    var r={transdo:function () {
-        Htrans();
-        if (nowdeg=='W'){
-            dragItem.style.width=`${gi("transi").value}px`;
-            try{dragItem.querySelector("img").style.width=`${gi("transi").value}px`;}catch(e){}
-            return;
-        }
-        if (nowdeg=='O'){
-            dragItem.style.opacity=1-parseFloat(gi("transi").dataset.v);
-            
-            return;
-        }
-        if (nowdeg=='S'){
-            dragItem.style.boxShadow=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
-        return;
-        }
-        if (nowdeg=='P'){
-            css(dragItem,{padding:`${gi("transy").dataset.v}vh ${gi("transx").dataset.v}vh`,background: gq("#transcol>input")[0].value});
-            return;
-        }
-        if (nowdeg=='TC'){
-            css(dragItem,{fontWeight:`${gi("transx").dataset.v}`,fontSize:`${gi("transy").dataset.v}vh`,color: gq("#transcol>input")[0].value});
-            return;
-        }
-        
-         tanadd(dragItem,`rotate${nowdeg}`,`${gi("transi").value}deg`);
-    },transall:function () {
-        Htrans();
-        gq("#modles>div").forEach(function (e) {
-        if (nowdeg=='W'){
+    
+ var instyle=e=>{
+  if (nowdeg=='W'){
             e.style.width=`${gi("transi").value}px`;
             try{e.querySelector("img").style.width=`${gi("transi").value}px`;}catch(e){}
             return;
@@ -1684,48 +1803,71 @@ function Strans(t){
             return;
         }
         if (nowdeg=='S'){
+            if (e.querySelector("img")){
+             e=e.querySelector("img");
+            }
             e.style.boxShadow=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
+            e.dataset.boxs=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
         return;
         }
         if (nowdeg=='P'){
+            if (e.querySelector("p")){
+             e=e.querySelector("p");
+            }
             css(e,{padding:`${gi("transy").dataset.v}vh ${gi("transx").dataset.v}vh`,background: gq("#transcol>input")[0].value});
             return;
         }
         if (nowdeg=='TC'){
+           if (e.querySelector("p")){
+             e=e.querySelector("p");
+            }
             css(e,{fontWeight:`${gi("transx").dataset.v}`,fontSize:`${gi("transy").dataset.v}vh`,color: gq("#transcol>input")[0].value});
             return;
         }
-         tanadd(e,`rotate${nowdeg}`,`${gi("transi").value}deg`);
-         });
-    },test:function () {
-     if (nowdeg=='W'){
-            dragItem.style.width=`${gi("transi").value}px`;
-            try{dragItem.querySelector("img").style.width=`${gi("transi").value}px`;}catch(e){}
+        if (nowdeg=='PO'){
+            css(e,{top:`${gi("transy").value}px`,left:`${gi("transx").value}px`});
             return;
         }
-        if (nowdeg=='O'){
-            dragItem.style.opacity=1-parseFloat(gi("transi").dataset.v);
-            
+        if (nowdeg=='R'){
+            if (e.querySelector("img")){
+            css(e.querySelector("p"),{borderRadius:`${parseFloat(gi("transi").dataset.v)/20}${parseInt(gi("transi").dataset.v)>80?"0%":"vh"}`});
+             e=e.querySelector("img");
+            }
+            css(e,{borderRadius:`${gi("transi").dataset.v}${parseInt(gi("transi").dataset.v)>80?"%":"vh"}`});
             return;
         }
-        if (nowdeg=='S'){
-            dragItem.style.boxShadow=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
+        if (nowdeg=='B'){
+            if (e.querySelector("img")){
+             e=e.querySelector("img");
+            }
+            css(e,{filter:`blur(${gi("transi").dataset.v}vh)`});
+            return;
+        }
+        if (nowdeg=='TS'){
+            if (e.querySelector("p")){
+             e=e.querySelector("p");
+            }
+            e.style.textShadow=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
+e.dataset.txts=`${gi("transx").dataset.v}vh ${gi("transy").dataset.v}vh ${gi("transk").dataset.v}vh ${gq("#transcol>input")[0].value}`;
         return;
         }
-        if (nowdeg=='P'){
-            css(dragItem,{padding:`${gi("transy").dataset.v}vh ${gi("transx").dataset.v}vh`,background: gq("#transcol>input")[0].value});
-            return;
-        }
-        if (nowdeg=='TC'){
-            css(dragItem,{fontWeight:`${gi("transx").dataset.v}`,fontSize:`${gi("transy").dataset.v}vh`,color: gq("#transcol>input")[0].value});
-            return;
-        }
-        
-         tanadd(dragItem,`rotate${nowdeg}`,`${gi("transi").value}deg`);
+         tanadd(e,`rotate${nowdeg}`,`${gi("transi").value}deg`);
+ };
+    var r={transdo:function () {
+        Htrans();
+        instyle(dragItem);
+    },transall:function () {
+        Htrans();
+        gq("#modles>div:has(img),#modles>p").forEach(function (e) {
+        instyle(e);
+         });
+    },test:function () {
+     
+     instyle(dragItem);
     }};
     for (let i in r){
        try{
-       gi(i).on("click",r[i]);}catch(e){}
+       if (i!="test")gi(i).on("click",r[i]);}catch(e){}
     }
     if (!tranhasev){
      gi("trans").on("pointermove",r.test);
@@ -1911,9 +2053,9 @@ document.addEventListener(
 );
 
 
-function mbar(bs,min,max) {
+function mbar(bs,min,max,set) {
  let ub=cdom("div",0,"ubar");
- bs.dataset.v=min;
+ bs.dataset.v=set?set:min;
  ub.on("click",function () {
    bs.dataset.v=min;
    css(this.parentNode.children[1].children[0],{width:0});
@@ -1933,6 +2075,9 @@ function mbar(bs,min,max) {
    }
    css(this.parentNode.children[0],{background:"#ddd"});
   });
+  let op=set?set:min;
+  let vh=window.innerHeight;
+  css(sb.children[0],{width:(op-min)/(max-min)*0.3*vh+"px"});
   bs.appendChild(ub);
   bs.appendChild(sb);
 }
