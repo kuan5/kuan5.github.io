@@ -326,6 +326,176 @@ background: #c99;
      #share p{
          font-size:2vh;
      }
+
+
+/* Z招式練習升級版樣式 */
+#zspace{
+    position: fixed;
+    z-index: 10;
+    width:90vw;
+    height: 90vh;
+    top:7vh;
+    left: 5vw;
+    background: #fff;
+    border-radius: 2vh;
+    display: none;
+    -webkit-backdrop-filter: blur(1vh);
+    overflow: hidden;
+    -webkit-user-select: none;
+}
+#zcenter{
+    position: fixed;
+    width: 35vw;
+    height: 35vw;
+    border-radius: 50%;
+    left: 27.5vw;
+    top: 27vh;
+    background: radial-gradient(circle, #fff, #ddf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8vh;
+    color: #ca0;
+    opacity: 0;
+    z-index: 15;
+}
+#zsvgcountdown{
+    position: fixed;
+    left: 27.5vw;
+    top: 27vh;
+    width: 35vw;
+    height: 35vw;
+    opacity: 0;
+}
+#zscore{
+    position: fixed;
+    top: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6vh;
+    color: #ca0;
+    z-index: 20;
+}
+#ztype{
+    position: fixed;
+    top: 18vh;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5vh;
+    color: #333;
+    z-index: 20;
+}
+/* 左右按鍵區 */
+#zleft, #zright{
+    position: fixed;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    border: 0.5vw solid #ccc;
+    font-size: 12vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 15;
+}
+#zleft{ left: 5vw; top: 35vh; background: #eef; }
+#zright{ right: 5vw; top: 35vh; background: #eef; }
+/* 按鍵亮起效果 */
+.zactive{ 
+    background: #ff9 !important; 
+    border-color: #f90 !important;
+    box-shadow: 0 0 3vw #ff6 !important;
+    transform: scale(1.1) !important;
+}
+.zcorrect{ background: #0f0 !important; box-shadow: 0 0 3vw #0f9 !important; }
+.zwrong{ background: #f66 !important; box-shadow: 0 0 3vw #f99 !important; }
+/* 誤導箭頭 */
+#zdecoy{
+    position: fixed;
+    font-size: 15vw;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    z-index: 12;
+    pointer-events: none;
+}
+.zdecoy-left{ left: 15vw; top: 38vh; }
+.zdecoy-right{ right: 15vw; top: 38vh; }
+.zdecoy-active{ opacity: 0.8 !important; transform: scale(1.2); }
+
+details {
+   display: flex;
+    border-radius: 2vh;
+    width: 70vw;
+    position: relative;
+    left: 8vw;
+    background: #FFC107;
+    margin: 2vh;
+    padding: 1vh;
+    text-align: center;
+    background-size: 50vh, 50vh;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+details>div {
+    padding: 1vh;
+    width: auto !important;
+    height: auto !important;
+    position: relative;
+    left: 0;
+}details>div.game p {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    margin: 1vh;
+}
+/* 中心圓與飄移文字 */
+#zcenter {
+    position: fixed;
+    width: 35vw;
+    height: 35vw;
+    border-radius: 50%;
+    left: 27.5vw;
+    top: 27vh;
+    background: radial-gradient(circle, #fff, #ddf);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12vh;
+    font-weight: bold;
+    color: #ca0;
+    opacity: 0;
+    z-index: 15;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* 飄移文字（用於倒數與得分） */
+.zdrift-text {
+    position: absolute;
+    font-size: 12vh;
+    font-weight: bold;
+    color: #ca0;
+    white-space: nowrap;
+    transform: translateX(50vw);   /* 從右邊開始 */
+    transition: transform 0.8s cubic-bezier(0.3, 0.8, 0.4, 1);
+}
+
+/* 輕飄移動畫：只向左移動 5vh */
+.zdrift-light {
+    transform: translateX(calc(-50vw - 5vh)) !important;
+}
+
+/* 得分文字（綠色） */
+.zscore-text {
+    color: #0f9 !important;
+    font-size: 8vh !important;
+}
  </style>
 <body>
 <header>
@@ -342,6 +512,26 @@ background: #c99;
 <div class="game" id="p50"><p>+35按按練習</p></div>
 <div id="gspace"></div>
 <div class="game" id="msb"><p>丟球練習</p></div>
+<details>
+  <summary><h2>Z招式練習</h2></summary>
+<div class="game" id="z-fight"   style="background: linear-gradient(135deg,#f80,#c40);"><p>格鬥 Z</p></div>
+<div class="game" id="z-water"   style="background: linear-gradient(135deg,#48f,#16f);"><p>水 Z</p></div>
+<div class="game" id="z-ground"  style="background: linear-gradient(135deg,#eb5,#a92);"><p>地面 Z</p></div>
+<div class="game" id="z-grass"   style="background: linear-gradient(135deg,#7d5,#4b3);"><p>草 Z</p></div>
+<div class="game" id="z-flying"  style="background: linear-gradient(135deg,#9cf,#69f);"><p>飛行 Z</p></div>
+<div class="game" id="z-ice"     style="background: linear-gradient(135deg,#9ff,#6cf);"><p>冰 Z</p></div>
+<div class="game" id="z-rock"    style="background: linear-gradient(135deg,#ba6,#863);"><p>岩石 Z</p></div>
+<div class="game" id="z-dragon"  style="background: linear-gradient(135deg,#80f,#50a);"><p>龍 Z</p></div>
+<div class="game" id="z-fairy"   style="background: linear-gradient(135deg,#f9c,#f6a);"><p>妖精 Z</p></div>
+<div class="game" id="z-psychic" style="background: linear-gradient(135deg,#f69,#d39);"><p>超能力 Z</p></div>
+<div class="game" id="z-ghost"   style="background: linear-gradient(135deg,#96a,#636);"><p>幽靈 Z</p></div>
+<div class="game" id="z-dark"    style="background: linear-gradient(135deg,#754,#532);"><p>惡 Z</p></div>
+<div class="game" id="z-steel"   style="background: linear-gradient(135deg,#9ab,#789);"><p>鋼 Z</p></div>
+<div class="game" id="z-electric"style="background: linear-gradient(135deg,#fc3,#fa0);"><p>電 Z</p></div>
+<div class="game" id="z-fire"    style="background: linear-gradient(135deg,#f96,#f30);"><p>火 Z</p></div>
+<div class="game" id="z-pikachu" style="background: linear-gradient(135deg,#ff0,#fd0); box-shadow:0 0 2vh #ff0;"><p>皮卡丘<br>千萬伏特</p></div>
+</details>
+<div id="zspace"></div>
             <p>也想分享自己的程式或是影片給大家練習嗎？</p>
       <ul>
         <li>
@@ -679,7 +869,318 @@ gi("close").addEventListener("click",function(){
     },500);
 
 });
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 每種屬性的固定方向序列
+const zmoveData = {
+    "fight":   ["◄","▶","◄","▶"],
+    "water":   ["▶","▶","▶","◄"],
+    "ground":  ["◄","◄","◄","▶"],
+    "grass":   ["◄","▶","▶","▶"],
+    "flying":  ["◄","◄","◄","▶"],
+    "ice":     ["◄","▶","◄","◄"],
+    "rock":    ["▶","▶","◄","▶"],
+    "dragon":  ["◄","▶","◄","◄"],
+    "fairy":   ["◄","▶","▶","▶"],
+    "psychic": ["◀","◀","▶","◀"],
+    "ghost":   ["◀","◀","▶","◀"],
+    "dark":    ["◀","▶","◀","▶"],
+    "steel":   ["◀","▶","▶","◀"],
+    "electric":["▶","◀","▶","◀"],
+    "fire":    ["◀","◀","▶","◀"],
+    "pikachu": ["▶","▶","◀","◀"]
+};
 
+const typeNames = {
+    "fight": "格鬥", "water": "水", "ground": "地面", "grass": "草",
+    "flying": "飛行", "ice": "冰", "rock": "岩石", "dragon": "龍",
+    "fairy": "妖精", "psychic": "超能力", "ghost": "幽靈", "dark": "惡",
+    "steel": "鋼", "electric": "電", "fire": "火", "pikachu": "皮卡丘(千萬伏特)"
+};
+
+let currentZType = "";
+let zSequence = [];
+let zIndex = 0;
+let zScore = 0;
+let zCountdownTimer = null;
+let zGameState = "init"; // init, ready, playing, ended
+let zStartTime = 0;
+
+// 初始化遊戲（每個屬性獨立）
+function initZGame(typeKey){
+    return function(){
+        let zspace = gi("zspace");
+        zspace.style.display = "block";
+        zspace.innerHTML = `
+            <div id="ztype">${typeNames[typeKey]} Z</div>
+            <div id="zscore">分數：0</div>
+            <div id="zcenter"></div>
+            <svg id="zsvgcountdown" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#eef" stroke-width="10"/>
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#ff9" stroke-width="10" 
+                        stroke-linecap="round" stroke-dasharray="282.74" id="zsvgcircle"/>
+            </svg>
+            <div id="zleft">◀</div>
+            <div id="zright">▶</div>
+        `;
+
+        currentZType = typeKey;
+        zSequence = [...zmoveData[typeKey]];
+        zIndex = 0;
+        zScore = 0;
+        zGameState = "init";
+
+        // 綁定左右按鈕（每次開啟遊戲都重新綁定，防止殘留）
+        gi("zleft").onclick = handleZLeft;
+        gi("zright").onclick = handleZRight;
+
+        startZMove();
+    };
+}
+
+// 綁定所有屬性按鈕
+gi("z-fight").addEventListener("click", initZGame("fight"));
+gi("z-water").addEventListener("click", initZGame("water"));
+gi("z-ground").addEventListener("click", initZGame("ground"));
+gi("z-grass").addEventListener("click", initZGame("grass"));
+gi("z-flying").addEventListener("click", initZGame("flying"));
+gi("z-ice").addEventListener("click", initZGame("ice"));
+gi("z-rock").addEventListener("click", initZGame("rock"));
+gi("z-dragon").addEventListener("click", initZGame("dragon"));
+gi("z-fairy").addEventListener("click", initZGame("fairy"));
+gi("z-psychic").addEventListener("click", initZGame("psychic"));
+gi("z-ghost").addEventListener("click", initZGame("ghost"));
+gi("z-dark").addEventListener("click", initZGame("dark"));
+gi("z-steel").addEventListener("click", initZGame("steel"));
+gi("z-electric").addEventListener("click", initZGame("electric"));
+gi("z-fire").addEventListener("click", initZGame("fire"));
+gi("z-pikachu").addEventListener("click", initZGame("pikachu"));
+
+// ================ 以下為遊戲核心函數 ================
+function startZMove(){
+    zIndex = 0;
+    zScore = 0;
+    zGameState = "ready";
+    gi("zscore").innerText = "分數：0";
+
+    let center = gi("zcenter");
+    center.style.opacity = 1;
+    center.innerHTML = "";  // 清空
+
+    // 顯示「預備」飄移文字
+    let readyText = document.createElement("span");
+    readyText.className = "zdrift-text";
+    readyText.innerText = "預備";
+    center.appendChild(readyText);
+
+    setTimeout(() => {
+        readyText.classList.add("zdrift-light");
+    }, 100);
+
+    setTimeout(() => {
+        // 顯示「開始！」飄移文字
+        let goText = document.createElement("span");
+        goText.className = "zdrift-text";
+        goText.innerText = "開始！";
+        goText.style.color = "#0f0";
+        center.innerHTML = "";
+        center.appendChild(goText);
+
+        setTimeout(() => {
+            goText.classList.add("zdrift-light");
+        }, 100);
+
+        setTimeout(() => {
+            center.innerHTML = "";
+            gi("zsvgcountdown").style.opacity = 0;
+            nextZStep();
+        }, 1200);
+    }, 1800);  // 預備顯示約1.8秒
+}
+
+function nextZStep(){
+    if(zIndex >= 4){
+        endZGame();
+        return;
+    }
+
+    zGameState = "playing";
+    let correctDir = zSequence[zIndex];
+    let isLeft = correctDir === "◄" || correctDir === "◀";
+
+    // 點亮正確按鍵
+    let leftBtn = gi("zleft");
+    let rightBtn = gi("zright");
+    leftBtn.className = isLeft ? "zactive" : "";
+    rightBtn.className = !isLeft ? "zactive" : "";
+
+    startZCountdown(3);
+}
+
+function startZCountdown(seconds){
+    let center = gi("zcenter");
+    let svgCountdown = gi("zsvgcountdown");
+    let svgCircle = gi("zsvgcircle");
+
+    svgCountdown.style.opacity = 1;
+    center.style.opacity = 1;
+
+    // 建立飄移文字元素
+    let countText = document.createElement("span");
+    countText.id = "zcounttext";
+    countText.innerText = seconds;
+    center.innerHTML = "";          // 清空
+    center.appendChild(countText);
+
+    zStartTime = Date.now();
+    const totalDash = 282.74;       // 2 * π * 45 ≈ 282.74
+
+    // 初始 dashoffset 設為滿（完整圓）
+    svgCircle.style.strokeDashoffset = totalDash;
+
+    zCountdownTimer = setInterval(() => {
+        let elapsed = (Date.now() - zStartTime) / 1000;
+        let remaining = Math.max(0, seconds - elapsed);
+
+        // SVG 圓切割倒數（順時針耗盡）
+        let progress = remaining / seconds;
+        svgCircle.style.strokeDashoffset = totalDash * progress;
+
+        // 數字更新 + 飄移動畫
+        let currentNum = Math.ceil(remaining);
+        if(currentNum !== parseInt(countText.innerText)){
+            countText.innerText = currentNum;
+
+            // 每換數字就從右邊飄進來
+            countText.style.transform = "translateX(100vw)";
+            countText.offsetHeight; // 強制重繪
+            countText.classList.remove("zdrift");
+            countText.offsetHeight;
+            countText.classList.add("zdrift");
+        }
+
+        if(remaining <= 0){
+            clearInterval(zCountdownTimer);
+            zCountdownTimer = null;
+            missZStep();
+        }
+    }, 50);
+}
+
+function handleZLeft(){
+    if(zGameState === "playing" && zCountdownTimer){
+        handleZPress(true);
+    } else if(zGameState === "ended"){
+        restartZGame();
+    }
+}
+
+function handleZRight(){
+    if(zGameState === "playing" && zCountdownTimer){
+        handleZPress(false);
+    } else if(zGameState === "ended"){
+        restartZGame();
+    }
+}
+
+function handleZPress(isLeftClick){
+    clearInterval(zCountdownTimer);
+    zCountdownTimer = null;
+
+    let elapsedTime = (Date.now() - zStartTime) / 1000;
+    let correctDir = zSequence[zIndex];
+    let isCorrect = (correctDir === "◄" || correctDir === "◀") ? isLeftClick : !isLeftClick;
+
+    let leftBtn = gi("zleft");
+    let rightBtn = gi("zright");
+
+    if(isCorrect){
+        // 對數計分：越快分數越高，最大 25 分
+        let timeFactor = Math.log2(30 / (elapsedTime + 0.1));
+        let thisScore = Math.max(0, Math.min(25, Math.round(25 * timeFactor / 3.5)));
+        zScore += thisScore;
+        gi("zscore").innerText = "分數：" + zScore;
+
+        if(isLeftClick) leftBtn.className = "zcorrect";
+        else rightBtn.className = "zcorrect";
+    } else {
+        if(isLeftClick) leftBtn.className = "zwrong";
+        else rightBtn.className = "zwrong";
+    }
+
+    setTimeout(() => {
+        leftBtn.className = "";
+        rightBtn.className = "";
+        gi("zsvgcountdown").style.opacity = 0;
+        zIndex++;
+        setTimeout(nextZStep, 400);
+    }, 600);
+}
+
+function missZStep(){
+    let center = gi("zcenter");
+    let countText = gi("zcounttext") || document.createElement("span");
+    countText.innerText = "MISS!";
+    countText.style.color = "#f66";
+    countText.style.transform = "translateX(0)";  // 停在中間
+    countText.classList.remove("zdrift");
+
+    gi("zleft").className = "zwrong";
+    gi("zright").className = "zwrong";
+
+    setTimeout(() => {
+        gi("zleft").className = "";
+        gi("zright").className = "";
+        gi("zsvgcountdown").style.opacity = 0;
+        zIndex++;
+        setTimeout(nextZStep, 400);
+    }, 800);
+}
+
+function endZGame(){
+    zGameState = "ended";
+    let center = gi("zcenter");
+    center.innerText = zScore === 100 ? "完美！" : (zScore >= 75 ? "很好！" : "結束！");
+    center.style.color = zScore >= 90 ? "#0f0" : (zScore >= 75 ? "#0cc" : "#ca0");
+
+    if(zScore === 100){
+        share(`在${typeNames[currentZType]} Z招式練習拿到完美100分！`);
+    } else if(zScore >= 90){
+        share(`在${typeNames[currentZType]} Z招式練習拿到${zScore}分！`);
+    }
+
+    setTimeout(() => {
+        center.innerText = "點擊任意按鈕重新開始";
+    }, 2000);
+}
+
+function restartZGame(){
+    if(zGameState !== "ended") return;
+    startZMove();
+}
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 
 function share(t){
     shareText=t;
