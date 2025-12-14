@@ -20,7 +20,7 @@
       "name": "如何在 PTCG 交換清單工具搜尋項目 (卡片或貨幣圖示)？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "<ol><li>點擊頁面右下角的「搜尋」按鈕。</li><li>若要搜尋特定卡片：點擊「選擇範圍」，勾選擴充包（可多選），按「完成」。</li><li>若要尋找代表新臺幣的「貨幣圖示」：請確保<strong>沒有</strong>選擇任何擴充包範圍。</li><li>在關鍵字欄位輸入想搜尋的內容（搜尋卡片時可不輸入）。</li><li>按下「搜尋」按鈕。</li></ol><p>注意：如果未選擇任何擴充包就搜尋，結果主要會顯示代表新臺幣的貨幣圖示，讓用戶自行使用，而非特定卡包的卡片。</p>"
+        "text": "<ol><li>點擊頁面右下角的「搜尋」按鈕。</li><li>若要搜尋特定卡片：點擊「選擇系列」，勾選擴充包（可多選），按「完成」。</li><li>若要尋找代表新臺幣的「貨幣圖示」：請確保<strong>沒有</strong>選擇任何擴充包範圍。</li><li>在關鍵字欄位輸入想搜尋的內容（搜尋卡片時可不輸入）。</li><li>按下「搜尋」按鈕。</li></ol><p>注意：如果未選擇任何擴充包就搜尋，結果主要會顯示代表新臺幣的貨幣圖示，讓用戶自行使用，而非特定卡包的卡片。</p>"
       }
     },
     {
@@ -155,22 +155,27 @@
       #dexd{
           position: relative;
           
-          width: calc( 85vw - 10vh);
-          height:3vh;
+          width: calc( 85vw - 17vh);
+          
           background:#fafafa;
-          border-radius:1vh 0 0 1vh;
+          box-shadow:0 0 1vh #2224;
+          border-radius:1vh 1vh 2vh  3vh;
+          padding:0 2vh;
           font-size:2vh;
-          margin:1vh;
+          margin:1.5vh;
+          height:4vh;
           overflow:scroll;
       }
       .greatb{
-          border-radius: 5vh;
-          background:linear-gradient(50deg,#aab5ff,#aab5ff,#aaf4ff,#aab5ff,#aab5ff);
-          background-size:30vh,10vh;
-          padding:0 1vh;
-          box-shadow:0 0 0.5vh #95ccff;
-          animation: gani 10s infinite;
+          border-radius:2vh 5vh 5vh 2vh;
+          /*background:linear-gradient(50deg,#aab5ff,#aab5ff,#aaf4ff,#aab5ff,#aab5ff);*/
+       background:linear-gradient(50deg,#0000,#0e5ee899,#4ac7e0,#9695db);
+          /*background-size:30vh,10vh;*/
+          padding:0 1vh 0 2.5vh;
+          box-shadow:0 0 0.5vh #95ccff,1vh 1vh 1vh #ff53;
+          /*animation: gani 10s infinite;*/
           user-select:none;
+          color:#ff5;
           -webkit-user-select:none;
           cursor:pointer;
       }
@@ -292,14 +297,29 @@
     display:block;
     border-radius: 3vh; 
     max-width: 80vw; 
-    box-shadow: 0 4px 10px #0054; 
+    box-shadow: 5px 5px 10px #ac54,-5px -5px 10px #2264; 
      transition: opacity 1s ease, height 2s ease;
      overflow:hidden;
     }
+#daninc{
+ display:flex;
+ overflow:scroll;
+}
+#daninc>*{
+ margin: 0 1vh;
+ padding: 0 1vh;
+ border-radius: 1vh;
+ background: #eee;
+}
+#danch{
+ border-radius: 1vh 2vh 3vh 1vh ;
+ box-shadow:0 0 1vh #2224 ,2px 0 0 #49a397;
+ background: #fafafa;
+}
 #dansel h2{
     text-align:center;
     margin:1vh;
-    font-size:3.5vh;
+    font-size:3vh;
 }
 #danclose{
     padding:0 2vh;
@@ -313,7 +333,7 @@
     position:relative;
     overflow:scroll;
     display:block;
-    background:#ddd;
+    background:#eee;
 }
 #danlist>div{
     padding:1vh;
@@ -344,6 +364,7 @@
     right:5vh;
     width:40vh;
     display:block;
+    
     border-radius: 3vh 3vh 0 0; 
     max-width: 80vw; 
     box-shadow: 0 4px 10px #0054; 
@@ -353,27 +374,32 @@
     display:flex;
     width:40vh;
     font-size:2vh;
+    padding:1vh;
 }    
 #searh>*{
     margin:1vh;cursor:pointer;
+    
 }
 #searh>h3{
     font-size:3vh;
 }
 #closesear{
-    padding:0 1vh;
+    padding:0 2vh;
+    
     border-radius: 3vh;
     box-shadow:0 0 1vh #0004;
 }
 #clsear{
     color:#5558;
     text-shadow:0 0 1vh #2004;
+    margin:1vh 3vh 1vh 1vh;
 }
 #seart{
     font-size:2vh;
     padding:1vh;
-    margin:1vh;
-    max-width:35vh;
+    margin:1vh ;
+    
+    width:33vh;   
     background:#eee;
     border-radius: 2vh;
     box-shadow:0 0 1vh #0004;
@@ -386,7 +412,8 @@
     font-size:2vh;
     padding:1vh;
     margin:1vh;
-    max-width:35vh;
+    width:35vh;
+    box-sizing:border-box;
     background:#fdfdff;
     border-radius: 3vh;
     box-shadow:0 0 1vh #0004;
@@ -445,15 +472,31 @@
     width:30vh;
     margin:1vh 5vh;
 }
-#coudo,#clr{
+#coudo,#clr,#oppside{
     font-size:3vh;
 }
 #coui{
     max-width:20vh;
     font-size:2vh;
 }
+
+#hpmin,#hpmax{
+ font-size: 2vh;
+ margin: 1vh;
+ padding: 1vh;
+ border-radius: 1vh 2vh 3vh 1vh ;
+ box-shadow:0 0 1vh #2222 ,2px 0 0 #49a397;
+ border:1px solid #eee ;
+ width:30vh;
+}
+input{
+ border-radius: 1vh 2vh 3vh 1vh ;
+ box-shadow:0 0 1vh #2222 ,2px 0 0 #49a397;
+ border:1px solid #eee ;
+}
 #pls,#min{
-    font-size:2vh;
+    font-size:3vh;
+    background: #fff;
 }
 #imgs{
     height:100%;
@@ -716,12 +759,14 @@ opacity:0;
  width: 0;
 }
 *::-webkit-scrollbar{
-    width:0.5vw;
+    width:0.5vh;
     height:0.5vh;
+    
 }
 *::-webkit-scrollbar-thumb{
-    background:#95ccff;
+    background:#95ccff99;
     border-radius:2vh;
+    box-shadow:0 -1vh 1vh 1vh #ff52;
 }
 #impy,#impm{
     font-size:1.5vh;
@@ -875,7 +920,7 @@ display:block;
     <div id="tome"></div>
     <div id="dex">
         <div id ="dexh">
-          <div id="dexc">0</div> <div id="dexd">未選擇彈別</div><div id="sch" class="greatb">搜尋</div>
+          <div id="dexc">0</div> <div id="dexd">未選擇系列</div><div id="sch" class="greatb">搜尋</div>
         </div><div id="lowwifi">啟用數據節省</div>
         <div id="list"></div>
     </div>
@@ -886,7 +931,7 @@ display:block;
             <p>按下旁邊黑色背景開始使用</p>
             <h2 style="font-size:2vh;">如何使用？</h2>
             <h3>搜尋卡片</h3>
-            <p>1. 按下右下角的「搜尋」<br/>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br/>3. 輸入關鍵字或直接不輸入，按「搜尋」<br/>如果未選擇範圍的話，將出現貨幣。</p>
+            <p>1. 按下右下角的「搜尋」<br/>2. 按選擇系列，並選擇擴充包(可多選)，按「完成」<br/>3. 輸入關鍵字或直接不輸入，按「搜尋」<br/>如果未選擇系列的話，將出現貨幣。</p>
             <h3>將卡片加入清單</h3>
             <p>1. 點選「我給你」或「你給我」的白色區塊。<br/>2. 點選搜尋結果中的卡片，將之加入清單<br/>點越多，數量越多(淦話)<br/>點清單中的卡片可以調整數量或剔除卡片</p>
             <h3>生出圖片</h3>
@@ -907,7 +952,8 @@ display:block;
     </div>
     <div id="danselb">
         <div id="dansel">
-            <h2>選擇彈別</h2>
+            <h2>選擇系列</h2>
+            <div id="daninc"><div id="danch">繁中</div><div id="danhight">高版本</div></div>
             <div id='danlist'></div>
             <div id ="danclose" class="greatb">完成</div>
             </div>
@@ -924,7 +970,7 @@ display:block;
     <div  id="tedt"></div>
     </div></main>
     <floorder><h3>搜尋卡片</h3>
-            <p>1. 按下右下角的「搜尋」<br/>2. 按選擇範圍，並選擇擴充包(可多選)，按「完成」<br/>3. 輸入關鍵字或直接不輸入，按「搜尋」<br/>如果未選擇範圍的話，將出現新臺幣。</p>
+            <p>1. 按下右下角的「搜尋」<br/>2. 按選擇系列，並選擇擴充包(可多選)，按「完成」<br/>3. 輸入關鍵字或直接不輸入，按「搜尋」<br/>如果未選擇系列的話，將出現新臺幣。</p>
             <h3>將卡片加入清單</h3>
             <p>1. 點選「我給你」或「你給我」的白色區塊。<br/>2. 點選搜尋結果中的卡片，將之加入清單<br/>點越多，數量越多(淦話)<br/>點清單中的卡片可以調整數量或剔除卡片</p>
             <h3>生出圖片</h3>
@@ -935,6 +981,7 @@ display:block;
         ]
     };
     var modle=[{n:"測試",width:7,height:6,you:[[0.5,1],[6,1.8]],me:[[0.5,4],[6,1.8]]},{n:"提出交易",width:4,height:5,you:[[2.2,1.2],[1.5,1.7]],me:[[0.1,1.2],[1.6,1.7]]},{n:"可憐豆",width:7,height:7,you:[[0.5,1],[6,1.8]],me:[[0.5,4],[6,1.8]]},{n:"Pocket",width:8,height:18,you:[[0.7,6.7],[3,5.3]],me:[[4.3,4.6],[3,5.5]]},{n:"死皮賴臉",width:4,height:6,you:[[0.1,1.2],[3,1.8]],me:[[0.1,3.5],[3,2.5]]},{n:"GO交換",width:8.2,height:16.7,you:[[0.2,9.8],[5,4.8]],me:[[3,4.2],[5,4.5]]},{n:"工作台",width:23,height:9,you:[[3.9,2],[8.5,8.5]],me:[[15.6,3.6],[3.8,3.8]]},{n:"Jack叔叔",width:7,height:11,you:[[1,3.5],[6,3.1]],me:[[1,8.1],[6,3]]},{n:"Tretta交換",width:6.8,height:3.8,you:[[0.1,1.6],[3.2,2]],me:[[3.2,1.6],[3.2,2]]},{n:"特_性交易",width:515,height:720,you:[[20,134],[480,300]],me:[[20,460],[480,300]]}];
+    var hightdans=[];
     var dans=[{'s':'超級進化'},{'i':'M2a','n':'年底包 超級進化 夢想ex'},{'i':'M2','n':'地獄狂火X'},{'i':'MBG','n':'挑戰牌組 超級耿鬼ex'},{'i':'MBD','n':'挑戰牌組 超級帝安希ex'},{'i':'M1L','n':'超級勇氣'},{'i':'M1S','n':'超級交響樂'},{'s':'合眾地區'},{'i':'SV11B','n':'漆黑伏特'},{'i':'SV11W','n':'純白閃焰'},{s:"2025搭檔時代"},{'i':'SV10','n':'火箭隊的榮光反照'},{"i":"SV9a","n":"強化擴充包「熱風競技場」"},{"i":"SVOD","n":"挑戰牌組 大吾的鐵啞鈴&巨金怪ex"},{"i":"SVOM","n":"挑戰牌組 瑪俐的莫魯貝可&長毛巨魔ex"},{"i":"SV9","n":"擴充包「對戰搭檔」"},{s:"2024太晶:星晶時代"},{"i":"SVM","n":"雙ex初階牌組 Generations"}
     ,{"i":"SV8a","n":"高級擴充包「太晶慶典ex」"},{"i":"SV8","n":"擴充包「超電突圍」"},{"i":"SV7a","n":"強化擴充包「樂園騰龍」"},{"i":"SVPN","n":"ex特別組合 太晶屬性：星晶 仙子伊布ex"},{"i":"SVPS","n":"ex特別組合 太晶屬性：星晶 蒼炎刃鬼ex"},{"i":"SVK","n":"牌組構築BOX 樂園騰龍"},{"i":"SVI","n":"Trianers Camp"},{"i":"SV7","n":"擴充包「星晶奇跡」"},{"i":"checkbox103","n":"戰術牌組「巨鉗螳螂ex」"},{"i":"checkbox102","n":"戰術牌組「太晶烈咬陸鯊ex」"},{"i":"checkbox101","n":"戰術牌組「沙奈朵ex」"},{"i":"checkbox100","n":"戰術牌組「密勒頓ex」"},{"i":"checkbox99","n":"戰術牌組「太晶噴火龍ex」"},{"i":"checkbox98","n":"戰術牌組「魔幻假面喵ex」"},{s:"2024 北上鄉"},{"i":"SV6a","n":"強化擴充包「黑夜漫遊者」"},{"i":"SV6","n":"擴充包「變幻假面」"},{"i":"SV5a","n":"強化擴充包「緋紅薄霧」"},{'s':'古代未來'},{"i":"SVHK","n":"起始組合「古代故勒頓ex」"},{"i":"SVHM","n":"起始組合「未來密勒頓ex」"},{"i":"SV5M","n":"擴充包「異度審判」"},{"i":"SV5K","n":"擴充包「狂野之力」"},{"i":"SV4a","n":"高級擴充包「閃色寶藏ex」"},{"i":"SV4K","n":"擴充包「古代咆哮」"},{"i":"SV4M","n":"擴充包「未來閃光」"},{"i":"SV4a","n":"強化擴充包「激狂駭浪」"},{"i":"SVEM","n":"起始組合 太晶 超夢ex"},{"i":"SVEL","n":"起始組合 太晶 骨紋巨聲鱷ex"},{"i":"checkbox84","n":"牌組構築BOX黯焰支配者"},{"i":"SV3","n":"擴充包「黯焰支配者」"},{"i":"checkbox82","n":"ex初階牌組"},{"i":"SV2a","n":"強化擴充包「寶可夢卡牌151」"},{"i":"SVP1","n":"ex特別組合"},{"i":"checkbox78","n":"起始組合ex 皮卡丘特別組合"},{"i":"SV2P","n":"擴充包「冰雪險境」"},{"i":"SV2D","n":"擴充包「碟旋暴擊」"},{"i":"SV1a","n":"強化擴充包「三連音爆」"},{"i":"checkbox73","n":"頂級訓練家收藏箱ex"},{"i":"checkbox72","n":"起始組合ex 潤水鴨&謎擬Ｑ ex"},{"i":"checkbox71","n":"起始組合ex 新葉喵&路卡利歐 ex"},{"i":"checkbox70","n":"起始組合ex 呆火鱷&電龍 ex"},{"i":"SV1V","n":"擴充包「紫ex」"},{"i":"SV1S","n":"擴充包「朱ex」"},{"i":"SV-P","n":"特典卡 朱&紫"}];
     </script>
@@ -950,14 +997,21 @@ display:block;
         'linear-gradient(50deg,#fff,#f5f5f7,#fff)'});
         }); 
     });
-    function sear(k,ct,ty){
+    function sear(k,ct,ty,hpmin,hpmax){
        setTimeout(async function () {           
+       hpmin=parseInt(hpmin);
+       hpmax=parseInt(hpmax);
+       if (!isNaN(hpmin) &&!isNaN(hpmax) && hpmin>hpmax){
+        hpmax,hpmin=hpmin,hpmax;
+       }
        await Ldcard();
         cards=[];
         let kn= k=='';
         for (let i of dcards){
             if (kn || i.n.indexOf(k)!=-1){
+            if ((isNaN(hpmin)||!i.h||i.h>=hpmin)&&(isNaN(hpmax)||!i.h||i.h<=hpmin)){
                 cards.push(i);
+            }
             }
         }
         Lcard();
@@ -1079,11 +1133,20 @@ gi("dexd").on("click", Ldan);
 gi("danclose").on("click",function(){Hdan();
 sear("",null,null)});
 
+
+
 //Rdan
+let danty="ch";
 function Rdan(){
 gi("danlist").innerHTML="";
-gi("dexd").innerText="請選擇彈別";
-for (let d of dans){
+gi("dexd").innerText="請選擇系列";
+let trdans;
+if (danty=="ch"){
+ trdans=dans;
+}else{
+ trdans=hightdans;
+}
+for (let d of trdans){
     let cc=document.createElement('div');
     if (d.s){
         cc.innerText=d.s;
@@ -1103,11 +1166,33 @@ for (let d of dans){
                     css(this,{background:"#abd"});
                 }
             
-            gi("dexd").innerText=nowdan.length==0?"未選擇彈別":`已選${nowdan.length}個`
+            gi("dexd").innerText=nowdan.length==0?"未選擇系列":nowdan.length==1?cc.innerText:`已選${nowdan.length}個`
             });
 }
 }
 Rdan();
+
+gi("danhight").on("click",()=>{
+ danty="hight";
+ Rdan();
+ css(gi("danch"),{borderRadius: "1vh",
+ boxShadow:"none",
+ background:"#eee"});
+ css(gi("danhight"),{borderRadius: "1vh 2vh 3vh 1vh",
+ boxShadow:"0 0 1vh #2224 ,2px 0 0 #49a397",
+ background:"#fafafa"});
+});
+gi("danch").on("click",()=>{
+danty="ch";
+ Rdan();
+ css(gi("danhight"),{borderRadius: "1vh",
+ boxShadow:"none",
+ background:"#eee"});
+ css(gi("danch"),{borderRadius: "1vh 2vh 3vh 1vh",
+ boxShadow:"0 0 1vh #2224 ,2px 0 0 #49a397",
+ background:"#fafafa"});
+});
+
 function Ldan(){
     css(gi("danselb"),{display:'flex',opacity:1});
     css(gi("dansel"),{height:"10vh",opacity:0.1});
@@ -1157,25 +1242,42 @@ function Lsear(){
     <div id="startsear" class="greatb">搜尋</div>
     </div>
     <input type="text" placeholder="搜尋範圍內卡牌" id="seart"/>
-    <div id="chd">選擇範圍（不然搜不到)</div>
     
+    
+    <div id="chd">選擇系列（不然搜不到)
+    </div>
+    <div style="margin: 1vh;">
+    <p>HP範圍，非寶可夢為0<br>不填將不限制</p>
+    <input type="text" placeholder="HP下限 0" id="hpmin">
+    <input type="text" placeholder="HP上限500" id="hpmax">
+    </div>
     `;
      nowdan=[];
      Rdan(); r={chd:Ldan,"closesear":Hsear,clsear:Lsear,startsear:function(){Hsear();sear(gi("seart").value,null,null);}};
     for (let i in r){
         gi(i).on("click",r[i]);
+  
     }
 }
 
 
 var seton="";
+
 function Lcou(idd){
     if(tcards[addto][idd]===undefined)return;
     css(gi("coub"),{display:'flex',opacity:1});
     gi("cou").innerHTML=`<h2>調整數量</h2><img src="${idd.startsWith('http') ?idd: `https://asia.pokemon-card.com/tw/card-img/tw${idd.padStart(8, '0')}.png`}" alt="圖片"/>
-    <div><div id="min">-</div><input type="number" id="coui" value="${tcards[addto][idd]}"/><div id="pls">+</div></div><div><div id="clr">清0</div><div id="coudo" class="greatb">完成</div></div>`;
+    <div><div id="min">-</div><input type="number" id="coui" value="${tcards[addto][idd]}"/><div id="pls">+</div></div><div><div id="clr">清0</div><div id="oppside">移至對面</div></div><div><div id="coudo" class="greatb">套用數字</div></div>`;
     seton=idd;
-    r={coudo:function(){Hcou();tcards[addto][seton]=pInt(gi("coui").value);Ltcard(addto);},clr:function () {
+    r={coudo:function(){Hcou();tcards[addto][seton]=pInt(gi("coui").value);Ltcard(addto);},oppside:function () {
+     Hcou();let ops=addto=="tome"?"toyou":"tome";
+     tcards[ops][seton]=Number(tcards[addto][seton]);
+     delete tcards[addto][seton];addto='toyou'
+ Ltcard('toyou');
+ addto='tome'
+ Ltcard('tome');
+     addto=ops;
+    },clr:function () {
         Hcou();delete tcards[addto][seton];Ltcard(addto);
     },pls:function () {
         gi("coui").value=pInt(gi("coui").value)+1;
