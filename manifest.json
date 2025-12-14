@@ -1,0 +1,39 @@
+{
+
+  "name": "Poke Meza 卡匣情報站",
+
+  "short_name": "Poke Meza",
+
+  "start_url": "/",
+
+  "display": "standalone",
+
+  "background_color": "#ffffff",
+
+  "theme_color": "#ffdd00",
+
+  "icons": [
+
+    {
+
+      "src": "/meza.png",
+
+      "sizes": "192x192",
+
+      "type": "image/png"
+
+    },
+
+    {
+
+      "src": "/meza.png",
+
+      "sizes": "512x512",
+
+      "type": "image/png"
+
+    }
+
+  ]
+
+}
