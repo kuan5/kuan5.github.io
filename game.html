@@ -77,10 +77,10 @@ header{
         position: absolute;
         bottom: 1vh;
         right: 1vh;
-        font-size: 4vh;
+        font-size: 3vh;
           text-align: center;
           text-decoration: end;
-          text-shadow:0 0 1vh #f8ffb4;
+          text-shadow:0 0 1vh #ddd5;
       }
       *{
          color: #000;
@@ -103,16 +103,27 @@ header{
       #gspace{
           position: fixed;
           z-index: 10;
-          width:90vw;
-          height: 90vh;
+          width:100vw;
+          height: 100vh;
           top:7vh;
-          left: 5vw;
-          background: #fff;
+          left: 0;
+          background: #eee;
           border-radius: 2vh;
           display: none;
           -webkit-backdrop-filter: blur(1vh);
           overflow: hidden;
           -webkit-user-select: none;
+      }
+      #othergame{
+      display:none;
+       position: fixed;
+          z-index: 102;
+          width:100vw;
+          height: 7vh;
+          top:0;
+          left: 0;
+          background: #ddd;
+          text-align:center;
       }
       .cr{
           width: 80vw;
@@ -186,20 +197,33 @@ background: #c99;
           transition:all 0.1s ease-in-out;
         opacity:0;
         z-index:5;
+        
       }
       .bM{
           background:#62d;
+          display:flex;
+          justify-content:center;
+          align-items:center;
       }
       .b高{
           background:#111;
           color:#a90;
+          display:flex;
+          justify-content:center;
+          align-items:center;
       }
       .b超{
           background:#6bf;
           color:#d66;
+          display:flex;
+          justify-content:center;
+          align-items:center;
       }
       .b精{
           background:#d66;
+          display:flex;
+          justify-content:center;
+          align-items:center;
       }
       #gmax{
           background-image:url("/png/gmax"),
@@ -234,6 +258,7 @@ background: #c99;
           width:5vh;
           background:#555;
           border-radius:100%;
+          
       }
       #gmitems>div{
       position:fixed;
@@ -332,12 +357,12 @@ background: #c99;
 #zspace{
     position: fixed;
     z-index: 10;
-    width:90vw;
-    height: 90vh;
+    width:100vw;
+    height: 100vh;
     top:7vh;
-    left: 5vw;
-    background: #fff;
-    border-radius: 2vh;
+    left:0;
+    background: #eee;
+    border-radius: 0;
     display: none;
     -webkit-backdrop-filter: blur(1vh);
     overflow: hidden;
@@ -361,19 +386,20 @@ background: #c99;
 }
 #zsvgcountdown{
     position: fixed;
-    left: 27.5vw;
-    top: 27vh;
-    width: 35vw;
-    height: 35vw;
+    left: 29.5vw;
+    top: calc( 30vh - 3vw );
+    width: 41vw;
+    height: 41vw;
+    transform:rotateZ(-90deg) rotateX(180deg);
     opacity: 0;
 }
 #zscore{
     position: fixed;
-    top: 8vh;
+    top: 10vh;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 6vh;
-    color: #ca0;
+    font-size: 4vh;
+    color: #b59c00;
     z-index: 20;
 }
 #ztype{
@@ -381,8 +407,8 @@ background: #c99;
     top: 18vh;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 5vh;
-    color: #333;
+    font-size: 3vh;
+    color: #555;
     z-index: 20;
 }
 /* 左右按鍵區 */
@@ -391,8 +417,8 @@ background: #c99;
     width: 20vw;
     height: 20vw;
     border-radius: 50%;
-    border: 0.5vw solid #ccc;
-    font-size: 12vw;
+    border: 2vw solid #ccc;
+    font-size: 7vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -400,21 +426,21 @@ background: #c99;
     transition: all 0.2s ease;
     z-index: 15;
 }
-#zleft{ left: 5vw; top: 35vh; background: #eef; }
-#zright{ right: 5vw; top: 35vh; background: #eef; }
+#zleft{ left: 20vw; top: 50vh; background: #eef; }
+#zright{ right: 20vw; top: 50vh; background: #eef; }
 /* 按鍵亮起效果 */
 .zactive{ 
-    background: #ff9 !important; 
-    border-color: #f90 !important;
-    box-shadow: 0 0 3vw #ff6 !important;
+    background: #95b7ff !important; 
+    border-color: #738dc5 !important;
+    box-shadow: 0 0 3vw #00abff91 !important;
     transform: scale(1.1) !important;
 }
-.zcorrect{ background: #0f0 !important; box-shadow: 0 0 3vw #0f9 !important; }
-.zwrong{ background: #f66 !important; box-shadow: 0 0 3vw #f99 !important; }
+.zcorrect{ border-color: #a0d5b2 !important;background: #95ffb7 !important; box-shadow: 0 0 3vw #40ff778e !important; }
+.zwrong{border-color: #c75353 !important; background: #ff95d2 !important; box-shadow: 0 0 3vw #ff6ae77c !important; }
 /* 誤導箭頭 */
 #zdecoy{
     position: fixed;
-    font-size: 15vw;
+    font-size: 3vh;
     opacity: 0.3;
     transition: all 0.3s ease;
     z-index: 12;
@@ -440,19 +466,24 @@ details {
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+    transition:all 0.2s ease;
 }
 
-details>div {
+details>div.game {
     padding: 1vh;
     width: auto !important;
     height: auto !important;
     position: relative;
     left: 0;
+    font-size:2vh;
+    text-shadow:0 0 1vh #ddd;
 }details>div.game p {
     position: relative;
     bottom: 0;
     right: 0;
     margin: 1vh;
+    
+    text-shadow:0 0 1vh #ffffff;
 }
 /* 中心圓與飄移文字 */
 #zcenter {
@@ -460,41 +491,41 @@ details>div {
     width: 35vw;
     height: 35vw;
     border-radius: 50%;
-    left: 27.5vw;
-    top: 27vh;
-    background: radial-gradient(circle, #fff, #ddf);
+    left: 32.5vw;
+    top: 30vh;
+    background: radial-gradient(circle,#95ccff, #6a78ff);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12vh;
+    font-size: 3vh;
     font-weight: bold;
-    color: #ca0;
+    color: #f8ff2b;
     opacity: 0;
     z-index: 15;
-    overflow: hidden;
+    
     pointer-events: none;
 }
 
 /* 飄移文字（用於倒數與得分） */
 .zdrift-text {
     position: absolute;
-    font-size: 12vh;
+    font-size: 3vh;
     font-weight: bold;
-    color: #ca0;
+    color: #f8ff2b;
     white-space: nowrap;
-    transform: translateX(50vw);   /* 從右邊開始 */
-    transition: transform 0.8s cubic-bezier(0.3, 0.8, 0.4, 1);
+    transform: translateX(5vh);   /* 從右邊開始 */
+    transition: transform 1s ease-out;
 }
 
 /* 輕飄移動畫：只向左移動 5vh */
 .zdrift-light {
-    transform: translateX(calc(-50vw - 5vh)) !important;
+    transform: translateX(-5vh) !important;
 }
 
 /* 得分文字（綠色） */
 .zscore-text {
-    color: #0f9 !important;
-    font-size: 8vh !important;
+    color: #6affb6 !important;
+    font-size: 4vh !important;
 }
  </style>
 <body>
@@ -507,31 +538,39 @@ details>div {
         </header>
         <main>
             <h1>練習場</h1>
-<h2>歡迎來到Poke Meza卡匣情報站</h2>
+<h2>歡迎來到Poke Meza卡匣情報站附設mezastar模擬器，透過以下小遊戲，提升實力</h2>
+
+<details>
+  <summary><h2>Z招式練習</h2></summary>
+  <div class="game" id="z-ice"     style="background: linear-gradient(135deg,#9ff,#6cf);"><p>冰 Z</p>激狂大地萬里冰</div>
+ <div class="game" id="z-dark"    style="background: linear-gradient(135deg,#555,#777);"><p>惡 Z</p>黑洞吞噬萬物盡</div>
+ <div class="game" id="z-electric"style="background: linear-gradient(135deg,#fc3,#fa0);"><p>電 Z</p>終極伏特狂雷閃</div>
+ <div class="game" id="z-ghost"   style="background: linear-gradient(135deg,#51386f,#3b1995);"><p>幽靈 Z</p>無盡黑夜之誘惑</div>
+<div class="game" id="z-fight"   style="background: linear-gradient(135deg,#f80,#c40);"><p>格鬥 Z</p>全力無雙激烈拳</div>
+<div class="game" id="z-water"   style="background: linear-gradient(135deg,#48f,#16f);"><p>水 Z</p>超級水流大旋渦</div>
+<div class="game" id="z-ground"  style="background: linear-gradient(135deg,#eb5,#a92);"><p>地面 Z</p></div>
+<div class="game" id="z-grass"   style="background: linear-gradient(135deg,#7d5,#4b3);"><p>草 Z</p>落葉繽紛花怒放</div>
+<div class="game" id="z-flying"  style="background: linear-gradient(135deg,#9cf,#69f);"><p>飛行 Z</p></div>
+
+<div class="game" id="z-rock"    style="background: linear-gradient(135deg,#ba6,#863);"><p>岩石 Z</p>毀天滅地巨岩墜</div>
+<div class="game" id="z-dragon"  style="background: linear-gradient(135deg,#80f,#50a);"><p>龍 Z</p>究極巨龍震天地</div>
+<div class="game" id="z-fairy"   style="background: linear-gradient(135deg,#f9c,#f6a);"><p>妖精 Z</p></div>
+<div class="game" id="z-psychic" style="background: linear-gradient(135deg,#f69,#d39);"><p>超能力 Z</p>起源超星大爆炸</div>
+
+width: ;
+<div class="game" id="z-steel"   style="background: linear-gradient(135deg,#9ab,#789);"><p>鋼 Z</p>超絕螺旋連重擊</div>
+
+<div class="game" id="z-fire"    style="background: linear-gradient(135deg,#f96,#f30);"><p>火 Z</p>超強極限爆焰彈</div>
+<div class="game" id="z-pikachu" style="background: linear-gradient(135deg,#ff0,#fd0); box-shadow:0 0 2vh #ff0;"><p>皮卡丘</p>1000萬伏特</div>
+<p>謎擬Q Z、索爾迦雷歐Z、鬃岩Z、卡噗Z、奈克Z、杖尾Z、美錄Z、御三家Z……尚未提供</p><p>抱歉強迫症把Z招式名稱修改成7字</p>
+</details>
+<div id="zspace"></div>
 <div class="game" id="gmax"><p>超極巨化</p></div>
 <div class="game" id="p50"><p>+35按按練習</p></div>
 <div id="gspace"></div>
+<div id="othergame">其它遊戲</div>
 <div class="game" id="msb"><p>丟球練習</p></div>
-<details>
-  <summary><h2>Z招式練習</h2></summary>
-<div class="game" id="z-fight"   style="background: linear-gradient(135deg,#f80,#c40);"><p>格鬥 Z</p></div>
-<div class="game" id="z-water"   style="background: linear-gradient(135deg,#48f,#16f);"><p>水 Z</p></div>
-<div class="game" id="z-ground"  style="background: linear-gradient(135deg,#eb5,#a92);"><p>地面 Z</p></div>
-<div class="game" id="z-grass"   style="background: linear-gradient(135deg,#7d5,#4b3);"><p>草 Z</p></div>
-<div class="game" id="z-flying"  style="background: linear-gradient(135deg,#9cf,#69f);"><p>飛行 Z</p></div>
-<div class="game" id="z-ice"     style="background: linear-gradient(135deg,#9ff,#6cf);"><p>冰 Z</p></div>
-<div class="game" id="z-rock"    style="background: linear-gradient(135deg,#ba6,#863);"><p>岩石 Z</p></div>
-<div class="game" id="z-dragon"  style="background: linear-gradient(135deg,#80f,#50a);"><p>龍 Z</p></div>
-<div class="game" id="z-fairy"   style="background: linear-gradient(135deg,#f9c,#f6a);"><p>妖精 Z</p></div>
-<div class="game" id="z-psychic" style="background: linear-gradient(135deg,#f69,#d39);"><p>超能力 Z</p></div>
-<div class="game" id="z-ghost"   style="background: linear-gradient(135deg,#96a,#636);"><p>幽靈 Z</p></div>
-<div class="game" id="z-dark"    style="background: linear-gradient(135deg,#754,#532);"><p>惡 Z</p></div>
-<div class="game" id="z-steel"   style="background: linear-gradient(135deg,#9ab,#789);"><p>鋼 Z</p></div>
-<div class="game" id="z-electric"style="background: linear-gradient(135deg,#fc3,#fa0);"><p>電 Z</p></div>
-<div class="game" id="z-fire"    style="background: linear-gradient(135deg,#f96,#f30);"><p>火 Z</p></div>
-<div class="game" id="z-pikachu" style="background: linear-gradient(135deg,#ff0,#fd0); box-shadow:0 0 2vh #ff0;"><p>皮卡丘<br>千萬伏特</p></div>
-</details>
-<div id="zspace"></div>
+
             <p>也想分享自己的程式或是影片給大家練習嗎？</p>
       <ul>
         <li>
@@ -560,10 +599,11 @@ details>div {
 
 </div>
 <p>路過，把颱風路徑預測圖放這看看有沒有流量</p>
- <img src="https://cgi-debate-handheld-madness.trycloudflare.com/forecast.png" alt='pa!沒了' style="width:80vw"/>
+ <p >pa!沒了</p>
  <p>提供者：eugene526</p>
 </main>
   <script>
+gi("othergame").addEventListener("click",location.reload);
       window.addEventListener('popstate', function (event) {
 
     location.reload(); 
@@ -575,9 +615,10 @@ var shareText = encodeURIComponent("這個網站超棒！快來看看！");
   var roles=[35,20,10,20];
   var v=0,vmax=4.8,av=0.18,ndeg=0,runid;
   gi("p50").addEventListener("click",function(){
-      window.history.pushState({ path: '/game?t=p' }, '', '/game?t=p');
+      try{window.history.pushState({ path: '/game?t=p' }, '', '/game?t=p');}catch(e){}
 
       gspace.style.display="block";
+      css(gi("othergame"),{display:"block"});
       gspace.innerHTML='<div class="cr"></div><div id="gamenote">按下畫面開始遊戲</div><div id="pitems"></div>';
       var pitems=gi("pitems");
       var gamenote=gi("gamenote");
@@ -632,11 +673,12 @@ function stop(){
 }
 
   var bnroles={M:"大師球",高:"高級球",超:"超級球",精:"精靈球"},broles;
-  var bv=0,bvmax=5.6,bav=0.28,bndeg=0;
+  var bv=0,bvmax=4.2,bav=0.28,bndeg=0;
   gi("msb").addEventListener("click",function(){try{
   window.history.pushState({ path: '/game?t=b' }, '', '/game?t=b');
 }catch(e){}
       gspace.style.display="block";
+      css(gi("othergame"),{display:"block"});
       gspace.innerHTML='<div class="cr"></div><div id="gamenote">按下畫面開始遊戲</div><div id="pitems"></div><div id="crl"></div>';
       var pitems=gi("pitems");
       var gamenote=gi("gamenote");
@@ -707,8 +749,10 @@ var nowval=0,gben=0;
 var gbv=0,gbvmax=7.2,gbav=0.288,gbndeg=0;
 
 gi("gmax").addEventListener("click",function(){
-window.history.pushState({ path: '/game?t=g' }, '', '/game?t=g');
+try{window.history.pushState({ path: '/game?t=g' }, '', '/game?t=g');
+}catch(e){}
 
+css(gi("othergame"),{display:"block"});
       gspace.style.display="block";
       gspace.innerHTML='<div id="gmball"></div><div id="gamenote">受到星塵影響變大了</div><div id="gmitems"></div><div id="crl"></div>';
       pitems=gi("gmitems");
@@ -825,12 +869,12 @@ function gbstop(){
         [0,0,2,1,2,2],
         [0,0,2,2,3,2]
     ]
-    let gen=['失敗','等級10',"等級50",'等級100'];
+    let gen=['失敗','等級5',"等級10",'等級10'];
      gmball=gerol[Math.floor(gben/10)] ; 
      if (gmball[cal]>0)share(`變大成功，${gen[gmball[cal]]}！`);
      gamenote.innerText=`${gen[gmball[cal]]}！按下畫面開始遊戲`;
     },parseInt((1+cal)*60-gbndeg)/gbvmax*20-10);
-    console.log(
+    /*console.log(
         `
         cal${cal}
         gbndeg${gbndeg}
@@ -838,7 +882,7 @@ function gbstop(){
         ${[cal]}
         `
         
-    );
+    );*/
     gspace.addEventListener("click",gmstart);
     
     }
@@ -919,11 +963,11 @@ function initZGame(typeKey){
         zspace.style.display = "block";
         zspace.innerHTML = `
             <div id="ztype">${typeNames[typeKey]} Z</div>
-            <div id="zscore">分數：0</div>
+            <div id="zscore">Z力量：0</div>
             <div id="zcenter"></div>
             <svg id="zsvgcountdown" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="45" fill="none" stroke="#eef" stroke-width="10"/>
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#ff9" stroke-width="10" 
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#6acbff" stroke-width="10" 
                         stroke-linecap="round" stroke-dasharray="282.74" id="zsvgcircle"/>
             </svg>
             <div id="zleft">◀</div>
@@ -967,7 +1011,7 @@ function startZMove(){
     zIndex = 0;
     zScore = 0;
     zGameState = "ready";
-    gi("zscore").innerText = "分數：0";
+    gi("zscore").innerText = "Z力量：0";
 
     let center = gi("zcenter");
     center.style.opacity = 1;
@@ -1049,7 +1093,7 @@ function startZCountdown(seconds){
         let remaining = Math.max(0, seconds - elapsed);
 
         // SVG 圓切割倒數（順時針耗盡）
-        let progress = remaining / seconds;
+        let progress = 1-remaining / seconds;
         svgCircle.style.strokeDashoffset = totalDash * progress;
 
         // 數字更新 + 飄移動畫
@@ -1058,7 +1102,7 @@ function startZCountdown(seconds){
             countText.innerText = currentNum;
 
             // 每換數字就從右邊飄進來
-            countText.style.transform = "translateX(100vw)";
+            countText.style.transform = "";
             countText.offsetHeight; // 強制重繪
             countText.classList.remove("zdrift");
             countText.offsetHeight;
@@ -1099,19 +1143,29 @@ function handleZPress(isLeftClick){
 
     let leftBtn = gi("zleft");
     let rightBtn = gi("zright");
-
+    let thisScore;
     if(isCorrect){
         // 對數計分：越快分數越高，最大 25 分
-        let timeFactor = Math.log2(30 / (elapsedTime + 0.1));
-        let thisScore = Math.max(0, Math.min(25, Math.round(25 * timeFactor / 3.5)));
-        zScore += thisScore;
-        gi("zscore").innerText = "分數：" + zScore;
-
+        let timeFactor = 1 / (elapsedTime + 1);
+        thisScore = Math.max(0, Math.min(25, Math.floor(20* timeFactor )))+5;
+    }else{
+     thisScore=5;
+    }
+        let orgs=Number(zScore);
+        zScore+= thisScore;
+        for (let s=0;s<30;s++){
+        setTimeout(()=>{
+        let tts=orgs+thisScore*s/30;
+        gi("zscore").innerText = "Z力量：" + s>=28?zScore:parseInt(tts);
+        },s*20);
+       
+       if(isCorrect){
         if(isLeftClick) leftBtn.className = "zcorrect";
         else rightBtn.className = "zcorrect";
-    } else {
-        if(isLeftClick) leftBtn.className = "zwrong";
+    
+       }else{ if(isLeftClick) leftBtn.className = "zwrong";
         else rightBtn.className = "zwrong";
+    }
     }
 
     setTimeout(() => {
@@ -1146,12 +1200,12 @@ function missZStep(){
 function endZGame(){
     zGameState = "ended";
     let center = gi("zcenter");
-    center.innerText = zScore === 100 ? "完美！" : (zScore >= 75 ? "很好！" : "結束！");
-    center.style.color = zScore >= 90 ? "#0f0" : (zScore >= 75 ? "#0cc" : "#ca0");
+    center.innerText = zScore >= 80 ? "完美！" : (zScore >= 65 ? "很好！" : "結束！");
+    center.style.color = zScore >= 80 ? "#55ff97" : (zScore >= 65 ? "#d9ff6a" : "#ffe76a");
 
-    if(zScore === 100){
-        share(`在${typeNames[currentZType]} Z招式練習拿到完美100分！`);
-    } else if(zScore >= 90){
+    if(zScore >=80){
+        share(`在${typeNames[currentZType]} Z招式練習拿到超讚的${zScore}分！`);
+    } else if(zScore >= 70){
         share(`在${typeNames[currentZType]} Z招式練習拿到${zScore}分！`);
     }
 
