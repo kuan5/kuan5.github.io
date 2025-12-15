@@ -173,13 +173,13 @@ footer>*{
  width:90vw;
  overflow:scroll;
 }
-#disklist>ol{
+#disklist>div{
  margin: 1vh;
  border-radius: 3vh;
  box-shadow:0 0 1vh #2222;
  font:2vh "";
 }
-#disklist>ol:hover{
+#disklist>div:hover{
  border:0 solid #5502;
  border-top-width:2px;
 }
@@ -286,7 +286,7 @@ function loaddisk(disk){
     gi("disklist").innerHTML=disk.length>0 ?"":"正在載入";
     let co=1;
     for (let i of disk){
-      let ol=cdom("ol",0,0,0,`<p>第${co}條</p>`);
+      let ol=cdom("div",0,0,0,`<p>第${co}條</p>`);
       co++;
       for (let d of i){
         let li=cdom("li");
@@ -371,6 +371,7 @@ function cdom(ty,id,cl,it,ih) {
   <footer><p>Poke Meza卡匣情報站</p><p>圖片是透過連結引用</p><p>可能與日本版稍有不同</p></footer>
 </body>
 </html>
+
 
 
 
