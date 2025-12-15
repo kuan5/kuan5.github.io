@@ -122,8 +122,11 @@ header{
           height: 7vh;
           top:0;
           left: 0;
-          background: #ddd;
+          background: #eee9;
           text-align:center;
+          backdrop-filter:blur(1vh);
+ -webkit-backdrop-filter:blur(1vh);
+ 
       }
       .cr{
           width: 80vw;
@@ -534,7 +537,7 @@ details>div.game {
         <a href="/game"><img src="/svg/game.svg" alt="+50">練習場</a>
         <a href="/qr"><img src="/svg/QR.svg" alt="支援寶可夢卷 寶可夢卡匣 機台 支援卷">支援券</a>
         <a href="/map" ><img src="/svg/map.svg" alt="map">店舖及時通</a>
-        <a href="https://m.botdc.cloudns.be/ptcg"><img src="/svg/ch" alt="">PTCG交易圖生成器</a>
+        <a href="https://m.botdc.cloudns.be/ptcg"><img src="/svg/ch" alt="PTCG">PTCG交易圖生成器</a>
         </header>
         <main>
             <h1>練習場</h1>
@@ -548,13 +551,13 @@ details>div.game {
  <div class="game" id="z-ghost"   style="background: linear-gradient(135deg,#51386f,#3b1995);"><p>幽靈 Z</p>無盡黑夜之誘惑</div>
 <div class="game" id="z-fight"   style="background: linear-gradient(135deg,#f80,#c40);"><p>格鬥 Z</p>全力無雙激烈拳</div>
 <div class="game" id="z-water"   style="background: linear-gradient(135deg,#48f,#16f);"><p>水 Z</p>超級水流大旋渦</div>
-<div class="game" id="z-ground"  style="background: linear-gradient(135deg,#eb5,#a92);"><p>地面 Z</p></div>
+<div class="game" id="z-ground"  style="background: linear-gradient(135deg,#eb5,#a92);"><p>地面 Z</p>地隆嘯天大終結</div>
 <div class="game" id="z-grass"   style="background: linear-gradient(135deg,#7d5,#4b3);"><p>草 Z</p>落葉繽紛花怒放</div>
-<div class="game" id="z-flying"  style="background: linear-gradient(135deg,#9cf,#69f);"><p>飛行 Z</p></div>
+<div class="game" id="z-flying"  style="background: linear-gradient(135deg,#9cf,#69f);"><p>飛行 Z</p>急速俯衝轟烈撞</div>
 
 <div class="game" id="z-rock"    style="background: linear-gradient(135deg,#ba6,#863);"><p>岩石 Z</p>毀天滅地巨岩墜</div>
 <div class="game" id="z-dragon"  style="background: linear-gradient(135deg,#80f,#50a);"><p>龍 Z</p>究極巨龍震天地</div>
-<div class="game" id="z-fairy"   style="background: linear-gradient(135deg,#f9c,#f6a);"><p>妖精 Z</p></div>
+<div class="game" id="z-fairy"   style="background: linear-gradient(135deg,#f9c,#f6a);"><p>妖精 Z</p>可愛星星飛天撞</div>
 <div class="game" id="z-psychic" style="background: linear-gradient(135deg,#f69,#d39);"><p>超能力 Z</p>起源超星大爆炸</div>
 
 width: ;
@@ -568,7 +571,7 @@ width: ;
 <div class="game" id="gmax"><p>超極巨化</p></div>
 <div class="game" id="p50"><p>+35按按練習</p></div>
 <div id="gspace"></div>
-<div id="othergame">其它遊戲</div>
+<div id="othergame">🔙其它遊戲</div>
 <div class="game" id="msb"><p>丟球練習</p></div>
 
             <p>也想分享自己的程式或是影片給大家練習嗎？</p>
@@ -603,7 +606,7 @@ width: ;
  <p>提供者：eugene526</p>
 </main>
   <script>
-gi("othergame").addEventListener("click",location.reload);
+gi("othergame").addEventListener("click",()=>{location.reload()});
       window.addEventListener('popstate', function (event) {
 
     location.reload(); 
@@ -958,7 +961,9 @@ let zStartTime = 0;
 
 // 初始化遊戲（每個屬性獨立）
 function initZGame(typeKey){
+
     return function(){
+    css(gi("othergame"),{display:"block"});
         let zspace = gi("zspace");
         zspace.style.display = "block";
         zspace.innerHTML = `
