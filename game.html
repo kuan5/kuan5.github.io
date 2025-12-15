@@ -301,7 +301,8 @@ background: #c99;
         position:fixed;
 
         display:none;
-
+flex-direction: column;
+justify-content:center;
         top:1vh;
 
         right:5vw;
@@ -330,7 +331,7 @@ background: #c99;
          position: relative;
      }
      #share button{
-         width:85vw;
+         
          cursor:pointer;
          padding:1vh;
          border-radius:3vh ;
@@ -338,6 +339,9 @@ background: #c99;
          background:#aab5ff ;
          margin: 1vh;
          border:1px solid #000;
+     }
+     #shar Img{
+      margin:1vh;
      }
      #close{
 
@@ -353,7 +357,8 @@ background: #c99;
          cursor:pointer;
      }
      #share p{
-         font-size:2vh;
+         font-size:4vh;
+         text-align:center;
      }
 
 
@@ -596,10 +601,10 @@ width: ;
           <h1>炫耀自己的成就！</h1>
           <p id="sharep"></p>
           <div id="close">略過</div>
-  <button onclick="shareToFacebook()">分享至 Facebook</button>
-  <button onclick="shareToThreads()">分享至 Threads</button>
+  <button onclick="shareToFacebook()" style="background:#948cf5 ;"><img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" width="20" height="20" alt="Facebook"/>分享至 Facebook</button>
+  <button onclick="shareToThreads()" style="background:#222 ;color:#ddd"><img src="https://www.citypng.com/public/uploads/preview/threads-social-media-white-logo-icon-hd-png-735811696672474wx9bzdjwmv.png" alt="Threads" width="20" height="20" alt="Facebook"/>分享至 Threads</button>
   <button onclick="copythis()">複製連結</button>
-  <button onclick="shareThisPage()">分享到應用程式</button>
+  <button onclick="shareThisPage()" style="background:#9edeb5;">分享到其他應用程式</button>
 
 </div>
 <p>路過，把颱風路徑預測圖放這看看有沒有流量</p>
@@ -1245,7 +1250,7 @@ function restartZGame(){
 function share(t){
     shareText=t;
     gi("sharep").innerText=t;
-    css(gi("share"),{display:"block",top:"30vh",height:"50vh",opacity:0});
+    css(gi("share"),{display:"flex",top:"30vh",height:"50vh",opacity:0});
 
     setTimeout(function(){
 
