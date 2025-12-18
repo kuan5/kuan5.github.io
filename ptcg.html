@@ -1044,7 +1044,7 @@ async function aFcard(d) {
      for(let i in data){
      dancard[i]=data[i];
      }
-let response = await fetch(`/pokemon_cards.json`);
+ response = await fetch(`/pokemon_cards.json`);
      let data= await response.json();
      for(let i in data){
      dancard[i]=data[i];
