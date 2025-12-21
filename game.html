@@ -98,8 +98,8 @@ header{
       }
       .game>img {
        height: 30vh;
-       position:fixed;
-       buttom:-5vh;
+       position:absolute;
+       bottom:-5vh;
        left:-5vh;
        user-select:none;
        user-drag:none;
@@ -1730,16 +1730,16 @@ gi("combo").addEventListener("click", function(){
 
 // 聽力測驗：4題 + 美化介面 + 動畫轉場 + 滑動文字 + 分享
 const mezastarSounds = [
-    {name: "萊西拉姆", file: "lc.mp3"},
-    {name: "固拉多", file: "gd.mp3"},
-    {name: "故勒頓", file: "gl.mp3"},
-    {name: "捷克羅姆", file: "jk.mp3"},
-    {name: "卡比獸", file: "kb.mp3"},
-    {name: "蓋歐卡", file: "ko.mp3"},
-    {name: "皮卡丘", file: "pk.mp3"},
-    {name: "酋雷姆", file: "qr.mp3"},
-    {name: "沙奈朵", file: "sn.mp3"},
-    {name: "杖尾鱗甲龍", file: "zl.mp3"}
+    {name: "萊西拉姆", file: "/sd/lc.mp3"},
+    {name: "固拉多", file: "/sd/gd.mp3"},
+    {name: "故勒頓", file: "/sd/gl.mp3"},
+    {name: "捷克羅姆", file: "/sd/jk.mp3"},
+    {name: "卡比獸", file: "/sd/kb.mp3"},
+    {name: "蓋歐卡", file: "/sd/ko.mp3"},
+    {name: "皮卡丘", file: "/sd/pk.mp3"},
+    {name: "酋雷姆", file: "/sd/qr.mp3"},
+    {name: "沙奈朵", file: "/sd/sn.mp3"},
+    {name: "杖尾鱗甲龍", file: "/sd/zl.mp3"}
 ];
 
 gi("cryquiz").addEventListener("click", function(){
