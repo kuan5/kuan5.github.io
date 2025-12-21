@@ -73,6 +73,7 @@ header{
           margin:2vh;
           background-size:30vh,30vh;
           background-repeat:no-repeat;
+          overflow:hidden;
       }
     .game h3{
      margin: 5vh 1vh 1vh 1vh;
@@ -97,9 +98,11 @@ header{
       }
       .game>img {
        height: 30vh;
-       position:abosolute;
+       position:fixed;
        buttom:-5vh;
        left:-5vh;
+       user-select:none;
+       user-drag:none;
       }
       *{
          color: #000;
