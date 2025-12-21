@@ -63,24 +63,43 @@ header{
           font-size: 3vh;
       }
       .game{
-          height: 30vh;
+          padding:2vh;
           border-radius: 2vh;
           width:70vw;
+          max-width:100vh;
           position: relative;
-          left:8vw;
-          background:#99b7e8;
+          left:10vw;
+          background:linear-gradient(170deg,#80c1ff,#aacaff);
           margin:2vh;
           background-size:30vh,30vh;
           background-repeat:no-repeat;
       }
-    .game p{
-        position: absolute;
+    .game h3{
+     margin: 5vh 1vh 1vh 1vh;
         bottom: 1vh;
         right: 1vh;
         font-size: 3vh;
+        text-shadow:0 0 1vh #ddd,0 1vh 1vh #fff;
           text-align: center;
           text-decoration: end;
-          text-shadow:0 0 1vh #ddd5;
+          
+    }
+    .game p{
+    position:relative;
+        margin: 1vh;
+        left: 10vw;
+        font-size: 2vh;
+        text-shadow:0 0 1vh #ddd;
+          text-align: left;
+          text-decoration: end;
+          text-indent:2vh;
+          
+      }
+      .game>img {
+       height: 30vh;
+       position:abosolute;
+       buttom:-5vh;
+       left:-5vh;
       }
       *{
          color: #000;
@@ -183,7 +202,7 @@ background: #c99;
          border-radius:5vw;
      }
      #p50{
-         background-image:url("/png/P50.png"),
+         background:
         linear-gradient(250deg,#81b9de, #b181de)
   ;
   
@@ -230,17 +249,13 @@ background: #c99;
           align-items:center;
       }
       #gmax{
-          background-image:url("/png/Gmax.png"),
-
-  linear-gradient(290deg,#d681de,#de819b )
+          background: linear-gradient(290deg,#d681de,#de819b )
 
   ;
       }
       #msb{
           
-          background-image:url("/png/Ball.png"),
-
-  linear-gradient(200deg,#8182de,#ac81de )
+          background: linear-gradient(200deg,#8182de,#ac81de )
 
   ;
       }
@@ -395,10 +410,10 @@ justify-content:center;
 }
 #zsvgcountdown{
     position: fixed;
-    left: 29.5vw;
-    top: calc( 30vh - 3vw );
-    width: 41vw;
-    height: 41vw;
+    left: calc( 50vw - 15.5vh );
+    top: calc( 30vh - 3vh );
+    width: 31vh;
+    height: 31vh;
     transform:rotateZ(-90deg) rotateX(180deg);
     opacity: 0;
 }
@@ -408,7 +423,7 @@ justify-content:center;
     left: 50%;
     transform: translateX(-50%);
     font-size: 4vh;
-    color: #b59c00;
+    color: #ffdc00;
     z-index: 20;
 }
 #ztype{
@@ -423,11 +438,11 @@ justify-content:center;
 /* 左右按鍵區 */
 #zleft, #zright{
     position: fixed;
-    width: 20vw;
-    height: 20vw;
+    width: 12vh;
+    height: 12vh;
     border-radius: 50%;
-    border: 2vw solid #ccc;
-    font-size: 7vw;
+    border: 2vh solid #ccc;
+    font-size: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -435,8 +450,8 @@ justify-content:center;
     transition: all 0.2s ease;
     z-index: 15;
 }
-#zleft{ left: 20vw; top: 50vh; background: #eef; }
-#zright{ right: 20vw; top: 50vh; background: #eef; }
+#zleft{ left: calc(50vw - 20vh); top: 60vh; background: #eef; }
+#zright{ right: calc(50vw - 20vh); top: 60vh; background: #eef; }
 /* 按鍵亮起效果 */
 .zactive{ 
     background: #95b7ff !important; 
@@ -455,19 +470,20 @@ justify-content:center;
     z-index: 12;
     pointer-events: none;
 }
-.zdecoy-left{ left: 15vw; top: 38vh; }
-.zdecoy-right{ right: 15vw; top: 38vh; }
+.zdecoy-left{ left: calc(50vw - 20vh); top: 50vh; }
+.zdecoy-right{ right: calc(50vw - 20vh); top: 50vh; }
 .zdecoy-active{ opacity: 0.8 !important; transform: scale(1.2); }
 
 details {
    display: flex;
     border-radius: 2vh;
     width: 70vw;
+    
     position: relative;
-    left: 8vw;
-    background: #FFC107;
+    left: 10vw;
+    background: #fff180;
     margin: 2vh;
-    padding: 1vh;
+    padding: 2vh;
     text-align: center;
     background-size: 50vh, 50vh;
     background-repeat: no-repeat;
@@ -491,16 +507,19 @@ details>div.game {
     bottom: 0;
     right: 0;
     margin: 1vh;
+    font-size: 3vh;
+        text-shadow:0 0 1vh #ddd,0 1vh 1vh #fff5;
+          text-align: center;
+          text-decoration: end;    
     
-    text-shadow:0 0 1vh #ffffff;
 }
 /* 中心圓與飄移文字 */
 #zcenter {
     position: fixed;
-    width: 35vw;
-    height: 35vw;
+    width: 25vh;
+    height: 25vh;
     border-radius: 50%;
-    left: 32.5vw;
+    left: calc(50vw - 12.5vh);
     top: 30vh;
     background: radial-gradient(circle,#95ccff, #6a78ff);
     display: flex;
@@ -536,6 +555,229 @@ details>div.game {
     color: #6affb6 !important;
     font-size: 4vh !important;
 }
+/*
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+-------------------------------------------------
+
+*/
+#cspace{
+    position: fixed;
+    z-index: 10;
+    width:100vw;
+    height: 100vh;
+    top:7vh;
+    left: 0;
+    background: #eee;
+    border-radius: 2vh;
+    display: none;
+    -webkit-backdrop-filter: blur(1vh);
+    overflow: hidden;
+    -webkit-user-select: none;
+}
+/* 組合招式練習 - 使用提供的 SVG 作為背景圖示 */
+.combo-arc{
+    position: absolute;
+    
+    height: 50vh;
+    bottom: 0;
+}
+.left-arc{ left: 2vw; transform: rotate(180deg); }
+.right-arc{ right: 2vw; }
+/* 中央匯聚 SVG 圖示 */
+
+/* 成功區標記（中間30%） */
+.combo-success-zone{
+    position: absolute;
+    width: 90vw;
+    height: 30%;
+    bottom: 35%;
+    left: 5vw;
+    border-top: 2vh dashed #0f0;
+    border-bottom: 2vh dashed #0f0;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 2;
+}
+/* 球體樣式 */
+.combo-ball{
+    position: fixed;
+    width: 12vw;
+    height: 12vw;
+    background: radial-gradient(circle at 30% 30%, #40ffe0, #95ffe0);
+    border-radius: 50%;
+    bottom: 0;
+    box-shadow: 0 0 1vh #80d6ff;
+    transition: bottom 0.4s ease, transform 0.2s ease;
+    z-index: 3;
+}
+.left-ball{ left: 0; }
+.right-ball{ right: 0; }
+/* 成功時閃光效果 */
+.combo-success-flash{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, #fffa, #fff0);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+    animation: flash 1s ease-out;
+}
+@keyframes flash {
+    0% { opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+/* 滑動文字動畫（共用於轉場） */
+.slide-text {
+    position: absolute;
+    font-size: 5vh;
+    font-weight: bold;
+    color: #ffdd00;
+    white-space: nowrap;
+    transform: translateX(100vw);
+    transition: transform 1.5s ease-out;
+    text-shadow: 0 0 1vh #aaffca;
+}
+.slide-in {
+    transform: translateX(0) !important;
+}
+.slide-out {
+    transform: translateX(-100vw) !important;
+}
+/* 聽力測驗介面美化 */
+#cry-note{
+ margin: 1vh;
+ font-size: 3vh;
+ text-align:center;
+}
+#cry-question button {
+margin: 2vh;
+    background: #6acbff;
+    border: none;
+    border-radius: 2vh;
+    padding: 1vh 2vh;
+    font-size: 3vh;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0.5vh 1vh #00abff91;
+    transition: transform 0.2s;
+}
+#cry-question button:hover {
+    transform: scale(1.05);
+    transition: all 0.1s ease;
+}
+#cry-options button {
+    background: linear-gradient(135deg, #95b7ff, #6a78ff);
+    border: none;
+    border-radius: 2vh;
+    padding: 2vh;
+    font-size: 4vh;
+    color: #fff;
+    cursor: pointer;
+    margin: 1vh auto;
+    width: 80%;
+    display: block;
+    box-shadow: 0 0.5vh 1vh #738dc5;
+    transition: all 0.2s ease;
+}
+#cry-options button:hover {
+    transform: scale(1.02);
+    box-shadow: 0 1vh 2vh #00abff91;
+}
+#cry-result {
+position: fixed;
+transform:translateX(-50%);
+    left: 50vw;
+    top: 30vh;   
+    font-size: 3vh;
+    font-weight: bold;
+    text-shadow: 0 0 1vh #ddd;
+    animation: result-pop 0.5s ease;
+}
+@keyframes result-pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+/* 組合招式練習 - 完全忠實還原版：SVG 80vh + 球嚴格在原圖內快速上下 + 黃色區域即成功 */
+#combo-svg{
+    position: fixed;
+   
+    width:50vh;
+    transform:translateX(-50%);
+            
+    left: 50vw;
+    top: 30vh;              
+    pointer-events: none;
+    user-select:none;
+    z-index: 1;
+}
+#combo-note{
+    position: absolute;
+    top: 2vh;
+    width: 100%;
+    text-align: center;
+    font-size: 2vh;
+    color: #ca0;
+    z-index: 10;
+}
+#combo-result{
+    position: absolute;
+    top: 15vh;
+    width: 100%;
+    text-align: center;
+    font-size: 3vh;
+    font-weight: bold;
+    z-index: 10;
+}
+.combo-ball{
+    position: fixed;
+    width: 6vh;
+    height: 6vh;
+    background: radial-gradient(circle at 30% 30%, #aafff4, #aaffb5);
+    border-radius: 50%;
+    box-shadow: 0 0 1vh #80d6ff;
+    z-index: 5;
+    transition: box-shadow 0.05s ease;  /* 快速平滑 */
+}
+.combo-success-flash{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, #ffff0044, transparent);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 6;
+    animation: flash 1s ease-out;
+}
+@keyframes flash {
+    0% { opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+.slide-text {
+    position: absolute;
+    font-size: 4vh;
+    font-weight: bold;
+    color: #ffdd00;
+    text-shadow: 0 0 2vh #5597ff;
+    white-space: nowrap;
+    transform: translateX(100vw);
+    transition: transform 1.2s ease-out;
+    z-index: 10;
+}
+.slide-in { transform: translateX(-50%) translateX(50vw) !important; }
+.yellow-pulse {
+    animation: yellowpulse 0.6s infinite alternate;
+}
+@keyframes yellowpulse {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(2) drop-shadow(0 0 8vw #ffff00); }
+}
  </style>
 <body>
 <header>
@@ -550,12 +792,12 @@ details>div.game {
 <h2>歡迎來到Poke Meza卡匣情報站附設mezastar模擬器，透過以下小遊戲，提升實力</h2>
 
 <details>
-  <summary><h2>Z招式練習</h2></summary>
-  <div class="game" id="z-ice"     style="background: linear-gradient(135deg,#9ff,#6cf);"><p>冰 Z</p>激狂大地萬里冰</div>
- <div class="game" id="z-dark"    style="background: linear-gradient(135deg,#555,#777);"><p>惡 Z</p>黑洞吞噬萬物盡</div>
- <div class="game" id="z-electric"style="background: linear-gradient(135deg,#fc3,#fa0);"><p>電 Z</p>終極伏特狂雷閃</div>
- <div class="game" id="z-ghost"   style="background: linear-gradient(135deg,#51386f,#3b1995);"><p>幽靈 Z</p>無盡黑夜之誘惑</div>
-<div class="game" id="z-fight"   style="background: linear-gradient(135deg,#f80,#c40);"><p>格鬥 Z</p>全力無雙激烈拳</div>
+  <summary><h2>Z招式練習</h2><p>幫助你在Pokémon Mezastar中完美使出Z招式！</p></summary>
+  <div class="game" id="z-ice"     style="background: linear-gradient(135deg,#9ff,#6cf);"><p>冰 Z</p>激狂大地萬里冰 左右左左</div>
+ <div class="game" id="z-dark"    style="background: linear-gradient(135deg,#555,#777);"><p>惡 Z</p>黑洞吞噬萬物盡 左右左右</div>
+ <div class="game" id="z-electric"style="background: linear-gradient(135deg,#fc3,#fa0);"><p>電 Z</p>終極伏特狂雷閃 右左右左</div>
+ <div class="game" id="z-ghost"   style="background: linear-gradient(135deg,#51386f,#3b1995);"><p>幽靈 Z</p>無盡黑夜之誘惑 左左右左</div>
+<div class="game" id="z-fight"   style="background: linear-gradient(135deg,#f80,#c40);"><p>格鬥 Z</p>全力無雙激烈拳 左右左右</div>
 <div class="game" id="z-water"   style="background: linear-gradient(135deg,#48f,#16f);"><p>水 Z</p>超級水流大旋渦</div>
 <div class="game" id="z-ground"  style="background: linear-gradient(135deg,#eb5,#a92);"><p>地面 Z</p>地隆嘯天大終結</div>
 <div class="game" id="z-grass"   style="background: linear-gradient(135deg,#7d5,#4b3);"><p>草 Z</p>落葉繽紛花怒放</div>
@@ -566,19 +808,27 @@ details>div.game {
 <div class="game" id="z-fairy"   style="background: linear-gradient(135deg,#f9c,#f6a);"><p>妖精 Z</p>可愛星星飛天撞</div>
 <div class="game" id="z-psychic" style="background: linear-gradient(135deg,#f69,#d39);"><p>超能力 Z</p>起源超星大爆炸</div>
 
-width: ;
 <div class="game" id="z-steel"   style="background: linear-gradient(135deg,#9ab,#789);"><p>鋼 Z</p>超絕螺旋連重擊</div>
 
 <div class="game" id="z-fire"    style="background: linear-gradient(135deg,#f96,#f30);"><p>火 Z</p>超強極限爆焰彈</div>
-<div class="game" id="z-pikachu" style="background: linear-gradient(135deg,#ff0,#fd0); box-shadow:0 0 2vh #ff0;"><p>皮卡丘</p>1000萬伏特</div>
+<div class="game" id="z-pikachu" style="background: linear-gradient(135deg,#ff0,#fd0); box-shadow:0 0 2vh #ff0;"><p>皮卡丘</p>一零零零萬伏特</div>
 <p>謎擬Q Z、索爾迦雷歐Z、鬃岩Z、卡噗Z、奈克Z、杖尾Z、美錄Z、御三家Z……尚未提供</p><p>抱歉強迫症把Z招式名稱修改成7字</p>
 </details>
 <div id="zspace"></div>
-<div class="game" id="gmax"><p>超極巨化</p></div>
-<div class="game" id="p50"><p>+35按按練習</p></div>
+
+<details>
+  <summary><h2>聽力測驗-寶可夢的叫聲</h2><p>幫助您在Pokémon Mezastar中辨認草叢中的寶可夢</p></summary>
+  <div class="game" id="cryquiz"><p>第二彈</p></div>
+</details>
+
+ <div class="game" id="combo"><h3>組合招式</h3><p>玩法說明：使用帶有黃藍卡匣標記、支援組合招式的的卡匣，在使用招式時就能發動一次組合招式</p><p>使用時，按下按鈕，讓畫面中快速移動的寶可夢標記同時停在上方的黃色區塊中。哇！成功得發動組合招式了！</p></div>
+
+<div id="cspace"></div>
+<div class="game" id="gmax"><img src="/png/Gmax.png" alt="Gmax mezaster模擬器 Pokémon Mezastar 極巨化 online"/><h3>超極巨化</h3><p>玩法說明：使用帶有紅色極巨化標記的卡匣，在使用招式時就能發動一極巨化，大幅提升寶可夢的體型</p><p>使用時，快速點擊按鈕累積極巨能量。讓畫面中快速轉動的輪盤停下後，紅色標記停在上方的位置。哇！成功發動極巨化！</p></div>
+<div class="game" id="p50"><img src="/png/P50.png" alt="+35 mezastar模擬器 寶可夢卡匣線上玩 +50練習"/><h3>+35按按練習</h3></div>
 <div id="gspace"></div>
 <div id="othergame">🔙其它遊戲</div>
-<div class="game" id="msb"><p>丟球練習</p></div>
+<div class="game" id="msb"><img src="/png/Ball.png" alt="丟球練習 Mezastar模擬器 按掌門球練習 寶可夢大師球 大師球如何按到？"/><h3>丟球練習</h3></div>
 <img src="https://m.botdc.cloudns.be/meza.png" alt="Poke Meza- mezaster練習場" style="width:3vh;height:3vh;border-radius:2vh;"/>
             <p>也想分享自己的程式或是影片給大家練習嗎？</p>
       <ul>
@@ -1184,7 +1434,7 @@ function handleZPress(isLeftClick){
         rightBtn.className = "";
         gi("zsvgcountdown").style.opacity = 0;
         zIndex++;
-        setTimeout(nextZStep, 400);
+        setTimeout(nextZStep, 1000);
     }, 600);
 }
 
@@ -1283,6 +1533,358 @@ function css(element, rules){
       }
      }
 }
+
+
+
+
+
+
+
+
+
+/*
+
+
+--------------++++++++++++++++++++++++++++++--------------
+
+
++++++++++++++++-----------------++++++++++++++++-----------------
+
+
+*/
+// 組合招式練習 - 最終版：JS 驅動 offset-distance 模擬，解決所有瀏覽器相容問題 + 球可見 + 弧線完美
+gi("combo").addEventListener("click", function(){
+    try{window.history.pushState({ path: '/game?t=c' }, '', '/game?t=c');}catch(e){}
+    css(gi("othergame"),{display:"block"});
+    let cspace = gi("cspace");
+    cspace.style.display="block";
+    cspace.innerHTML = `
+        <div id="combo-note">按下畫面開始</div>
+        <div id="combo-result"></div>
+        <div id="combo-svg">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 124.17533 104.49871" preserveAspectRatio="xMidYMid meet">
+                <g transform="translate(-175.91519,-127.75065)">
+                    <g fill-rule="nonzero" stroke-linejoin="miter" stroke-miterlimit="10">
+                        <path id="left-arc" d="M226.04543,137.50065c0,0 -24.86462,1.33585 -36.38595,29.32436c-11.22701,27.27352 4.77843,55.67435 4.77843,55.67435" fill="none" stroke="#d2d2d2" stroke-width="19.5" stroke-linecap="round"/>
+                        <path id="right-arc" d="M253.95457,137.50065c0,0 24.86462,1.33585 36.38595,29.32436c11.22701,27.27352 -4.77843,55.67435 -4.77843,55.67435" fill="none" stroke="#d2d2d2" stroke-width="19.5" stroke-linecap="round"/>
+                        <path d="M225.54543,137.50065c0,0 -21.25547,4.87689 -25.88596,14.82436" fill="none" stroke="#d1ca76" stroke-width="17.5" stroke-linecap="round"/>
+                        <path d="M232.25,137.77206c0,4.15432 -3.46979,7.52206 -7.75,7.52206c-4.28021,0 -7.75,-3.36774 -7.75,-7.52206c0,-4.15432 3.46979,-7.52206 7.75,-7.52206c4.28021,0 7.75,3.36774 7.75,7.52206z" fill="#f0ffba" class="yellow-circle" id="yellow-left"/>
+                        <path d="M254.65948,137.50065c0,0 21.25547,4.87689 25.88595,14.82436" fill="none" stroke="#d1ca76" stroke-width="17.5" stroke-linecap="round"/>
+                        <path d="M263.25,137.27206c0,4.15432 -3.46979,7.52206 -7.75,7.52206c-4.28021,0 -7.75,-3.36774 -7.75,-7.52206c0,-4.15432 3.46979,-7.52206 7.75,-7.52206c4.28021,0 7.75,3.36774 7.75,7.52206z" fill="#f0ffba" class="yellow-circle" id="yellow-right"/>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <div class="combo-ball" id="left-ball"></div>
+        <div class="combo-ball" id="right-ball"></div>
+    `;
+    let note = gi("combo-note");
+    let result = gi("combo-result");
+    let leftBall = gi("left-ball");
+    let rightBall = gi("right-ball");
+    let leftPath = gi("left-arc");
+    let rightPath = gi("right-arc");
+    let yellowLeft = gi("yellow-left");
+    let yellowRight = gi("yellow-right");
+    let successAudio = new Audio("zl.mp3");
+    let running = false;
+    let progress = 0;
+    let dir = 1;
+    let interval;
+
+    // 初始轉場
+    let slideReady = document.createElement("div");
+    slideReady.className = "slide-text";
+    slideReady.innerText = "預備？按下按鈕開始";
+    slideReady.style.top = "35vh";
+    cspace.appendChild(slideReady);
+    setTimeout(() => slideReady.classList.add("slide-in"), 100);
+    
+
+    function getPointAtPercent(path, percent){
+        let length = path.getTotalLength();
+        let point = path.getPointAtLength(length * percent);
+        return point;
+    }
+
+    function animate(){
+        progress += dir*4; // 快速
+        if(progress >= 100 || progress <= 0) dir *= -1;
+        progress = Math.max(0, Math.min(100, progress));
+
+        let t = progress / 100;
+
+        // 左球：從起點到中間再回起點
+        let leftPercent = t;
+        let leftPoint = getPointAtPercent(leftPath, leftPercent);
+
+        // 右球：同步
+        let rightPercent = leftPercent;
+        let rightPoint = getPointAtPercent(rightPath, rightPercent);
+
+        // 轉換到螢幕座標
+        let svgRect = gi("combo-svg").getBoundingClientRect();
+        let svg = gi("combo-svg").querySelector("svg");
+        
+        let vh=window.innerHeight,vw=window.innerWidth;
+        
+        let leftX = (leftPoint.x / 124.17533-1) * svgRect.width+0.5*vw-0.49*vh;
+        let leftY = (leftPoint.y / 104.49871) * svgRect.height-0.551*vh;
+        let rightX = (rightPoint.x / 124.17533) * svgRect.width+0.5*vw-0.99*vh;
+        let rightY = (rightPoint.y / 104.49871) * svgRect.height-0.551*vh;
+
+        leftBall.style.left = leftX + "px";
+        leftBall.style.top = leftY + svgRect.top + "px";
+        rightBall.style.left = rightX + "px";
+        rightBall.style.top = rightY + svgRect.top + "px";
+
+        // 靠近黃圈時放大
+        if(t < 0.3){
+            leftBall.style.boxShadow = "0 0 1px 1vh #80d6ff,0 0 1vh 1vh #aaffca";
+            rightBall.style.boxShadow = "0 0 1px 1vh #80d6ff,0 0 1vh 1vh  #aaffca";
+        }else{
+            leftBall.style.boxShadow = "0 0 1vh #80d6ff";
+            rightBall.style.boxShadow = "0 0 1vh #80d6ff";
+        }
+    }
+
+    function start(){
+       slideReady.remove();
+        let slideStart = document.createElement("div");
+        slideStart.className = "slide-text";
+        slideStart.innerText = "按下畫面停止！";
+        slideStart.style.top = "80vh";
+        cspace.appendChild(slideStart);
+        setTimeout(() => slideStart.classList.add("slide-in"), 100);
+        setTimeout(() => slideStart.remove(), 3000);
+
+        note.innerText = "按下畫面讓他停在黃色部分中！";
+        progress = 0;
+        dir = 1;
+        interval = setInterval(animate, 20); // 超快超流暢
+        setTimeout(() => {running = true;}, 1000);
+        
+        cspace.onclick = stop;
+    }
+
+    function stop(){
+        if(!running) return;
+        clearInterval(interval);
+        running = false;
+
+        let success = progress <30; // 只要超過 30%（進入黃色區域上方）就成功
+
+        if(success){
+            result.innerText = "TAG MOVE 發動成功！！";
+            result.style.color = "#ff0";
+            share("我在poke meza練習場成功發動組合招式了！");
+            successAudio.play();
+
+            let flash = document.createElement("div");
+            flash.className = "combo-success-flash";
+            cspace.appendChild(flash);
+            setTimeout(() => flash.remove(), 1000);
+
+            yellowLeft.classList.add("yellow-pulse");
+            yellowRight.classList.add("yellow-pulse");
+
+            let slideSuccess = document.createElement("div");
+            slideSuccess.className = "slide-text";
+            slideSuccess.innerText = "完美匯聚！";
+            slideSuccess.style.top = "50vh";
+            slideSuccess.style.color = "#0f0";
+            cspace.appendChild(slideSuccess);
+            setTimeout(() => slideSuccess.classList.add("slide-in"), 100);
+            setTimeout(() => slideSuccess.remove(), 4000);
+        }else{
+            result.innerText = "匯聚失敗…再試一次";
+            result.style.color = "#f66";
+
+            let slideFail = document.createElement("div");
+            slideFail.className = "slide-text";
+            slideFail.innerText = "MISS！";
+            slideFail.style.top = "50vh";
+            slideFail.style.color = "#f66";
+            cspace.appendChild(slideFail);
+            setTimeout(() => slideFail.classList.add("slide-in"), 100);
+            setTimeout(() => slideFail.remove(), 3000);
+        }
+
+        setTimeout(() => {
+            note.innerText = "按下畫面重新開始";
+            result.innerText = "";
+            yellowLeft.classList.remove("yellow-pulse");
+            yellowRight.classList.remove("yellow-pulse");
+            leftBall.style.transform = "scale(1)";
+            rightBall.style.transform = "scale(1)";
+            cspace.onclick = start;
+        }, 3000);
+    }
+
+    cspace.onclick = start;
+});
+
+
+// 聽力測驗：4題 + 美化介面 + 動畫轉場 + 滑動文字 + 分享
+const mezastarSounds = [
+    {name: "萊西拉姆", file: "lc.mp3"},
+    {name: "固拉多", file: "gd.mp3"},
+    {name: "故勒頓", file: "gl.mp3"},
+    {name: "捷克羅姆", file: "jk.mp3"},
+    {name: "卡比獸", file: "kb.mp3"},
+    {name: "蓋歐卡", file: "ko.mp3"},
+    {name: "皮卡丘", file: "pk.mp3"},
+    {name: "酋雷姆", file: "qr.mp3"},
+    {name: "沙奈朵", file: "sn.mp3"},
+    {name: "杖尾鱗甲龍", file: "zl.mp3"}
+];
+
+gi("cryquiz").addEventListener("click", function(){
+    try{window.history.pushState({ path: '/game?t=q' }, '', '/game?t=q');}catch(e){}
+    css(gi("othergame"),{display:"block"});
+    let cspace = gi("cspace");
+    cspace.style.display="block";
+    cspace.innerHTML = `
+        <div id="cry-note">準備中...</div>
+        <div id="cry-question"></div>
+        <div id="cry-options"></div>
+        <div id="cry-score">正確：0 / 4</div>
+        <div id="cry-result"></div>
+    `;
+    let note = gi("cry-note");
+    let question = gi("cry-question");
+    let optionsDiv = gi("cry-options");
+    let scoreDiv = gi("cry-score");
+    let result = gi("cry-result");
+    let cananswar= false;
+    let currentQuestion = 0;
+    let correctCount = 0;
+    let currentAudio = new Audio();
+    let shuffled = [...mezastarSounds].sort(() => Math.random() - 0.5).slice(0,4);
+
+    function playCry(soundFile){
+        currentAudio.src = soundFile;
+        currentAudio.play();
+    }
+
+    function showQuestion(){
+        if(currentQuestion >= 4){
+            endGame();
+            return;
+        }
+        let correctSound = shuffled[currentQuestion];
+        let wrongOptions = mezastarSounds.filter(s => s.file !== correctSound.file);
+        wrongOptions = wrongOptions.sort(() => Math.random() - 0.5).slice(0,3);
+        let allOptions = [correctSound, ...wrongOptions].sort(() => Math.random() - 0.5);
+
+        question.innerHTML = `第 ${currentQuestion+1} 題:感覺好像有寶可夢？<br><button id="play-btn">播放音效</button>`;
+        optionsDiv.innerHTML = "";
+        allOptions.forEach(sound => {
+            let btn = document.createElement("button");
+            btn.innerText = sound.name;
+            btn.onclick = () => checkAnswer(sound.file === correctSound.file);
+            optionsDiv.appendChild(btn);
+        });
+
+        // 滑動進入問題
+        question.style.opacity = 0;
+        question.style.transform = "translateY(5vh)";
+        setTimeout(() => {
+            question.style.transition = "opacity 0.5s, transform 0.5s";
+            question.style.opacity = 1;
+            question.style.transform = "translateY(0)";
+        }, 100);
+
+        // 選項滑動進入
+        Array.from(optionsDiv.children).forEach((btn, i) => {
+            btn.style.opacity = 0;
+            btn.style.transform = "translateX(100vw)";
+            setTimeout(() => {
+                btn.style.transition = "transform 0.8s ease-out, opacity 0.8s";
+                btn.style.transform = "translateX(0)";
+                btn.style.opacity = 1;
+            }, 200 + i * 200);
+        });
+
+        note.innerText = "點擊播放音效";
+        gi("play-btn").onclick = () => playCry(correctSound.file);
+       setTimeout(() =>{cananswar= true;} , 1000); playCry(correctSound.file); // 自動播放一次
+     
+    }
+
+    function checkAnswer(isCorrect){
+     if (cananswar==false){
+      return;
+     }
+    
+       cananswar= false;
+        if(isCorrect){
+            correctCount++;
+            result.innerText = "正確！";
+            result.style.color = "#0f0";
+        }else{
+            result.innerText = "錯誤！正確答案：" + shuffled[currentQuestion].name;
+            result.style.color = "#f66";
+        }
+        scoreDiv.innerText = `正確：${correctCount} / 4`;
+        currentQuestion++;
+        setTimeout(() => {
+            result.innerText = "";
+            // 轉場滑出
+            question.style.transform = "translateY(-5vh)";
+            question.style.opacity = 0;
+            Array.from(optionsDiv.children).forEach((btn, i) => {
+                setTimeout(() => {
+                    btn.style.transform = "translateX(-100vw)";
+                    btn.style.opacity = 0;
+                }, i * 100);
+            });
+           
+           setTimeout(showQuestion, 1000);
+        }, 2000);
+    }
+
+    function endGame(){
+        note.innerText = "遊戲結束！";
+        question.innerHTML = `最終成績：${correctCount}/4<br>點擊這裡重新開始`;
+        question.onclick = () => location.reload();
+        optionsDiv.innerHTML = "";
+        if(correctCount >= 3) share(`Mezastar 機台音效聽力測驗 ${correctCount}/4 分！`);
+        // 結束滑動文字
+        let slideEnd = document.createElement("div");
+        slideEnd.className = "slide-text";
+        slideEnd.innerText = correctCount >= 3 ? "優秀成績！" : "再接再厲！";
+        slideEnd.style.top = "40vh";
+        slideEnd.style.left = "0";
+        slideEnd.style.width = "100%";
+        slideEnd.style.textAlign = "center";
+        slideEnd.style.color = correctCount >= 3 ? "#0f0" : "#ff0";
+        cspace.appendChild(slideEnd);
+        setTimeout(() => slideEnd.classList.add("slide-in"), 100);
+        setTimeout(() => slideEnd.classList.add("slide-out"), 3000);
+        setTimeout(() => slideEnd.remove(), 4500);
+    }
+
+    // 初始轉場
+    note.innerText = "準備...";
+    let slidePrepare = document.createElement("div");
+    slidePrepare.className = "slide-text";
+    slidePrepare.innerText = "深吸一口氣...";
+    slidePrepare.style.top = "25vh";
+    slidePrepare.style.left = "0";
+    slidePrepare.style.width = "100%";
+    slidePrepare.style.textAlign = "center";
+    cspace.appendChild(slidePrepare);
+    setTimeout(() => slidePrepare.classList.add("slide-in"), 100);
+    setTimeout(() => {
+        slidePrepare.classList.add("slide-out");
+        setTimeout(() => slidePrepare.remove(), 1500);
+        note.innerText = "開始！";
+    }, 1500);
+    setTimeout(showQuestion, 3000);
+});
+
+
   </script>
 <script type="application/ld+json">
 {
