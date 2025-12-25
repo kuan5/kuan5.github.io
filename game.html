@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="ZH-TW">
+<meta charset="UTF-8">
 <head>
  <title>練習場 - Poke Meza 卡匣情報站</title>
-<meta property="og:title" content="想練習手感與反應速度? 我們提供模擬環境練習，幫助你在對戰中獲勝! 練習場|Poke Meza 卡匣情報站">
+<meta property="og:title" content=" 練習場 Z招式、聽力測驗、大師球、極巨化、草叢模擬、組合招式、+35|Poke Meza 卡匣情報站">
+<meta name="copyright" content="Poke Meza卡匣情報站" />
 <meta name="description" content="練習場-Poke Meza 卡匣情報站，提供 Pokémon MEZASTAR 遊戲練習！幫助你在對戰中獲勝!">
  <meta property="og:image" content="https://m.botdc.cloudns.be/meza.png">
- <meta property="og:description" content="練習場 - Poke Meza 卡匣情報站"><meta property="og:site_name" content="Poke Meza卡匣情報站">
+ <meta property="og:description" content="想練習手感與反應速度? 我們提供模擬環境練習，幫助你在對戰中得高分!"><meta property="og:site_name" content="Poke Meza卡匣情報站">
  <link rel="icon" href="/meza.ico" type="image/x-icon" /><meta name="viewport" content="width=device-width">
 <meta property="og:type" content="website" /><meta property='twitter:creator' content='Poke Meza'><meta name="theme-color" content="#ffdd00"/>
+<meta name="theme-color" content="#8a612e" media="(prefers-color-scheme: dark)" />
+<meta name="application-title" content="寶可夢機台卡匣練習場" />
+<link data-default-icon="xi.jpg" rel="shortcut icon"
+        type="image/x-icon" href="https://m.botdc.cloudns.be/meza.png" />
     <link rel="manifest" href="/manifest.json">
      <meta property="og:url" content="https://m.botdc.cloudns.be/game">
     <link rel="canonical" href="https://m.botdc.cloudns.be/game" />
@@ -66,7 +72,7 @@ header{
           padding:2vh;
           border-radius: 2vh;
           width:70vw;
-          max-width:100vh;
+          
           position: relative;
           left:10vw;
           background:linear-gradient(170deg,#80c1ff,#aacaff);
@@ -87,8 +93,7 @@ header{
     }
     .game p{
     position:relative;
-        margin: 1vh;
-        left: 5vw;
+    padding: 1vh;
         font-size: 2vh;
         text-shadow:0 0 1vh #ddd;
           text-align: left;
@@ -98,6 +103,7 @@ header{
           background: #ddd2;
           backdrop-filter:blur(1vh);
  -webkit-backdrop-filter:blur(1vh);
+ margin: 1vh 01vh 0 10vh;
       }
       .game>img {
        height: 30vh;
@@ -125,6 +131,25 @@ header{
      background-color:#ca09;
      border-radius:5vh;
         }
+        footer {
+            margin: 2vh 0;
+            border-radius: 2vh 2vh 0 0;
+            width: 100%;
+    display: flex
+;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 1vh;background: #e3e3e3;
+}
+footer a {
+    padding: 2vh 1vh;
+    background: #f7f7f7;
+    border-radius: 1vh 2vh;
+    box-shadow: 0 0 1vh #2225, 1vh 1vh 1vh #f5eca2a1;
+    margin: 2vh;
+    width:30vh;
+}
       #gspace{
           position: fixed;
           z-index: 10;
@@ -498,8 +523,18 @@ details {
     justify-content: flex-start;
     align-items: center;
     transition:all 0.2s ease;
+    user-select: none;
+    interpolate-size: allow-keywords;
 }
-
+details::details-content {
+            block-size: 0; /* 收合時高度 0 */
+            overflow: hidden;
+            transition: block-size 0.5s ease-in-out;
+            transition-behavior: allow-discrete; /* 允許離散過渡 */
+        }
+details[open]::details-content {
+            block-size: auto; /* 展開時自動高度 */
+        }
 details>div.game {
     padding: 1vh;
     width: auto !important;
@@ -784,18 +819,67 @@ transform:translateX(-50%);
     0% { filter: brightness(1); }
     100% { filter: brightness(2) drop-shadow(0 0 8vw #ffff00); }
 }
+
+
+
+
+
+
+
+
+  /* 
+  
+  
+  
+  
+  
+  -----------------------------------
+  
+  
+  
+  
+  */
+
+
+  @keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-1vw) rotate(-1deg); }
+  75% { transform: translateX(1vw) rotate(1deg); }
+}
+.grass-bush {
+  box-shadow: 0 1vh 2vh rgba(0,100,0,0.5), inset 0 0 2vh rgba(0,50,0,0.8);
+  animation: shake 1.5s infinite ease-in-out;
+}
+.grass-aim {
+  border: 0.8vh solid #ffdd00 !important;
+  box-shadow: 0 0 3vh #ffdd00aa, inset 0 0 2vh #ffaa00 !important;
+  background: radial-gradient(circle, rgba(255,255,0,0.3), transparent) !important;
+}
+.capture-btn {
+  background: linear-gradient(145deg, #ff4444, #cc0000) !important;
+  box-shadow: 0 1vh 3vh rgba(200,0,0,0.6) !important;
+  font-size: 6vh !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 1vh #fff !important;
+}
+.capture-btn:active {
+  transform: scale(0.95) !important;
+}
+
+
  </style>
 <body>
 <header>
             <a href="/"><img src="/meza.ico" alt="首頁">卡匣列表</a><a href="/desk"><img src="/svg/she.svg" alt="mezastar">卡序</a>
         <a href="/game"><img src="/svg/game.svg" alt="+50">練習場</a>
         <a href="/qr"><img src="/svg/QR.svg" alt="支援寶可夢卷 寶可夢卡匣 機台 支援卷">支援券</a>
-        <a href="/map" ><img src="/svg/map.svg" alt="map">店舖及時通</a>
+        <a href="/map" ><img src="/svg/map.svg" alt="map">店舖及時通</a><a href="https://discord.gg/djNnDjUTrC" target="_blank">聯絡我們</a>
         <a href="https://m.botdc.cloudns.be/ptcg"><img src="/svg/ch.svg" alt="PTCG">PTCG交易圖生成器</a>
+        
         </header>
         <main>
-            <h1>練習場</h1>
-<h2>歡迎來到Poke Meza卡匣情報站附設mezastar模擬器，透過以下小遊戲，提升實力</h2>
+            <h1>Poke Meza練習場</h1>
+<h2>線上玩模擬器</h2><p>歡迎來到Poke Meza卡匣情報站附設mezastar模擬器，透過以下小遊戲，提升實力</p>
 
 <details>
   <summary><h2>Z招式練習</h2><p>幫助你在Pokémon Mezastar中完美使出Z招式！</p></summary>
@@ -805,7 +889,7 @@ transform:translateX(-50%);
  <div class="game" id="z-ghost"   style="background: linear-gradient(135deg,#51386f,#3b1995);"><p>幽靈 Z</p>無盡黑夜之誘惑 左左右左</div>
 <div class="game" id="z-fight"   style="background: linear-gradient(135deg,#f80,#c40);"><p>格鬥 Z</p>全力無雙激烈拳 左右左右</div>
 <div class="game" id="z-water"   style="background: linear-gradient(135deg,#48f,#16f);"><p>水 Z</p>超級水流大旋渦</div>
-<div class="game" id="z-ground"  style="background: linear-gradient(135deg,#eb5,#a92);"><p>地面 Z</p>地隆嘯天大終結</div>
+<div class="game" id="z-ground"  style="background: linear-gradient(135deg,#eb5,#a92);"><p>地面 Z</p>地隆嘯天大終結 左左左右</div>
 <div class="game" id="z-grass"   style="background: linear-gradient(135deg,#7d5,#4b3);"><p>草 Z</p>落葉繽紛花怒放</div>
 <div class="game" id="z-flying"  style="background: linear-gradient(135deg,#9cf,#69f);"><p>飛行 Z</p>急速俯衝轟烈撞</div>
 
@@ -824,12 +908,17 @@ transform:translateX(-50%);
 
 <details>
   <summary><h2>聽力測驗-寶可夢的叫聲</h2><p>幫助您在Pokémon Mezastar中辨認草叢中的寶可夢</p></summary>
-  <div class="game" id="cryquiz"><p>第二彈</p></div>
+  <div class="game cry" data-d="2"><p>第二彈</p></div>
+  <div class="game cry" data-d="4"><p>第四彈</p></div>
 </details>
 
  <div class="game" id="combo"><h3>組合招式</h3><p>玩法說明：使用帶有黃藍卡匣標記、支援組合招式的的卡匣，在使用招式時就能發動一次組合招式</p><p>使用時，按下按鈕，讓畫面中快速移動的寶可夢標記同時停在上方的黃色區塊中。哇！成功得發動組合招式了！</p></div>
 
 <div id="cspace"></div>
+<details>
+  <summary><h2>草叢模擬</h2><p>手癢時隨時體驗，補充孰悉度</p></summary>
+  <div class="game" id="grass" style="background: linear-gradient(135deg,#0f0,#2a5);"><p>第四彈</p></div>
+</details>
 <div class="game" id="gmax"><img src="/png/Gmax.png" alt="Gmax mezaster模擬器 Pokémon Mezastar 極巨化 online"/><h3>超極巨化</h3><p>玩法說明：使用帶有紅色極巨化標記的卡匣，在使用招式時就能發動極巨化，大幅提升寶可夢的體型</p><p>使用時，快速點擊按鈕累積極巨能量。讓畫面中快速轉動的輪盤停下後，紅色標記停在上方的位置。哇！成功發動極巨化！</p></div>
 <div class="game" id="p50"><img src="/png/P50.png" alt="+35 mezastar模擬器 寶可夢卡匣線上玩 +50練習"/><h3>+35按按練習</h3><p>玩法說明：寶可夢機台歷久不變的轉盤</p><p>在使用招式時將有機會出現，按下按鈕讓+35（也可想像成任何數字)停在畫面中央，讓招式百分百發揮！</p></div>
 <div id="gspace"></div>
@@ -863,6 +952,11 @@ transform:translateX(-50%);
   <button onclick="shareThisPage()" style="background:#9edeb5;">分享到其他應用程式</button>
 
 </div>
+<footer><div style="width: 100%;text-align: center;"><h2>Poke Meza 卡匣情報站</h2></div><a href="/"><img src="/meza.ico" alt="首頁">卡匣列表</a><a href="/desk"><img src="/svg/she.svg" alt="mezastar">卡序</a>
+        <a href="/game"><img src="/svg/game.svg" alt="+50">練習場</a>
+        <a href="/qr"><img src="/svg/QR.svg" alt="支援寶可夢卷 寶可夢卡匣 機台 支援卷">支援券</a>
+        <a href="/map" ><img src="/svg/map.svg" alt="map">店舖及時通</a>
+        <a href="https://m.botdc.cloudns.be/ptcg"><img src="/svg/ch.svg" alt="PTCG">PTCG交易圖生成器</a><a href="https://discord.gg/djNnDjUTrC">加入Discord群組</a></footer>
 <p>路過，把颱風路徑預測圖放這看看有沒有流量</p>
  <p >pa!沒了</p>
  <p>提供者：eugene526</p>
@@ -1250,7 +1344,13 @@ function initZGame(typeKey){
         // 綁定左右按鈕（每次開啟遊戲都重新綁定，防止殘留）
         gi("zleft").onclick = handleZLeft;
         gi("zright").onclick = handleZRight;
-
+        document.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') {
+        handleZLeft();
+    } else if (event.key === 'ArrowRight') {
+        handleZRight();
+    }
+});
         startZMove();
     };
 }
@@ -1413,8 +1513,8 @@ function handleZPress(isLeftClick){
     let thisScore;
     if(isCorrect){
         // 對數計分：越快分數越高，最大 25 分
-        let timeFactor = 1 / (elapsedTime + 1);
-        thisScore = Math.max(0, Math.min(25, Math.floor(20* timeFactor )))+5;
+        let timeFactor = 1 / (elapsedTime + 1.2);
+        thisScore = Math.max(0, Math.min(25, Math.floor(20* timeFactor )))+4;
     }else{
      thisScore=5;
     }
@@ -1592,7 +1692,7 @@ gi("combo").addEventListener("click", function(){
     let rightPath = gi("right-arc");
     let yellowLeft = gi("yellow-left");
     let yellowRight = gi("yellow-right");
-    let successAudio = new Audio("zl.mp3");
+    let successAudio = new Audio("/sd/qr.mp3");
     let running = false;
     let progress = 0;
     let dir = 1;
@@ -1732,7 +1832,7 @@ gi("combo").addEventListener("click", function(){
 
 
 // 聽力測驗：4題 + 美化介面 + 動畫轉場 + 滑動文字 + 分享
-const mezastarSounds = [
+var mezastarSounds = {"2":[
     {name: "萊西拉姆", file: "/sd/lc.mp3"},
     {name: "固拉多", file: "/sd/gd.mp3"},
     {name: "故勒頓", file: "/sd/gl.mp3"},
@@ -1743,9 +1843,28 @@ const mezastarSounds = [
     {name: "酋雷姆", file: "/sd/qr.mp3"},
     {name: "沙奈朵", file: "/sd/sn.mp3"},
     {name: "杖尾鱗甲龍", file: "/sd/zl.mp3"}
-];
+],
+"4":[{name: "闇黑酋雷姆", file: "https://play.pokemonshowdown.com/audio/cries/kyurem-black.ogg"},
+    {name: "焰白酋雷姆", file: "https://play.pokemonshowdown.com/audio/cries/kyurem-white.ogg"},
+    {name: "列空座", file: "https://play.pokemonshowdown.com/audio/cries/rayquaza.ogg"},
+    {name: "伊裴爾塔爾", file: "https://play.pokemonshowdown.com/audio/cries/yveltal.ogg"},
+    {name: "哲爾尼亞斯", file: "https://play.pokemonshowdown.com/audio/cries/xerneas.ogg"},
+    {name: "謎擬Q", file: "https://play.pokemonshowdown.com/audio/cries/mimikyu.ogg"},
+    {name: "帕路奇亞", file: "https://play.pokemonshowdown.com/audio/cries/palkia.ogg"},
+    {name: "地牙盧卡", file: "https://play.pokemonshowdown.com/audio/cries/dialga.ogg"},
+    {name: "蕾冠王（騎白馬的樣子）", file: "https://play.pokemonshowdown.com/audio/cries/calyrex-ice.ogg"},
+    {name: "蕾冠王（騎黑馬的樣子）", file: "https://play.pokemonshowdown.com/audio/cries/calyrex-shadow.ogg"},
+    {name: "雷吉艾勒奇", file: "https://play.pokemonshowdown.com/audio/cries/regieleki.ogg"},
+    {name: "雷吉鐸拉戈", file: "https://play.pokemonshowdown.com/audio/cries/regidrago.ogg"},
+    {name: "大力鱷", file: "https://play.pokemonshowdown.com/audio/cries/krookodile.ogg"},
+    {name: "腕力", file: "https://play.pokemonshowdown.com/audio/cries/machop.ogg"},
+    {name: "單首龍", file: "https://play.pokemonshowdown.com/audio/cries/dreepy.ogg"},
+    {name: "蒼炎刃鬼", file: "https://play.pokemonshowdown.com/audio/cries/ceruledge.ogg"}]
+};
 
-gi("cryquiz").addEventListener("click", function(){
+for (let ci of gq(".cry")){
+ci.addEventListener("click", function(){
+    mezastarSounds=mezastarSounds[this.dataset.d];
     try{window.history.pushState({ path: '/game?t=q' }, '', '/game?t=q');}catch(e){}
     css(gi("othergame"),{display:"block"});
     let cspace = gi("cspace");
@@ -1889,7 +2008,270 @@ gi("cryquiz").addEventListener("click", function(){
     }, 1500);
     setTimeout(showQuestion, 3000);
 });
+}
 
+
+
+//  -| |-
+   
+//  |---|
+//  |-+-|
+//  |---|
+//    |
+//  ----
+//    |
+
+const grassSVGs = [
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.5124 132.79065" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"><defs><radialGradient cx="207.58874" cy="161.36588" r="34.09337" gradientUnits="userSpaceOnUse" id="color-1"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><radialGradient cx="235.57275" cy="147.59573" r="35.75" gradientUnits="userSpaceOnUse" id="color-2"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><radialGradient cx="253.13236" cy="167.63845" r="28.49267" gradientUnits="userSpaceOnUse" id="color-3"><stop offset="0" stop-color="#c3ff88"/><stop offset="1" stop-color="#6bffa1"/></radialGradient><radialGradient cx="245.21385" cy="169.64037" r="28.49267" gradientUnits="userSpaceOnUse" id="color-4"><stop offset="0" stop-color="#a6ff4b"/><stop offset="1" stop-color="#c2ff54"/></radialGradient><radialGradient cx="264.52923" cy="175.80639" r="31.02535" gradientUnits="userSpaceOnUse" id="color-5"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><radialGradient cx="174.7796" cy="205.58419" r="37.5" gradientUnits="userSpaceOnUse" id="color-6"><stop offset="0" stop-color="#c3ff88"/><stop offset="1" stop-color="#6bffa1"/></radialGradient><radialGradient cx="163.33982" cy="199.63607" r="25.95615" gradientUnits="userSpaceOnUse" id="color-7"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><linearGradient x1="145.86457" y1="173.07171" x2="158.7964" y2="181.23623" gradientUnits="userSpaceOnUse" id="color-8"><stop offset="0" stop-color="#ff8080"/><stop offset="1" stop-color="#de7ed1"/></linearGradient><radialGradient cx="166.76517" cy="212.7483" r="37.5" gradientUnits="userSpaceOnUse" id="color-9"><stop offset="0" stop-color="#a6ff4b"/><stop offset="1" stop-color="#c2ff54"/></radialGradient><radialGradient cx="193.05312" cy="208.15979" r="40.83334" gradientUnits="userSpaceOnUse" id="color-10"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><linearGradient x1="165.4842" y1="200.49922" x2="282.05852" y2="200.49922" gradientUnits="userSpaceOnUse" id="color-11"><stop offset="0" stop-color="#abb2a4"/><stop offset="1" stop-color="#5e625a"/></linearGradient><linearGradient x1="193.47396" y1="200.9948" x2="265.38006" y2="200.9948" gradientUnits="userSpaceOnUse" id="color-12"><stop offset="0" stop-color="#92978e"/><stop offset="1" stop-color="#5b5f58"/></linearGradient><linearGradient x1="244.32503" y1="104.68445" x2="231.96676" y2="121.7423" gradientUnits="userSpaceOnUse" id="color-13"><stop offset="0" stop-color="#ff8080"/><stop offset="1" stop-color="#de7ed1"/></linearGradient><linearGradient x1="207.47395" y1="179.6361" x2="265.00574" y2="179.6361" gradientUnits="userSpaceOnUse" id="color-14"><stop offset="0" stop-color="#757a70"/><stop offset="1" stop-color="#5e625a"/></linearGradient><radialGradient cx="201.03735" cy="211.65983" r="22.66139" gradientUnits="userSpaceOnUse" id="color-15"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><linearGradient x1="216.69267" y1="188.73441" x2="205.28092" y2="195.6665" gradientUnits="userSpaceOnUse" id="color-16"><stop offset="0" stop-color="#ff8080"/><stop offset="1" stop-color="#de7ed1"/></linearGradient><radialGradient cx="187.92294" cy="228.60037" r="11.16667" gradientUnits="userSpaceOnUse" id="color-17"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><radialGradient cx="264.30938" cy="232.02804" r="21.31741" gradientUnits="userSpaceOnUse" id="color-18"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><linearGradient x1="190.92471" y1="123.06898" x2="205.83192" y2="136.53388" gradientUnits="userSpaceOnUse" id="color-19"><stop offset="0" stop-color="#ff8080"/><stop offset="1" stop-color="#de7ed1"/></linearGradient></defs><g transform="translate(-142.49189,-104.22554)"><g fill-rule="nonzero" stroke="#000000" stroke-width="1" stroke-linejoin="miter" stroke-miterlimit="10"><path d="M212.57072,195.16147c0,0 -0.98375,-25.29599 -3.42771,-36.80663c-2.26267,-10.65678 -10.73413,-29.89326 -10.73413,-29.89326l4.19789,-0.89131c0,0 8.71362,20.37699 11.03123,31.29256c2.40012,11.30414 3.13061,35.40733 3.13061,35.40733z" fill="url(#color-1)" stroke-linecap="butt"/><path d="M233.32275,183.34573c0,0 -4.5,-24.88235 -4.5,-37c0,-11.70111 4.5,-34.5 4.5,-34.5h4.5c0,0 -4.5,21.5763 -4.5,33c0,12.33901 4.5,38.5 4.5,38.5z" fill="url(#color-2)" stroke-linecap="butt"/><path d="M250.85061,174.89021l-1.69436,-24.13267l10.39048,13.67155l3.67613,-27.36975l4.11904,27.69959l8.83033,-31.71863l-2.09155,30.17699l16.13481,-26.7932l-10.33449,30.51118l19.14746,-8.34021l-16.08645,13.39879l19.20996,0.87867l-17.8873,9.47973z" fill="url(#color-3)" stroke-linecap="round"/><path d="M242.93209,176.89213l-1.69435,-24.13268l10.39048,13.67155l3.67613,-27.36975l4.11904,27.69959l8.83033,-31.71863l-2.09155,30.17699l16.1348,-26.7932l-10.33449,30.51119l19.14746,-8.34021l-16.08645,13.39878l19.20996,0.87867l-17.8873,9.47973z" fill="url(#color-4)" stroke-linecap="round"/><path d="M245.75182,177.15133l0.59719,-24.80922l8.0158,17.47975l3.67613,-27.36975l6.15681,20.37991l11.85927,-41.65428l-3.03272,40.16806l12.00927,-19.52895l-10.33449,30.51119l13.77698,-5.10314l-10.71597,10.16171l15.30613,-0.20814l-18.1965,4.92436z" fill="url(#color-5)" stroke-linecap="round"/><path d="M176.54104,215.43349l-16.69397,-27.11252l20.45629,9.60821l-12.4046,-34.16322l21.69724,29.79385l-9.04553,-42.37872l15.96474,36.47091l2.47753,-41.08901l6.55485,41.88783l17.24516,-21.40468l-10.59002,25.43764l22.94039,-10.69083l-15.08048,21.96517z" fill="url(#color-6)" stroke-linecap="round"/><path d="M171.46693,224.34113c0,0 -4.02375,-18.84832 -7.35227,-27.16572c-3.08161,-7.70041 -11.93528,-21.03051 -11.93528,-21.03051l3.03333,-1.2139c0,0 9.18347,14.15422 12.33991,22.04162c3.26881,8.16818 6.94764,26.15461 6.94764,26.15461z" fill="url(#color-7)" stroke-linecap="butt"/><path d="M147.03043,181.96657c-3.57103,-2.25457 -5.83837,-6.86242 -2.16385,-8.46076c3.67452,-1.59833 13.30761,-0.82122 16.87864,1.43335c3.57103,2.25457 -0.27228,5.13283 -3.94681,6.73117c-3.67452,1.59834 -7.19695,2.55081 -10.76798,0.29624z" fill="url(#color-8)" stroke-linecap="butt"/><path d="M168.52661,222.5976l-16.69397,-27.11252l20.45629,9.60821l-12.4046,-34.16322l21.69724,29.79385l-9.04553,-42.37872l15.96474,36.47091l2.47753,-41.08901l6.55485,41.88783l17.24516,-21.40468l-10.59002,25.43764l22.94039,-10.69083l-15.08048,21.96517z" fill="url(#color-9)" stroke-linecap="round"/><path d="M171.97333,221.18023l-14.43395,-29.29913l20.00922,15.49797l-12.4046,-34.16322l19.60981,20.01415l-11.57236,-55.8139l20.96034,48.69745l2.0962,-30.10067l6.55485,41.88783l12.95578,-14.35398l-6.30065,18.38694l17.72456,-9.57754l-18.2193,16.84081z" fill="url(#color-10)" stroke-linecap="round"/><path d="M187.83334,233.50001c0,0 3.28428,-7.08237 16.16725,-12.75561c11.06007,-4.87048 50.26043,-20.46043 56.49941,-19.24439c8.38257,1.63384 1.33333,34.66666 1.33333,34.66666z" fill="none" stroke-linecap="round"/><path d="M278,164.5c2.14861,-0.15749 5.67746,8.63096 5.79456,20.34101c0.07355,7.35473 -3.3181,17.67853 -2.62789,21.99233c1.78913,11.18212 0.33333,29.66666 0.33333,29.66666l-116,-4c0,0 -0.76398,-13.72199 8.33334,-16.16666c14.57486,-3.91662 80.66666,-10.83334 80.66666,-10.83334c0,0 -3.81997,-19.34963 3.46403,-31.57006c3.35934,-5.63599 15.77255,-8.181 20.03597,-9.42994z" fill="url(#color-11)" stroke-linecap="round"/><path d="M254,204.5c0,0 -16.25673,9.22219 -25.33334,9.33334c-9.0766,0.11114 -61.84718,11.4299 -57.33333,4.66666c6.61636,-9.91349 82.66666,-14 82.66666,-14z" fill="#dae0d2" stroke-linecap="round"/><path d="M191.43334,211.36667c-1.96696,-0.75774 2.7,-22.76667 2.7,-22.76667l78.13333,-1.8c0,0 9.40181,17.14067 4.7,19.56667c-6.18385,3.19069 -72.79787,9.90613 -85.53333,5z" fill="url(#color-12)" stroke-linecap="butt"/><path d="M263.33333,208.66667c5.17865,-1.27626 3.96174,9.66811 -2,14.66667c-6.02376,5.05057 -71.42146,12.20372 -72.33333,9.83333c-3.81274,-9.91112 69.15469,-23.22375 74.33333,-24.5z" fill="#dae0d2" stroke-linecap="round"/><path d="M201.2,193.63334c0,0 -10.59995,-4.25662 -7,-6.83333c6.47265,-4.63289 43.10888,-12.68038 53.33334,-12.33334c5.93466,0.20144 17.3485,7.43084 17.33333,11c-0.05291,12.45166 -36.33333,10.5 -36.33333,10.5z" fill="#dae0d2" stroke-linecap="round"/><path d="M247.38599,116.65518c-3.41265,4.7104 -8.40428,5.29498 -13.92092,5.13151c-5.51664,-0.16347 -11.9041,-1.87724 -8.49146,-6.58763c3.41265,-4.7104 15.33308,-10.63368 20.84972,-10.47021c5.51664,0.16347 4.9753,7.21594 1.56266,11.92633z" fill="url(#color-13)" stroke-linecap="butt"/><path d="M208.43334,188.86667c-1.96696,-0.75774 -0.3,-22.26667 -0.3,-22.26667l61.63333,10.2c0,0 5.90181,8.14067 1.2,10.56667c-6.18385,3.19069 -49.79787,6.40613 -62.53333,1.5z" fill="url(#color-14)" stroke-linecap="butt"/><path d="M221.7,170.13334c0,0 -19.09995,-1.75662 -15.5,-4.33333c6.47265,-4.63289 41.60888,-7.68038 51.83334,-7.33334c5.93466,0.20144 20.8485,1.43084 20.83333,5c-0.05291,12.45166 -12.33333,13 -12.33333,13z" fill="#dae0d2" stroke-linecap="round"/><path d="M190.94079,231.99778c0,0 3.4826,-15.64549 6.45923,-22.72649c2.87431,-6.83759 11.1043,-19.05481 11.1043,-19.05481l2.62959,1.1054c0,0 -7.92968,11.5028 -10.73584,18.17828c-3.031,7.21035 -6.8277,23.60302 -6.8277,23.60302z" fill="url(#color-15)" stroke-linecap="butt"/><path d="M215.54082,196.48146c-3.15127,1.91424 -6.21176,1.02968 -9.39527,-0.42097c-3.18352,-1.45065 -6.49507,-4.02114 -3.3438,-5.93538c3.15127,-1.91424 11.57204,-2.44735 14.75556,-0.9967c3.18352,1.45065 1.13479,5.43881 -2.01648,7.35305z" fill="url(#color-16)" stroke-linecap="butt"/><path d="M174.1655,232.76945c0,0 0.18179,-6.67792 2.76674,-9.59374c2.58496,-2.91582 6.21746,-5.83016 9.98928,-4.795c3.77182,1.03516 3.20574,8.41631 3.20574,8.41631c0,0 5.53562,-4.11271 7.79039,-1.93758c2.25477,2.17513 0.57869,10.01102 0.57869,10.01102z" fill="url(#color-17)" stroke-linecap="round"/><path d="M256.68811,235.3616l-11.93553,-5.03092l10.40244,1.5532l-6.35921,-7.9071l8.90987,4.7451l-4.2229,-21.72747l6.37597,14.40432l1.63925,-27.62929l4.23352,29.45518l6.07142,-13.3085l-0.02095,18.97451l7.06972,-11.16242l-1.88121,16.94717z" fill="url(#color-18)" stroke-linecap="round"/><path d="M279,208.5c4.95312,-4.24355 2,27 2,27h-18c0,0 0.8141,-13.98962 16,-27z" fill="#6a6e67" stroke-linecap="round"/><path d="M190.44025,134.84233c-4.11652,-3.71823 -6.01838,-10.19002 -0.90447,-11.43517c5.11391,-1.24516 17.40728,1.91941 21.5238,5.63764c4.11652,3.71823 -1.50268,6.5821 -6.61659,7.82726c-5.11391,1.24516 -9.88622,1.68851 -14.00274,-2.02972z" fill="url(#color-19)" stroke-linecap="butt"/></g></g></svg>`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 93.4776 88.95878" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"><defs><radialGradient cx="181.40609" cy="188.59573" r="37.5" gradientUnits="userSpaceOnUse" id="color-1"><stop offset="0" stop-color="#c3ff88"/><stop offset="1" stop-color="#6bffa1"/></radialGradient><radialGradient cx="172.07276" cy="193.92906" r="37.5" gradientUnits="userSpaceOnUse" id="color-2"><stop offset="0" stop-color="#a6ff4b"/><stop offset="1" stop-color="#c2ff54"/></radialGradient><radialGradient cx="222.62795" cy="170.33496" r="23.83333" gradientUnits="userSpaceOnUse" id="color-3"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><radialGradient cx="198.73942" cy="194.92906" r="40.83334" gradientUnits="userSpaceOnUse" id="color-4"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><linearGradient x1="253.3269" y1="142.65818" x2="229.15068" y2="152.8722" gradientUnits="userSpaceOnUse" id="color-5"><stop offset="0" stop-color="#a6ff00"/><stop offset="1" stop-color="#39de57"/></linearGradient></defs><g transform="translate(-160.69906,-116.65951)"><g fill-rule="nonzero" stroke="#000000" stroke-width="1" stroke-linejoin="miter" stroke-miterlimit="10"><path d="M190.07276,205.09574l-17.66666,-32l16,9.16666l-5,-36l15,33.66666v-43.33333l8,39l11,-39.66667l-2.33334,42.33334l21.33334,-17.33334l-15.66666,22.66667l24.16666,0.33333l-30.33334,19.33334z" fill="url(#color-1)" stroke-linecap="round"/><path d="M187.73942,203.92907l-26.66666,-30l18,13.66666l-5,-36l15,33.66666v-43.33333l8,39l11,-39.66667l-2.33334,42.33334l21.33334,-17.33334l-15.66666,22.66667l24.66666,-5.66667c0,0 -7.72304,7.32358 -11.15321,10.57632c-2.93762,2.78567 -13.18013,9.75701 -13.18013,9.75701z" fill="url(#color-2)" stroke-linecap="round"/><path d="M210.60396,188.52111c0,0 4.84999,-14.65071 8.48318,-21.06556c3.5083,-6.19435 12.95441,-16.78519 12.95441,-16.78519l2.6104,1.47845c0,0 -9.07954,9.94363 -12.50467,15.99112c-3.69956,6.53204 -8.93292,21.85963 -8.93292,21.85963z" fill="url(#color-3)" stroke-linecap="butt"/><path d="M190.40608,204.76241l-22.99999,-33.16667l16.33333,19.33334l-5,-36l15,23.66666l0.33334,-57l10.33334,52l8.33333,-29l-2.33334,42.33334l15.66667,-11.33334l-10,16.66667l19.33334,-5.66667l-26.83334,17.16666z" fill="url(#color-4)" stroke-linecap="round"/><path d="M238.93281,153.69141c-6.67608,2.82053 -8.50599,1.66574 -9.50956,-0.28845c-1.00358,-1.95418 -0.24699,-5.49354 6.42909,-8.31406c6.67609,-2.82053 16.74355,-3.85414 17.74713,-1.89996c1.00358,1.95418 -7.99059,7.68195 -14.66666,10.50247z" fill="url(#color-5)" stroke-linecap="butt"/></g></g></svg>`,
+`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="93.4776" height="88.95878" viewBox="0,0,93.4776,88.95878"><defs><radialGradient cx="181.40609" cy="188.59573" r="37.5" gradientUnits="userSpaceOnUse" id="color-1"><stop offset="0" stop-color="#c3ff88"/><stop offset="1" stop-color="#6bffa1"/></radialGradient><radialGradient cx="172.07276" cy="193.92906" r="37.5" gradientUnits="userSpaceOnUse" id="color-2"><stop offset="0" stop-color="#a6ff4b"/><stop offset="1" stop-color="#c2ff54"/></radialGradient><radialGradient cx="222.62795" cy="170.33496" r="23.83333" gradientUnits="userSpaceOnUse" id="color-3"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><radialGradient cx="198.73942" cy="194.92906" r="40.83334" gradientUnits="userSpaceOnUse" id="color-4"><stop offset="0" stop-color="#5ea678"/><stop offset="1" stop-color="#00d427"/></radialGradient><linearGradient x1="253.3269" y1="142.65818" x2="229.15068" y2="152.8722" gradientUnits="userSpaceOnUse" id="color-5"><stop offset="0" stop-color="#a6ff00"/><stop offset="1" stop-color="#39de57"/></linearGradient></defs><g transform="translate(-160.69906,-116.65951)"><g data-paper-data="{&quot;isPaintingLayer&quot;:true}" fill-rule="nonzero" stroke="#000000" stroke-width="1" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" style="mix-blend-mode: normal"><path d="M190.07276,205.09574l-17.66666,-32l16,9.16666l-5,-36l15,33.66666v-43.33333l8,39l11,-39.66667l-2.33334,42.33334l21.33334,-17.33334l-15.66666,22.66667l24.16666,0.33333l-30.33334,19.33334z" fill="url(#color-1)" stroke-linecap="round"/><path d="M187.73942,203.92907l-26.66666,-30l18,13.66666l-5,-36l15,33.66666v-43.33333l8,39l11,-39.66667l-2.33334,42.33334l21.33334,-17.33334l-15.66666,22.66667l24.66666,-5.66667c0,0 -7.72304,7.32358 -11.15321,10.57632c-2.93762,2.78567 -13.18013,9.75701 -13.18013,9.75701z" fill="url(#color-2)" stroke-linecap="round"/><path d="M210.60396,188.52111c0,0 4.84999,-14.65071 8.48318,-21.06556c3.5083,-6.19435 12.95441,-16.78519 12.95441,-16.78519l2.6104,1.47845c0,0 -9.07954,9.94363 -12.50467,15.99112c-3.69956,6.53204 -8.93292,21.85963 -8.93292,21.85963z" fill="url(#color-3)" stroke-linecap="butt"/><path d="M190.40608,204.76241l-22.99999,-33.16667l16.33333,19.33334l-5,-36l15,23.66666l0.33334,-57l10.33334,52l8.33333,-29l-2.33334,42.33334l15.66667,-11.33334l-10,16.66667l19.33334,-5.66667l-26.83334,17.16666z" fill="url(#color-4)" stroke-linecap="round"/><path d="M238.93281,153.69141c-6.67608,2.82053 -8.50599,1.66574 -9.50956,-0.28845c-1.00358,-1.95418 -0.24699,-5.49354 6.42909,-8.31406c6.67609,-2.82053 16.74355,-3.85414 17.74713,-1.89996c1.00358,1.95418 -7.99059,7.68195 -14.66666,10.50247z" fill="url(#color-5)" stroke-linecap="butt"/></g></g></svg>`,
+];
+
+const pokeCards = [];const badCards = [];
+
+
+let captureHistory = []; // 儲存每次捕捉到的卡 {name, imgSrc, isPrize}
+
+try{
+fetch("/dans/d4.json").then(d=>d.json()).then(d=>{
+    for (let i in d.disk){
+        let n= d.disk[i];
+        n["i"]=i
+        if (i<25){
+            pokeCards.push(n);
+        }else{
+            badCards.push(n);
+        }
+    }
+
+});
+}catch(e){}
+let activeBushes = new Set([0,1,2,3,4]); // 初始5株全活躍
+let correctIndex = Math.floor(Math.random() * 5); // 大獎位置固定
+let nextRoundTimeout = null;
+let gameState = 'ready';
+var bushPositions=[{left:'8vw', top:'38vh'}, {left:'24vw', top:'28vh'}, {left:'42vw', top:'44vh'},
+  {left:'65vw', top:'32vh'}, {left:'82vw', top:'41vh'}];
+const basePositions = [
+    {left:8, top:38}, {left:24, top:28}, {left:42, top:44},
+    {left:65, top:32}, {left:82, top:41}
+  ];
+
+const outcards=[];
+/* 草叢模擬遊戲 - 最終完整版（不外露大獎、草叢點開顯示結果動畫3秒、上方紀錄、用過消失、固定5次、結束點擊產生新草叢、多次遊玩正常、捕捉按鈕永遠可按） */
+
+
+gi("grass") && gi("grass").addEventListener("click", function(){
+  try{window.history.pushState({ path: '/game?t=grass' }, '', '/game?t=grass');}catch(e){}
+  css(gi("othergame"),{display:"block"});
+  let cspace = gi("cspace");
+  cspace.style.display = "block";
+
+  // 全域常數
+  const bushPositions = [
+    {left:'25vw', top:'50vh',s:0.7}, {left:'50vw', top:'50vh',s:0.7}, {left:'75vw', top:'50vh',s:0.7},
+    {left:'40vw', top:'30vh',s:1}, {left:'60vw', top:'30vh',s:1}
+  ];
+
+ 
+
+  function initGame() {
+    cspace.innerHTML = `
+      <div id="grass-note" style="position:fixed;bottom:20vh;left:50vw;transform:translateX(-50%);font-size:3vh;width: 80vw;text-align:center;padding:1vh;background: #e6e6e6;font-weight:bold;color:#353535;z-index:25;pointer-events:none;transition: all 0.5s ease;border-radius:0.5vh;border:0.5vh solid #161616;box-shadow:1vh 1vh 0 #161616;">點擊畫面開始！</div>
+      <div id="grass-chances" style="position:fixed;top:10vh;left:50vw;transform:translateX(-50%);font-size:2vh;color:#525252;font-weight:bold;z-index:25;pointer-events:none;">剩餘：5 次</div>
+      <div id="history" style="position:fixed;top:22vh;left:50vw;transform:translateX(-50%);width:95vw;height:10vh;overflow-x:auto;overflow-y:hidden;white-space:nowrap;z-index:24;pointer-events:none;opacity:0;transition:opacity 0.5s;"></div>
+      <div id="grass-result" style="position:fixed;top:35vh;left:50vw;transform:translateX(-50%);width:100vw;font-size:3vh;font-weight:bold;text-align:center;color:#ffdd00;text-shadow:0 2vh 4vh #000,0 0 1vh #fff;z-index:25;opacity:0;pointer-events:none;"></div>
+      <div id="grass-bushes" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:10;pointer-events:none;background: radial-gradient(circle at center,#fffc95 20%,#d9ff6a 70%,#cfff80 100%);"></div>
+      <div id="grass-aim" style="position:fixed;width:10vh;height:10vh;background:radial-gradient(circle at center,transparent 40%,#ff555f9b 70%,#ff005eb9 100%);border:0.8vh solid #ff4040;box-shadow:0 0 4vh #ffdd00aa;z-index:20;opacity:0;transition:all 0.2s ease;pointer-events:none;border-radius:50%;"></div>
+      <button id="capture-btn" style="position:fixed;bottom:20vh;left:50vw;transform:translateX(-50%);padding: 2vh;border:none;border-radius:3vh;background:linear-gradient(145deg,#669acc 10%,#aab3cc 100%);box-shadow:0 1vh 3vh #6a78ffa2;display:none;z-index:25;font-family:'微軟正黑體',sans-serif;font-size:3vh;font-weight:bold;color:#fff;text-shadow:0 0 1vh #2222;cursor:pointer;pointer-events:auto;">捕捉！</button>
+    `;
+
+    const bushesDiv = gi("grass-bushes");
+    const bushes = [];
+    let activeBushes = new Set([0,1,2,3,4]);
+    let correctIndex = Math.floor(Math.random() * 5);
+    const pokemonList = mezastarSounds["2"].concat(mezastarSounds["4"].slice(0,5));
+    let correctPoke = pokemonList[Math.floor(Math.random() * pokemonList.length)];
+    let captureCount = 0;
+    let captureHistory = [];
+    let gameState = 'ready';
+    let currentAim = 0;
+    let aimInterval = null;
+    let nextRoundTimeout = null;
+
+    function createBushes() {
+      bushesDiv.innerHTML = '';
+      bushes.length = 0;
+      activeBushes = new Set([0,1,2,3,4]);
+      correctIndex = Math.floor(Math.random() * 5);
+
+      for(let i = 0; i < 5; i++) {
+        let bushWrapper = document.createElement('div');
+        bushWrapper.style.cssText = `position:fixed;width:25vh;left:${bushPositions[i].left};bottom:${bushPositions[i].top};pointer-events:none;transition:all 1s ease;opacity:1;`;        
+
+        let randomSVG = grassSVGs[Math.floor(Math.random() * grassSVGs.length)];
+        bushWrapper.innerHTML = randomSVG;
+
+        let scale =bushPositions[i].s ;
+        
+        bushWrapper.style.transform = `scale(${scale}) translate(-50%,0)`;
+
+        bushesDiv.appendChild(bushWrapper);
+        bushes.push({wrapper: bushWrapper});
+        outcards[i] = badCards[parseInt(Math.random()*badCards.length)];
+      }
+      outcards[correctIndex]=pokeCards[parseInt(Math.random()*pokeCards.length)];
+    }
+
+    //createBushes();
+
+    function playCry() {
+      let sorce=outcards[correctIndex].s;
+      let audio = new Audio(sorce);
+      audio.play().catch(() => {});
+    }
+
+    function updateAim() {
+      if(activeBushes.size === 0) return;
+      let candidates = Array.from(activeBushes);
+      currentAim = candidates[Math.floor(Math.random() * candidates.length)];
+      const pos = bushPositions[currentAim];
+      css(gi("grass-aim"), {left: pos.left, bottom: pos.top, opacity:1,transform:`translateX(-50%) scale(${pos.s})`});
+
+      bushes.forEach((bush, idx) => {
+        if(activeBushes.has(idx)) {
+          bush.wrapper.style.filter = idx === currentAim ? 'brightness(1.5) hue-rotate(20deg)' : 'brightness(1)';
+        }
+      });
+    }
+
+    function showCapturedCard(aim) {
+      let resultDiv = gi("grass-result");
+      let nowcard=outcards[aim];
+      let pricec;
+      if (nowcard.i<10){
+        pricec=0;
+      }else if (nowcard.i<25){
+        pricec=1;
+      }else{
+        pricec=2;
+      }
+      let msgs=["超級明星","明星","恭喜獲得"];
+      let colors=["linear-gradient(150deg,#d3a9fc,#a9fcca,#f4fca9)","#dfa9fc","#e6fca9"]
+      let msg = msgs[pricec];
+      let color =colors[pricec];
+      resultDiv.innerHTML = `<div style="position:fixed;transform:translateX(-50%);left:50vw;display:flex;height:20vh;width:20vh;justify-content:center;align-items:center;background: #9055ff;border-radius: 50vh;border: 0.5vh solid #000;"><img src="${nowcard.c}" alt="${msg}" style="height:15vh"/></div><div style="font-size:6vh;color:${color};text-shadow:0 0 2vh #000;transform:translateY(30vh);">${msg}</div>`;
+      css(resultDiv, {opacity:1,transition:"all 0.2s ease"});
+      
+      let historyDiv = gi("history");
+      let item = document.createElement('div');
+      item.innerHtml =  `<img src="${nowcard.c}" alt="${msg}" style="height:8vh"/><div style="font-size:6vh;color:${color};text-shadow:0 0 2vh #000;">${msg}</div>`;
+      item.style.cssText = `display:inline-block;margin:0 2vw;font-size:2vh;color:${color};`;
+      historyDiv.appendChild(item);
+      historyDiv.scrollLeft = historyDiv.scrollWidth;
+      css(historyDiv, {opacity:1});
+
+      css(resultDiv,{opacity:0 ,transform:"translateX(-50%) scale(0.5)  rotateZ(-5deg)",display:"block"});
+      setTimeout(()=>{css(resultDiv,{opacity:1,transform:"translateX(-50%) scale(1)  rotateZ(0deg)"});},100);
+      setTimeout(()=>{css(resultDiv,{opacity:0,display:"none",transform:"translateX(-50%) scale(0.5)  rotateZ(-5deg)"},3000);
+        setTimeout(() => resultDiv.innerHTML = '', 500);
+      }, 3000);
+    }
+
+    function startAiming() {
+      if(aimInterval) clearInterval(aimInterval);
+      gi("grass-note").innerText = '按下捕捉按鈕，把球投出去吧！';
+      css(gi("grass-note"),{opacity:0 ,transform:"translateX(-50%) translateY(-5vh)  rotateZ(-10deg)",display:"block"});
+      setTimeout(()=>{css(gi("grass-note"),{opacity:1,transform:"translateX(-50%) translateY(0vh)  rotateZ(0deg)"});},100);
+      setTimeout(()=>{css(gi("grass-note"),{opacity:0,display:"none",transform:"translateX(-50%) translateY(-5vh)  rotateZ(-10deg)"});
+      gameState = 'aiming';
+      css(gi("capture-btn"), {display:"block", opacity:1,pointerEvents:'auto'});
+      gi("grass-chances").innerText = `還有${4 - captureCount}次機會呦`;
+      updateAim();
+      aimInterval = setInterval(updateAim, 100 + (Math.random())**2* 100);},2000);
+    }
+
+    gi("capture-btn").onclick = function() {
+      if(gameState !== 'aiming') return;
+      if(aimInterval) clearInterval(aimInterval);
+      if(nextRoundTimeout) clearTimeout(nextRoundTimeout);
+      css(this, {opacity:0, pointerEvents:'none'});
+      css(gi("grass-aim"), {opacity:0});
+
+      captureCount++;
+      let isPrize = currentAim === correctIndex;
+      
+
+      showCapturedCard(currentAim);
+
+      let currentBush = bushes[currentAim];
+      currentBush.wrapper.style.transition = 'all 1s ease';
+      currentBush.wrapper.style.opacity = '0';
+      currentBush.wrapper.style.transform += ' scale(0.5) translateY(5vh)';
+      if(isPrize) {
+        currentBush.wrapper.style.transform = 'scale(1.2) translateY(5vh)';
+      }
+      activeBushes.delete(currentAim);
+      setTimeout(() => currentBush.wrapper.style.display = 'none', 1000);
+
+      gameState = 'showing';
+
+      if(captureCount < 5 && activeBushes.size > 0) {
+        nextRoundTimeout = setTimeout(() => {
+          gameState = 'aiming';
+          startAiming();
+        }, 3500);
+      } else {
+        gameState = 'ended';
+        nextRoundTimeout = setTimeout(() => {
+          gi("grass-note").innerText = '點擊畫面再玩一次';  
+          share(`草叢模擬捕捉明星寶可夢！`);
+ css(gi("grass-note"),{opacity:0 ,transform:"translateX(-50%) translateY(-5vh) rotateZ(-10deg)",display:"block"});
+      setTimeout(()=>{css(gi("grass-note"),{opacity:1,transform:"translateX(-50%) translateY(0vh) rotateZ(0deg)"});},100);
+      setTimeout(()=>{css(gi("grass-note"),{opacity:0,display:"none",transform:"translateX(-50%) translateY(-5vh)  rotateZ(-10deg)"});},1000);         gi("grass-result").innerHTML = isPrize ? '<div style="color:#ffdd00;font-size:5vh;">恭喜獲得 ★6 超級明星！</div>' : '<div style="font-size:5vh;">謝謝您的遊玩！</div>';
+          css(gi("grass-result"), {opacity:1});
+        }, 3500);
+      }
+    };
+
+    cspace.onclick = function(e) {
+  if(e.target.id === 'capture-btn') return;
+
+  if(gameState === 'ready' || gameState === 'ended') {
+    if(aimInterval) clearInterval(aimInterval);
+    if(nextRoundTimeout) clearTimeout(nextRoundTimeout);
+
+    captureCount = 0;
+    createBushes();
+    captureHistory = [];
+    gi("history").innerHTML = '';
+    css(gi("history"), {opacity:0});
+    gi("grass-result").innerHTML = '';
+    css(gi("grass-result"), {opacity:0});
+    gi("grass-chances").innerText = '剩餘：5 次';
+    gi("grass-note").innerText = '感覺好像有寶可夢？!!';
+    css(gi("grass-note"),{opacity:0 ,transform:"translateX(-50%) translateY(-5vh) rotateZ(-10deg)",display:"block"});
+      setTimeout(()=>{css(gi("grass-note"),{opacity:1,transform:"translateX(-50%) translateY(0vh) rotateZ(0deg)"});},600);
+      setTimeout(()=>{css(gi("grass-note"),{opacity:0,display:"none",transform:"translateX(-50%) translateY(-5vh)  rotateZ(-10deg)"});},1000);
+    
+
+    gameState = 'listening';
+
+    // 強制嘗試播放叫聲兩次
+    playCry();
+    setTimeout(playCry, 1800);
+
+    // 無論叫聲成敗，4秒後一定進入捕捉
+    setTimeout(() => {
+      gi("grass-note").innerText = '5次機會，捕捉它！';
+      startAiming();
+    }, 1000);
+  }
+};
+  }
+
+  initGame();
+});
 
   </script>
 <script type="application/ld+json">
