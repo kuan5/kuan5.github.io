@@ -2080,7 +2080,8 @@ gi("grass") && gi("grass").addEventListener("click", function(){
       <div id="grass-note" style="position:fixed;bottom:20vh;left:50vw;transform:translateX(-50%);font-size:3vh;width: 80vw;text-align:center;padding:1vh;background: #e6e6e6;font-weight:bold;color:#353535;z-index:25;pointer-events:none;transition: all 0.5s ease;border-radius:0.5vh;border:0.5vh solid #161616;box-shadow:1vh 1vh 0 #161616;">點擊畫面開始！</div>
       <div id="grass-chances" style="position:fixed;top:10vh;left:50vw;transform:translateX(-50%);font-size:2vh;color:#525252;font-weight:bold;z-index:25;pointer-events:none;">剩餘：5 次</div>
       <div id="history" style="display:flex;flex-direction: row;
-    flex-wrap: nowrap;position:fixed;top:13vh;left:50vw;transform:translateX(-50%);width:95vw;height:10vh;overflow-x:auto;overflow-y:hidden;white-space:nowrap;z-index:24;opacity:0;transition:opacity 0.5s;"></div>
+    flex-wrap: nowrap;position:fixed;top:13vh;left:50vw;transform:translateX(-50%);width:95vw;height:10vh;overflow-x: scroll;
+    overflow-y: visible;white-space:nowrap;z-index:24;opacity:0;transition:opacity 0.5s;"></div>
       <div id="grass-result" style="position:fixed;top:35vh;left:50vw;transform:translateX(-50%);width:100vw;font-size:3vh;font-weight:bold;text-align:center;color:#ffdd00;text-shadow:0 2vh 4vh #000,0 0 1vh #fff;z-index:25;opacity:0;pointer-events:none;"></div>
       <div id="grass-bushes" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:10;pointer-events:none;background: radial-gradient(circle at center,#fffc95 20%,#d9ff6a 70%,#cfff80 100%);"></div>
       <div id="grass-aim" style="position:fixed;width:10vh;height:10vh;background:radial-gradient(circle at center,transparent 40%,#ff555f9b 70%,#ff005eb9 100%);border:0.8vh solid #ff4040;box-shadow:0 0 4vh #ffdd00aa;z-index:20;opacity:0;pointer-events:none;border-radius:50%;"></div>
