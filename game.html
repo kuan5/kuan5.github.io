@@ -2122,7 +2122,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
         bushes.push({wrapper: bushWrapper});
         outcards[i] = badCards[parseInt(Math.random()*badCards.length)];
         if (Math.random()>0.6){
-            pokeCards[parseInt(Math.random()*pokeCards.length)];
+            outcards[i] = pokeCards[parseInt(Math.random()*pokeCards.length)];
         }
       }
       outcards[correctIndex]=pokeCards[parseInt(Math.random()*pokeCards.length)];
