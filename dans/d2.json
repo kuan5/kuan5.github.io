@@ -1,0 +1,369 @@
+{
+  "disk": [
+    {
+      "n": "蓋歐卡",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/0f8c2c979a6f843cb8317ec55afb34b81962c47fd5ed1be661acfde30f8ad3c3.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/382.ogg"
+    },
+    {
+      "n": "固拉多",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/73997b3c44260121bca35e1b3e9941a0ae213a63245de12f11f67efeef32fa0f.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/383.ogg"
+    },
+    {
+      "n": "故勒頓",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/0f85b19174d0daf34042e11bb379dfa0a4fffea63d628b2996e5022c9b46354d.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1007.ogg"
+    },
+    {
+      "n": "皮卡丘",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/33470f1e09791afb96e9d114c2ad21074f7dd7260c7bbb711c0188171cdecbd8.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/25.ogg"
+    },
+    {
+      "n": "卡比獸",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/269dc1c99a0ac168b2b6e1b698726ce66a7ccfc75eb53cbcbeff9adbf49d49bb.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/143.ogg"
+    },
+    {
+      "n": "杖尾鱗甲龍",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/15c1e8eb35a9f1790634151bd4545f06cb2a3441c93540fd889aadcadb212ff4.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/784.ogg"
+    },
+    {
+      "n": "沙奈朵",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/8c6d80d28ba54843a8b4a66769c6fc9ea917197493ab8be6ee6eb3a6fd054dcd.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/282.ogg"
+    },
+    {
+      "n": "萊希拉姆",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/cf55335675c9fbf546c82f2d76aecd18da72ca8b499001b6446886ce1495172b.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/643.ogg"
+    },
+    {
+      "n": "捷克羅姆",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/87a761d92599df107b9dca40b67baf9c694947d1980cc050210c134c1c624ab5.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/644.ogg"
+    },
+    {
+      "n": "酋雷姆",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/0fbb86a6bff7b53e366ecc9e9e9c7debd5041f412fba90aa369533ed2deba86a.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/646.ogg"
+    },
+    {
+      "n": "雷伊布",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/27493693e8f55db037ebca94517c8454d7c151d4ec11dbdddf08458276ac83c1.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/135.ogg"
+    },
+    {
+      "n": "太陽伊布",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/2933f763e1b57ccfbddcbede1a9da2f1b55b8c710975a3203731f319c49a013f.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/196.ogg"
+    },
+    {
+      "n": "葉伊布",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/eef79d7475c78c8272d29e198937d46230c4e193be78203e6e5f97496181b75d.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/470.ogg"
+    },
+    {
+      "n": "仙子伊布",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/ae0e415fb772312aec74bc68e7cd6d67b9fce2bd1086b2a0780c2a2ef5763140.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/700.ogg"
+    },
+    {
+      "n": "路卡利歐",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/53064b9f15834486983f263a0ca9c2d3cd5167d635c28cfd016ff7c22110c1f9.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/448.ogg"
+    },
+    {
+      "n": "土台龜",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/764cbe46f8af6f68cf211bdbd659adf0aba7f7d39ee8528f18cf4dc9ff1a5f81.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/389.ogg"
+    },
+    {
+      "n": "烈焰猴",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/7f2020b676b2a5500825bab5d7ebeb2455c2bf6d3db49835c913726e62e86655.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/392.ogg"
+    },
+    {
+      "n": "帝王拿波",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/2430302e9d814b9b36334db5f0b3b55fba7f8c4db9716eca8f1eb77c9b32c8b8.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/395.ogg"
+    },
+    {
+      "n": "阿羅拉九尾",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/170dd6fde07d50c34669d2b6bc3a6edb2396dcfa89d799c23e7affdbcbe062e5.png",
+      "s": ""
+    },
+    {
+      "n": "班基拉斯",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/11f7290580fa071f1a39c69e42a593276a0d3dfc220f726642af3a200a0eced9.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/248.ogg"
+    },
+    {
+      "n": "巨金怪",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/4473ab7a33d785b693764dc3f99aef644768b0a9534c0656be9f10081da8548a.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/376.ogg"
+    },
+    {
+      "n": "蘋裹龍",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/4e74632ee1e87340c7b7d2c5fba23a526e657c98cae2dbb1dbddb18154666917.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/841.ogg"
+    },
+    {
+      "n": "豐蜜龍",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/be7d2b8165ace2236f01d01f38a1b1e989c2b509093d63fba094ff90447d6019.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/842.ogg"
+    },
+    {
+      "n": "霜奶仙",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/d48270dbc4a188da9b9662a0f09d12919c0ffe8e43de9c96b85bac6492a3312e.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/869.ogg"
+    },
+    {
+      "n": "暴噬龜",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/092c0fecbbe783890de7e656192f663b3f73aea363e59676cfe1eef4557383da.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/834.ogg"
+    },
+    {
+      "n": "魔幻假面喵",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/0bb99d7b4db6193d58c9b8f58188b424c9bcbb51ef67384302b1f2b76bf37ee1.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/908.ogg"
+    },
+    {
+      "n": "骨紋巨聲鱷",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/7f415de9a62c93cda863e39d8912ff46bb01510b078047b9cf09825c4fc4d506.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/911.ogg"
+    },
+    {
+      "n": "狂歡浪舞鴨",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/914f505178a4ce34e9afdbb787da2227cea2a9954217091337eaaa0144af8c3e.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/914.ogg"
+    },
+    {
+      "n": "炭小侍",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/03b0a285697bf6e0b72026f40a8a5e158281f40b7cca5313100c87a439854f47.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/935.ogg"
+    },
+    {
+      "n": "涼脊龍",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/cc883e7c75f7ac99f8e6c926058638adb4009ef856325ef661c5f4e73454428c.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/996.ogg"
+    },
+    {
+      "n": "布撥",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/214dda3025d5e8117212b45e7e7803f036ba1e61d907cd067c5fe77dae891e4d.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/921.ogg"
+    },
+    {
+      "n": "草苗龜",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/e7517f09f7497dad3515015220b692eb4411134983abddb1a29b73e3c3e7b4fc.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/387.ogg"
+    },
+    {
+      "n": "樹林龜",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/f19fc8d999c6a10b53ed5758192a54ab40704af6086efa388685d301fc67b7ec.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/388.ogg"
+    },
+    {
+      "n": "土台龜",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/e25a9227fbb2606cb7ec5401ca97cdd87b1a82058dac7cc8af77bdade46ac4bc.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/389.ogg"
+    },
+    {
+      "n": "小火焰猴",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/f8e460fcf19004208138f858b341f6d8427b92b238dc1a07896631eff2d93a5e.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/390.ogg"
+    },
+    {
+      "n": "猛火猴",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/18f56524f5fce0764e20d0eb3eccc8e3b1fe62a1ca2e5dc9c96953e345797576.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/391.ogg"
+    },
+    {
+      "n": "烈焰猴",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/f997a1fb27cf21ed03195d0fa61f629ef0b716a532bd5154b178794e399014d5.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/392.ogg"
+    },
+    {
+      "n": "波加曼",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/c93c0235a47b3c880e3975a8e88882f30a086500882f30822b3333fb90cc8bf9.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/393.ogg"
+    },
+    {
+      "n": "波皇子",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/040655e7565e980192280f15c1e07a176611297ffd9be9820e5d41c2dab8cced.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/394.ogg"
+    },
+    {
+      "n": "帝王拿波",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/105c6dbdff32a33005037d20077adbc3e8e5f94c6f36dffe16f4f5c0b02d0aa2.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/395.ogg"
+    },
+    {
+      "n": "水伊布",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/99b422014a14afd0a46d257759b6f6913611058fb9f4c484e6be08cf93b96caf.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/134.ogg"
+    },
+    {
+      "n": "火伊布",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/81189fc4605a9af6f5c726ab5022eb8911109b54bdf7b7eb25f648f4385118b6.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/136.ogg"
+    },
+    {
+      "n": "月亮伊布",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/3d67a79ddcd80f3a3f2813e1a26ba6eae7f3fe757ab72a033af44920ce322b77.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/197.ogg"
+    },
+    {
+      "n": "冰伊布",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/d8a7fcaf7394dfa0ce4fc7783a3f7bcd660dbd2c6a1166238ac9b24c09701932.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/471.ogg"
+    },
+    {
+      "n": "來電汪",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/064a2cf4780ff86c8937d8d037679274cb81147c9a28beb1340287c03b8f60b4.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/835.ogg"
+    },
+    {
+      "n": "逐電犬",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/db029b27230b9f8c69c34a08106e08e268e1f0920389acc42afab707a72e8281.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/836.ogg"
+    },
+    {
+      "n": "波波",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/0cde995a8b15f738b4f2e13a26bbe02b37863b87a1296ab89e3b1b7b1afce0ea.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/16.ogg"
+    },
+    {
+      "n": "比比鳥",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/4dbc6c82be1d50db24a52d77823bb3c9a857d88c48ec929d7262d970a656cc9d.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/17.ogg"
+    },
+    {
+      "n": "大比鳥",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/4acb41a1a55dd9f6fce1b179c7227ad7a864515c16f1d42e36ebb1663351a28c.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/18.ogg"
+    },
+    {
+      "n": "阿羅拉穿山鼠",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/078af2f0c9949349523eda13e8e50e7fbb2be4feb5e9611d4645094ba096cfa3.png",
+      "s": ""
+    },
+    {
+      "n": "阿羅拉穿山王",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/abe3c92528b8b315d1378f1c36b4922cd12272a3f823664300df8dd815c796a1.png",
+      "s": ""
+    },
+    {
+      "n": "銅鏡怪",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/5485b1c62b311ad073406109207f6595e33a564e224c1d1d2ded7bdae61662b1.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/436.ogg"
+    },
+    {
+      "n": "青銅鐘",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/076a6f38c5193783d60519ea44d1e5929b6ff257a051a9f2f6b2e5270592ba05.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/437.ogg"
+    },
+    {
+      "n": "大顎蟻",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/7f5f5c4001c65b7ee920f8abaa07c442b18dec99b423a812b69463ca4e06a092.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/328.ogg"
+    },
+    {
+      "n": "超音波幼蟲",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/60335d01cfda00b165c30669b5887c66e56ea3fcdef0660894db3e65ec57c238.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/329.ogg"
+    },
+    {
+      "n": "沙漠蜻蜓",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/fb56df0fa3373ddcbb6dbcb526bfc5a420a965693458e9c149f465be3846e199.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/330.ogg"
+    },
+    {
+      "n": "長翅鷗",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/8be3ee4a092b09d914e08d0256727fde20fc20dbbb4d4d3192cdf9f2c840086c.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/278.ogg"
+    },
+    {
+      "n": "大嘴鷗",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/61b529d5245fdca08d269b1f819fdaa46ca59ed7b2fbc8dbf74fcb2673eaf929.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/279.ogg"
+    },
+    {
+      "n": "迷唇姐",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/72c0fa89e1417413fff6e325f74b2309eae408a2583b8b8bd4da8a6fcbceb6cb.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/124.ogg"
+    },
+    {
+      "n": "凱西",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/0f5a3d1eeec5f0b06908dddd7eb967a940efe40226b75fec4a225e0f80e445e6.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/63.ogg"
+    },
+    {
+      "n": "勇基拉",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/7ddfed2ee4cdb74fcbd7bc0fee41752242e6ceb0640f61099b35568908c222b2.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/64.ogg"
+    },
+    {
+      "n": "胡地",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/c1f80de31c6f56216c2b0ee16a61f2695727043607a7c2d96587903aef1d8c7b.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/65.ogg"
+    },
+    {
+      "n": "飄飄球",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/7276b3c537020bb840a2ff347124fa0b2306b60db5660f01f21db69411b2bf98.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/425.ogg"
+    },
+    {
+      "n": "隨風球",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/ff68f8002579c947dbee757b3bca80c03acda8c8e6abbf8ccef62c592a0561af.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/426.ogg"
+    },
+    {
+      "n": "好壞星",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/4de0d06434ed42364cb664a8ad89c511b8bff55d53282066691c4d0adcf468e7.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/747.ogg"
+    },
+    {
+      "n": "托戈德瑪爾",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/34cbc52bb7d3be1672d01490cc307d75a42118cdd1d3b715b88e706fec85d252.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/777.ogg"
+    },
+    {
+      "n": "拉魯拉絲",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/e3810c4f9c77bb43dd165c3e0b91545ed5529bc3150e96500fb37e144a1075a7.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/280.ogg"
+    },
+    {
+      "n": "奇魯莉安",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/cff48c1b41a4b580acdf0b745f45be467fc4004b506945946d8b33a66f7f2eb4.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/281.ogg"
+    },
+    {
+      "n": "沙奈朵",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/95bf6e10cadd6879894528f910afef21439204dee35c322fc3779d1f63483445.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/282.ogg"
+    },
+    {
+      "n": "大岩蛇",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/14de11082691994b60be1c4615081580e5260ce0ab87ac676131e3588928680d.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/95.ogg"
+    },
+    {
+      "n": "皮卡丘",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/136a76b0c0b866260d467567e23c72e3ec3bee3656becc76293f44800c3fce77.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/25.ogg"
+    },
+    {
+      "n": "路卡利歐",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/b4afce7d5351defcd3125cb19fb2b447ca447f98279561c2adbd1bd3c3bbb7ce.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/448.ogg"
+    },
+    {
+      "n": "卡比獸",
+      "c": "https://www.pokemonmezastar.com.tw/uploads/images/06685d93cf578feb377b45ab1aec498c1dd3c24d274ba23da4a6017979321cad.png",
+      "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/143.ogg"
+    }
+  ]
+}
