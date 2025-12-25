@@ -2126,7 +2126,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
         bushesDiv.appendChild(bushWrapper);
         bushes.push({wrapper: bushWrapper});
         outcards[i] = badCards[parseInt(Math.random()*badCards.length)];
-        if (Math.random()>0.6){
+        if (Math.random()>0.8){
             outcards[i] = pokeCards[parseInt(Math.random()*pokeCards.length)];
         }
       }
@@ -2241,7 +2241,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
         gameState = 'ended';
         nextRoundTimeout = setTimeout(() => {
           gi("grass-note").innerText = '點擊畫面再玩一次';  
-          share(`草叢模擬捕捉明星寶可夢！${catches}`);
+          share(`草叢模擬捕捉明星寶可夢:${catches}!`);
  css(gi("grass-note"),{opacity:0 ,transform:"translateX(-50%) translateY(-5vh) rotateZ(-10deg)",display:"block"});
       setTimeout(()=>{css(gi("grass-note"),{opacity:1,transform:"translateX(-50%) translateY(0vh) rotateZ(0deg)"});},100);       gi("grass-result").innerHTML = isPrize ? '<div style="color:#ffdd00;font-size:5vh;">恭喜獲得 ★6 超級明星！</div>' : '<div style="font-size:5vh;">謝謝您的遊玩！</div>';
           css(gi("grass-result"), {opacity:1});
