@@ -2176,6 +2176,10 @@ gi("grass") && gi("grass").addEventListener("click", function(){
       setTimeout(()=>{css(resultDiv,{opacity:0,display:"none",transform:"translateX(-50%) scale(0.5)  rotateZ(-5deg)"},3000);
         setTimeout(() => resultDiv.innerHTML = '', 500);
       }, 3000);
+      try{
+      let audio = new Audio(nowcard.s);
+      audio.play().catch(() => {});
+      }catch(e){}
     }
 
     function startAiming() {
@@ -2227,8 +2231,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
           gi("grass-note").innerText = '點擊畫面再玩一次';  
           share(`草叢模擬捕捉明星寶可夢！`);
  css(gi("grass-note"),{opacity:0 ,transform:"translateX(-50%) translateY(-5vh) rotateZ(-10deg)",display:"block"});
-      setTimeout(()=>{css(gi("grass-note"),{opacity:1,transform:"translateX(-50%) translateY(0vh) rotateZ(0deg)"});},100);
-      setTimeout(()=>{css(gi("grass-note"),{opacity:0,display:"none",transform:"translateX(-50%) translateY(-5vh)  rotateZ(-10deg)"});},1000);         gi("grass-result").innerHTML = isPrize ? '<div style="color:#ffdd00;font-size:5vh;">恭喜獲得 ★6 超級明星！</div>' : '<div style="font-size:5vh;">謝謝您的遊玩！</div>';
+      setTimeout(()=>{css(gi("grass-note"),{opacity:1,transform:"translateX(-50%) translateY(0vh) rotateZ(0deg)"});},100);       gi("grass-result").innerHTML = isPrize ? '<div style="color:#ffdd00;font-size:5vh;">恭喜獲得 ★6 超級明星！</div>' : '<div style="font-size:5vh;">謝謝您的遊玩！</div>';
           css(gi("grass-result"), {opacity:1});
         }, 3500);
       }
