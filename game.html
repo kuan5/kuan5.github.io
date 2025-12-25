@@ -2160,12 +2160,12 @@ gi("grass") && gi("grass").addEventListener("click", function(){
       let colors=["linear-gradient(150deg,#d3a9fc,#a9fcca,#f4fca9)","#dfa9fc","#e6fca9"]
       let msg = msgs[pricec];
       let color =colors[pricec];
-      resultDiv.innerHTML = `<div style="position:fixed;transform:translateX(-50%);left:50vw;display:flex;height:20vh;width:20vh;justify-content:center;align-items:center;background:${color};border-radius: 50vh;border: 0.5vh solid #000;"><img src="${nowcard.c}" alt="${msg}" style="height:15vh"/></div><div style="font-size:6vh;color:#fff;text-shadow:1px 1px 1px #000;transform:translateY(30vh);">${msg}</div>`;
+      resultDiv.innerHTML = `<div style="position:fixed;transform:translateX(-50%);left:50vw;display:flex;height:20vh;width:20vh;justify-content:center;align-items:center;background:${color};border-radius: 50vh;border: 0.5vh solid #000;"><img src="${nowcard.c}" alt="${msg}" style="height:15vh"/></div><div style="font-size:6vh;color:#ddd;text-shadow:1px 1px 1px #000,-1px -1px 1px #000;transform:translateY(30vh);">${msg}</div>`;
       css(resultDiv, {opacity:1,transition:"all 0.2s ease"});
       
       let historyDiv = gi("history");
       let item = document.createElement('div');
-      item.innerHtml =  `<img src="${nowcard.c}" alt="${msg}" style="height:8vh;"/><div style="font-size:6vh;color:000;text-shadow:0 0 2vh #000;">${msg}</div>`;
+      item.innerHTML =  `<img src="${nowcard.c}" alt="${msg}" style="height:8vh;"/><div style="font-size:6vh;color:000;text-shadow:0 0 2vh #000;">${msg}</div>`;
       
       historyDiv.appendChild(item);
       historyDiv.scrollLeft = historyDiv.scrollWidth;
