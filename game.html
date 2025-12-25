@@ -2082,7 +2082,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
       <div id="history" style="position:fixed;top:22vh;left:50vw;transform:translateX(-50%);width:95vw;height:10vh;overflow-x:auto;overflow-y:hidden;white-space:nowrap;z-index:24;pointer-events:none;opacity:0;transition:opacity 0.5s;"></div>
       <div id="grass-result" style="position:fixed;top:35vh;left:50vw;transform:translateX(-50%);width:100vw;font-size:3vh;font-weight:bold;text-align:center;color:#ffdd00;text-shadow:0 2vh 4vh #000,0 0 1vh #fff;z-index:25;opacity:0;pointer-events:none;"></div>
       <div id="grass-bushes" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:10;pointer-events:none;background: radial-gradient(circle at center,#fffc95 20%,#d9ff6a 70%,#cfff80 100%);"></div>
-      <div id="grass-aim" style="position:fixed;width:10vh;height:10vh;background:radial-gradient(circle at center,transparent 40%,#ff555f9b 70%,#ff005eb9 100%);border:0.8vh solid #ff4040;box-shadow:0 0 4vh #ffdd00aa;z-index:20;opacity:0;transition:all 0.2s ease;pointer-events:none;border-radius:50%;"></div>
+      <div id="grass-aim" style="position:fixed;width:10vh;height:10vh;background:radial-gradient(circle at center,transparent 40%,#ff555f9b 70%,#ff005eb9 100%);border:0.8vh solid #ff4040;box-shadow:0 0 4vh #ffdd00aa;z-index:20;opacity:0;pointer-events:none;border-radius:50%;"></div>
       <button id="capture-btn" style="position:fixed;bottom:20vh;left:50vw;transform:translateX(-50%);padding: 2vh;border:none;border-radius:3vh;background:linear-gradient(145deg,#669acc 10%,#aab3cc 100%);box-shadow:0 1vh 3vh #6a78ffa2;display:none;z-index:25;font-family:'微軟正黑體',sans-serif;font-size:3vh;font-weight:bold;color:#fff;text-shadow:0 0 1vh #2222;cursor:pointer;pointer-events:auto;">捕捉！</button>
     `;
 
@@ -2160,13 +2160,13 @@ gi("grass") && gi("grass").addEventListener("click", function(){
       let colors=["linear-gradient(150deg,#d3a9fc,#a9fcca,#f4fca9)","#dfa9fc","#e6fca9"]
       let msg = msgs[pricec];
       let color =colors[pricec];
-      resultDiv.innerHTML = `<div style="position:fixed;transform:translateX(-50%);left:50vw;display:flex;height:20vh;width:20vh;justify-content:center;align-items:center;background: #9055ff;border-radius: 50vh;border: 0.5vh solid #000;"><img src="${nowcard.c}" alt="${msg}" style="height:15vh"/></div><div style="font-size:6vh;color:${color};text-shadow:0 0 2vh #000;transform:translateY(30vh);">${msg}</div>`;
+      resultDiv.innerHTML = `<div style="position:fixed;transform:translateX(-50%);left:50vw;display:flex;height:20vh;width:20vh;justify-content:center;align-items:center;background:${color};border-radius: 50vh;border: 0.5vh solid #000;"><img src="${nowcard.c}" alt="${msg}" style="height:15vh"/></div><div style="font-size:6vh;color:#fff;text-shadow:1px 1px 1px #000;transform:translateY(30vh);">${msg}</div>`;
       css(resultDiv, {opacity:1,transition:"all 0.2s ease"});
       
       let historyDiv = gi("history");
       let item = document.createElement('div');
-      item.innerHtml =  `<img src="${nowcard.c}" alt="${msg}" style="height:8vh"/><div style="font-size:6vh;color:${color};text-shadow:0 0 2vh #000;">${msg}</div>`;
-      item.style.cssText = `display:inline-block;margin:0 2vw;font-size:2vh;color:${color};`;
+      item.innerHtml =  `<img src="${nowcard.c}" alt="${msg}" style="height:8vh;"/><div style="font-size:6vh;color:000;text-shadow:0 0 2vh #000;">${msg}</div>`;
+      
       historyDiv.appendChild(item);
       historyDiv.scrollLeft = historyDiv.scrollWidth;
       css(historyDiv, {opacity:1});
@@ -2244,8 +2244,6 @@ gi("grass") && gi("grass").addEventListener("click", function(){
     captureCount = 0;
     createBushes();
     captureHistory = [];
-    gi("history").innerHTML = '';
-    css(gi("history"), {opacity:0});
     gi("grass-result").innerHTML = '';
     css(gi("grass-result"), {opacity:0});
     gi("grass-chances").innerText = '剩餘：5 次';
