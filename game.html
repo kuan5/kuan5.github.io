@@ -1858,7 +1858,7 @@ var mezastarSounds = {"2":[
     {name: "雷吉鐸拉戈", file: "https://play.pokemonshowdown.com/audio/cries/regidrago.ogg"},
     {name: "大力鱷", file: "https://play.pokemonshowdown.com/audio/cries/krookodile.ogg"},
     {name: "腕力", file: "https://play.pokemonshowdown.com/audio/cries/machop.ogg"},
-    {name: "單首龍", file: "https://play.pokemonshowdown.com/audio/cries/dreepy.ogg"},
+    {name: "單首龍", file: "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/633.ogg"},
     {name: "蒼炎刃鬼", file: "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/937.ogg"}]
 };
 
@@ -2133,6 +2133,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
       let sorce=outcards[correctIndex].s;
       let audio = new Audio(sorce);
       audio.play().catch(() => {});
+      bushes[correctIndex].wrapper.style.filter = 'brightness(1.5)';
     }
 
     function updateAim() {
