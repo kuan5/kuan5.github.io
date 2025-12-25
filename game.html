@@ -2197,7 +2197,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
       css(gi("capture-btn"), {display:"block", opacity:1,pointerEvents:'auto'});
       gi("grass-chances").innerText = `還有${4 - captureCount}次機會呦`;
       updateAim();
-      aimInterval = setInterval(updateAim, 100 + (Math.random())**2* 100);},2000);
+      aimInterval = setInterval(updateAim, 100 + (Math.random())**2* 100);},1000);
     }
 
     gi("capture-btn").onclick = function() {
