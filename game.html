@@ -2060,6 +2060,7 @@ const basePositions = [
     {left:65, top:32}, {left:82, top:41}
   ];
 
+var catches="";
 const outcards=[];
 /* 草叢模擬遊戲 - 最終完整版（不外露大獎、草叢點開顯示結果動畫3秒、上方紀錄、用過消失、固定5次、結束點擊產生新草叢、多次遊玩正常、捕捉按鈕永遠可按） */
 
@@ -2105,6 +2106,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
     let nextRoundTimeout = null;
 
     function createBushes() {
+      catches="";
       bushesDiv.innerHTML = '';
       bushes.length = 0;
       activeBushes = new Set([0,1,2,3,4]);
@@ -2165,6 +2167,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
       }else{
         pricec=2;
       }
+      catches+=`${nowcard.n} `;
       let msgs=["超級明星","明星",`恭喜獲得${nowcard.n}`];
       let colors=["linear-gradient(150deg,#d3a9fc,#a9fcca,#f4fca9)","#dfa9fc","#e6fca9"]
       let msg = msgs[pricec];
@@ -2238,7 +2241,7 @@ gi("grass") && gi("grass").addEventListener("click", function(){
         gameState = 'ended';
         nextRoundTimeout = setTimeout(() => {
           gi("grass-note").innerText = '點擊畫面再玩一次';  
-          share(`草叢模擬捕捉明星寶可夢！`);
+          share(`草叢模擬捕捉明星寶可夢！${catches}`);
  css(gi("grass-note"),{opacity:0 ,transform:"translateX(-50%) translateY(-5vh) rotateZ(-10deg)",display:"block"});
       setTimeout(()=>{css(gi("grass-note"),{opacity:1,transform:"translateX(-50%) translateY(0vh) rotateZ(0deg)"});},100);       gi("grass-result").innerHTML = isPrize ? '<div style="color:#ffdd00;font-size:5vh;">恭喜獲得 ★6 超級明星！</div>' : '<div style="font-size:5vh;">謝謝您的遊玩！</div>';
           css(gi("grass-result"), {opacity:1});
