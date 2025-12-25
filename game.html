@@ -1859,7 +1859,7 @@ var mezastarSounds = {"2":[
     {name: "大力鱷", file: "https://play.pokemonshowdown.com/audio/cries/krookodile.ogg"},
     {name: "腕力", file: "https://play.pokemonshowdown.com/audio/cries/machop.ogg"},
     {name: "單首龍", file: "https://play.pokemonshowdown.com/audio/cries/dreepy.ogg"},
-    {name: "蒼炎刃鬼", file: "https://play.pokemonshowdown.com/audio/cries/ceruledge.ogg"}]
+    {name: "蒼炎刃鬼", file: "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/937.ogg"}]
 };
 
 for (let ci of gq(".cry")){
@@ -2120,6 +2120,9 @@ gi("grass") && gi("grass").addEventListener("click", function(){
         bushesDiv.appendChild(bushWrapper);
         bushes.push({wrapper: bushWrapper});
         outcards[i] = badCards[parseInt(Math.random()*badCards.length)];
+        if (Math.random()>0.8){
+            pokeCards[parseInt(Math.random()*pokeCards.length)];
+        }
       }
       outcards[correctIndex]=pokeCards[parseInt(Math.random()*pokeCards.length)];
     }
