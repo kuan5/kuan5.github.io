@@ -429,6 +429,27 @@ footer a {
     margin: 2vh;
     width:30vh;
 }
+.danslist {
+    position: relative;
+    padding: 1px;
+    margin: 1.5vh 0 1vh 1.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.danslist a {
+    border: 1vh solid #000a;
+    border-radius: 5vh;
+    font-size: 3vh;
+    margin: 1vh;
+    width: 100%;
+    text-align: center;
+    transition: all 0.1s ease;
+}
+.danslist a:hover{
+    border: 1vh solid #000000;
+    transform: scale(1.2);
+}
   </style>
 </head>
 <body>
@@ -462,7 +483,11 @@ footer a {
 </div>
 <div id="pokeinfo"><input type="text" id="infosearch" placeholder="搜尋卡匣"><div id="searchcard">搜尋他的位置</div></div>
 <div class="choice buttom">選擇彈別 〉</div>
-
+<div class="danslist">
+  <a href="/d/2">第二彈</a>
+  <a href="/d/4">第四彈</a>
+  <p>因為伺服器沒了其他彈懶得補了反正用不到</p>
+</div>
 </main>
 <footer><div style="width: 100%;text-align: center;"><h2>Poke Meza 卡匣情報站</h2></div><a href="/"><img src="/meza.ico" alt="首頁">卡匣列表</a><a href="/desk"><img src="/svg/she.svg" alt="mezastar">卡序</a>
         <a href="/game"><img src="/svg/game.svg" alt="+50">練習場</a>
@@ -597,7 +622,7 @@ s:"gd"},{n:"固拉呆",c:"https://www.pokemonmezastar.com.tw/uploads/images/7399
       "n": "蕾冠王 （騎黑馬的樣子）",
       "c": "https://www.pokemonmezastar.com.tw/uploads/images/765603120fc9317744963f75145ec82530545aaad5ef228390f7cbd4c69a4ae1.png",
       "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/898.ogg"
-    }]]},loadimg=true,nowdisks={},dans=["2","4"],dancards={},cards=[],ndans=[],ndan=2;
+    }]]},loadimg=true,nowdisks={},dans=["2","4"],dancards={},cards=[],ndans=[],ndan=4;
 var trule={"1":"一", "2":"二", "3":"三", "4":"四", "5":"五", "dc":"聯擊","dst":"閃耀之星"};
 loaddan([dans[0]]);
 
@@ -745,7 +770,23 @@ function loaddisk(disk){
   }
 }
 
-
+chdan.innerHTML='<p>選擇彈別</p>';
+var times=0,color=0;
+for (let i of dans){
+  times++;
+  let el=document.createElement("a");
+  el.href=`/d/${i}`;
+  color++;
+  el.style.background=color%2?"#ffe79555":"#aacaff55";
+  el.innerHTML=`第${trans(i)}彈`;
+  el.dataset.d=i;
+  el=chdan.appendChild(el);
+  el.addEventListener('click',function(e){
+       e.preventDefault() ;  
+  hidech();loaddan([this.dataset.d]);
+});
+                    
+}
 gq('.choice').forEach(function(e){
         e.addEventListener('click',function(e){
         
