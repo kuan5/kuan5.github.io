@@ -484,8 +484,9 @@ footer a {
 <div id="pokeinfo"><input type="text" id="infosearch" placeholder="搜尋卡匣"><div id="searchcard">搜尋他的位置</div></div>
 <div class="choice buttom">選擇彈別 〉</div>
 <div class="danslist">
-  <a href="/d/2">第二彈</a>
-  <a href="/d/4">第四彈</a>
+  <a href="/d/2">星塵 第二彈</a>
+  <a href="/d/4">星塵 第四彈</a>
+  <a href="/d/5">銀河 第一彈</a>
   <p>因為伺服器沒了其他彈懶得補了反正用不到</p>
 </div>
 </main>
@@ -622,13 +623,16 @@ s:"gd"},{n:"固拉呆",c:"https://www.pokemonmezastar.com.tw/uploads/images/7399
       "n": "蕾冠王 （騎黑馬的樣子）",
       "c": "https://www.pokemonmezastar.com.tw/uploads/images/765603120fc9317744963f75145ec82530545aaad5ef228390f7cbd4c69a4ae1.png",
       "s": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/898.ogg"
-    }]]},loadimg=true,nowdisks={},dans=["2","4"],dancards={},cards=[],ndans=[],ndan=4;
-var trule={"1":"一", "2":"二", "3":"三", "4":"四", "5":"五", "dc":"聯擊","dst":"閃耀之星"};
+    }]],5:[]},loadimg=true,nowdisks={},dans=["2","4","5"],dancards={},cards=[],ndans=[],ndan=4;
+var trule={"1":"一", "2":"二", "3":"三", "4":"四", "5":"五", "dc":"聯擊","dst":"閃耀之星","st":"銀河"};
 loaddan([dans[1]]);
 
 gi("search").addEventListener("input",()=>{opendisk=true;
 opendi();loaddisk(nowdisks)});
 function trans(t) {
+ if (t>4){
+  t=`st ${t-4}`;
+ }
     for (let i in trule){
         t=t.replace(i,trule[i]);
     }
