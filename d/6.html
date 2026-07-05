@@ -963,15 +963,12 @@ gq('.choice').forEach(function(e){
     });
    
    
-function playCry(soundFile){
-   try{
-        let currentAudio = new Audio();
-        currentAudio.src = soundFile;
-        currentAudio.play();
-   }catch(e){
-    console.log(e);
-   }
-}   
+function playCry() {
+      let sorce=outcards[correctIndex].s;
+      let audio = new Audio(sorce);
+      audio.play().catch(e => {alert("無法播放.ogg音檔，你的ios版本太嫩了");});
+      
+    }
     gi('chdan').addEventListener('click',function(e){e.stopPropagation();});
     document.addEventListener('click',hidech);
     function hidech(){
