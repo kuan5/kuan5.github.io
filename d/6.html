@@ -963,9 +963,9 @@ gq('.choice').forEach(function(e){
     });
    
    
-function playCry() {
-      let sorce=outcards[correctIndex].s;
-      let audio = new Audio(sorce);
+function playCry(src) {
+     
+      let audio = new Audio(src);
       audio.play().catch(e => {alert("無法播放.ogg音檔，你的ios版本太嫩了");});
       
     }
