@@ -966,7 +966,7 @@ gq('.choice').forEach(function(e){
 function playCry(src) {
      
       let audio = new Audio(src);
-      audio.play().catch(e => {alert("無法播放.ogg音檔，你的ios版本太嫩了");});
+      audio.play().catch(e => {alert("無法播放.ogg音檔，你的ios版本太嫩了"+e);});
       
     }
     gi('chdan').addEventListener('click',function(e){e.stopPropagation();});
