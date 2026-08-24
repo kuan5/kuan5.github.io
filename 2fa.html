@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本地 2FA 工具</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #1a1d24;
+    --border: #424852;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --accent: #8ab4f8;
+    --danger: #f28b82;
+    --success: #81c995;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.5;
+  }
+  .container { max-width: 560px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin-bottom: 8px; font-weight: 600; }
+  .subtitle { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2px;
+  }
+  .issuer { font-size: 0.7rem; color: var(--muted); }
+  .name { font-weight: 500; font-size: 1rem; }
+  .code {
+    font-family: "SF Mono", "Cascadia Code", "Consolas", monospace;
+    font-size: 2rem;
+    letter-spacing: 6px;
+    margin: 0;
+    font-weight: 600;
+    color:#0000;
+    background: linear-gradient(182deg, var(--accent) 60%,var(--text) 30%) text ;
+    cursor: pointer;
+    user-select: all;
+  }
+  .code:hover { opacity: 0.85; text-shadow:1vh 1vh 1vh var(--success);}
+  .progress-wrap {
+    height: 5px;
+    background: var(--border);
+    border-radius: 3px 100% 100% 3px;
+    
+    overflow: hidden;
+  }
+  .progress {
+    height: 100%;
+    background: linear-gradient(100deg,var(--text) 10%,var(--accent) 70%);
+    transition: width 0.5s linear;
+  }
+  .timer { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: var(--accent);
+    color: #0f1115;
+    font-weight: 500;
+    transition:all 0.1s ease;
+  }
+  .btn:hover { filter: brightness(1.1);background: var(--success); }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-danger {
+    background: transparent;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+  }
+  .btn-sm { padding: 4px 10px; font-size: 0.8rem; }
+  .actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  textarea, input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+  }
+  textarea:focus, input:focus { outline: none; border-color: var(--accent); }
+  label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px; }
+  .form-group { margin-bottom: 12px; }
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal.show { display: flex; }
+  .modal-content {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    max-width: 420px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .modal-title { font-size: 1.1rem; margin-bottom: 16px; font-weight: 600; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 40px 20px;
+  }
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--success);
+    color: #0f1115;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 200;
+  }
+  .toast.show { opacity: 1; }
+  .hint { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>本地 2FA 工具</h1>
+  <p class="subtitle">純前端 · 資料僅存在本機 · 支援 otpauth:// 與純 Secret</p>
+
+  <div id="list"></div>
+
+  <div class="actions">
+    
+    <button class="btn " onclick="openUriModal()">貼 URI / Secret（QRcode掃開的內容)</button>
+    <button class="btn btn-outline" onclick="openAddModal()">＋ 手動新增帳號</button>
+  </div>
+</div>
+
+<!-- 手動新增 -->
+<div class="modal" id="addModal">
+  <div class="modal-content">
+    <div class="modal-title">手動新增帳號</div>
+    <div class="form-group">
+      <label>網站 (Issuer)可略</label>
+      <input type="text" id="issuer" placeholder="例如 Discord">
+    </div>
+    <div class="form-group">
+      <label>帳號名稱 可略</label>
+      <input type="text" id="account" placeholder="例如 帳號1">
+    </div>
+    <div class="form-group">
+      <label>代碼(必填)</label>
+      <input type="text" id="secret" placeholder="JBSWY3DPEHPK3PXP" style="font-family:monospace">
+    </div>
+    <div class="form-group">
+      <label>位數 (通常都是 6)可略</label>
+      <input type="number" id="digits" value="6" min="6" max="8">
+    </div>
+    <div class="form-group">
+      <label>週期秒數 (通常都是 30)可略</label>
+      <input type="number" id="period" value="30" min="15" max="60">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('addModal')">取消</button>
+      <button class="btn" onclick="addManual()">新增</button>
+    </div>
+  </div>
+</div>
+
+<!-- 貼 URI 或 Secret -->
+<div class="modal" id="uriModal">
+  <div class="modal-content">
+    <div class="modal-title">貼上 otpauth:// 或純 Secret</div>
+    <div class="form-group">
+      <label>內容</label>
+      <textarea id="uriInput" rows="4" placeholder="例如可直接貼：ABCDEFGabcdefg otpauth://totp/?secrect=ABCDEFGabcdefg"></textarea>
+      <div class="hint">大小寫不敏感，支援完整 URI 或只貼 Secret</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('uriModal')">取消</button>
+      <button class="btn" onclick="addFromInput()">解析並新增</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">已複製</div>
+
+<script>
+ 
+ var nowedit=null;
+ 
+ 
+// ========== Base32 Decode ==========
+function base32Decode(str) {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+  str = str.replace(/=+$/, "").toUpperCase().replace(/[^A-Z2-7]/g, "");
+  let bits = "";
+  for (let i = 0; i < str.length; i++) {
+    const val = alphabet.indexOf(str[i]);
+    if (val === -1) continue;
+    bits += val.toString(2).padStart(5, "0");
+  }
+  const bytes = [];
+  for (let i = 0; i + 8 <= bits.length; i += 8) {
+    bytes.push(parseInt(bits.substr(i, 8), 2));
+  }
+  return new Uint8Array(bytes);
+}
+
+// ========== TOTP ==========
+async function hmacSha1(key, message) {
+  const cryptoKey = await crypto.subtle.importKey(
+    "raw", key, { name: "HMAC", hash: "SHA-1" }, false, ["sign"]
+  );
+  const sig = await crypto.subtle.sign("HMAC", cryptoKey, message);
+  return new Uint8Array(sig);
+}
+
+async function generateTOTP(secretBase32, digits = 6, period = 30, time = Date.now()) {
+  const key = base32Decode(secretBase32);
+  if (key.length === 0) throw new Error("無效的 Secret");
+  const counter = Math.floor(time / 1000 / period);
+  const buf = new ArrayBuffer(8);
+  const view = new DataView(buf);
+  view.setUint32(0, Math.floor(counter / 0x100000000), false);
+  view.setUint32(4, counter & 0xffffffff, false);
+
+  const hmac = await hmacSha1(key, new Uint8Array(buf));
+  const offset = hmac[hmac.length - 1] & 0x0f;
+  const code = ((hmac[offset] & 0x7f) << 24) |
+               ((hmac[offset + 1] & 0xff) << 16) |
+               ((hmac[offset + 2] & 0xff) << 8) |
+               (hmac[offset + 3] & 0xff);
+  return (code % Math.pow(10, digits)).toString().padStart(digits, "0");
+}
+
+// ========== 資料 ==========
+let accounts = JSON.parse(localStorage.getItem("2fa_accounts") || "[]");
+
+function save() {
+  localStorage.setItem("2fa_accounts", JSON.stringify(accounts));
+}
+
+// ========== 解析（大小寫不敏感 + 支援純 Secret） ==========
+function parseInput(text) {
+  text = text.trim();
+  if (!text) throw new Error("內容為空");
+
+  // 判斷是否為 otpauth URI（大小寫不敏感）
+  if (/^otpauth:\/\//i.test(text)) {
+    // 強制轉小寫 scheme，方便 URL 解析
+    const normalized = text.replace(/^otpauth:\/\//i, "otpauth://");
+    let url;
+    try {
+      url = new URL(normalized);
+    } catch (e) {
+      throw new Error("URI 格式錯誤");
+    }
+
+    const type = url.hostname.toLowerCase();
+    if (type !== "totp") {
+      throw new Error("目前只支援 TOTP");
+    }
+
+    const path = decodeURIComponent(url.pathname.slice(1));
+    let issuer = "", account = path;
+    if (path.includes(":")) {
+      const parts = path.split(":");
+      issuer = parts[0];
+      account = parts.slice(1).join(":");
+    }
+
+    const params = url.searchParams;
+    let secret = params.get("secret");
+    if (!secret) throw new Error("缺少 secret 參數");
+    secret = secret.replace(/\s/g, "").toUpperCase();
+
+    const digits = parseInt(params.get("digits") || "6", 10);
+    const period = parseInt(params.get("period") || "30", 10);
+    const labelIssuer = params.get("issuer") || issuer;
+
+    return {
+      issuer: labelIssuer || issuer || "BOTDC",
+      account: account || "ME",
+      secret,
+      digits: isNaN(digits) ? 6 : digits,
+      period: isNaN(period) ? 30 : period
+    };
+  }
+
+  // 否則視為純 Secret（Base32）
+  const secret = text.replace(/\s/g, "").toUpperCase();
+  // 簡單驗證是否像 Base32
+  if (!/^[A-Z2-7]+=*$/.test(secret) || secret.length < 8) {
+    throw new Error("看起來不像有效的 Secret 或 otpauth URI");
+  }
+
+  return {
+    issuer: "",
+    account: "ME",
+    secret,
+    digits: 6,
+    period: 30
+  };
+}
+
+// ========== UI ==========
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 1500);
+}
+
+function copyCode(code) {
+  navigator.clipboard.writeText(code).then(() => showToast("已複製 " + code));
+}
+
+function openAddModal() {
+nowedit=null;
+  document.getElementById("issuer").value = "";
+  document.getElementById("account").value = "";
+  document.getElementById("secret").value = "";
+  document.getElementById("digits").value = "6";
+  document.getElementById("period").value = "30";
+  document.getElementById("addModal").classList.add("show");
+}
+
+function openUriModal() {
+  document.getElementById("uriInput").value = "";
+  document.getElementById("uriModal").classList.add("show");
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove("show");
+}
+
+function addManual() {
+  const issuer = document.getElementById("issuer").value.trim() || "BOTDC";
+  const account = document.getElementById("account").value.trim() || "ME";
+  let secret = document.getElementById("secret").value.trim().replace(/\s/g, "").toUpperCase();
+  const digits = parseInt(document.getElementById("digits").value, 10) || 6;
+  const period = parseInt(document.getElementById("period").value, 10) || 30;
+
+  if (!secret) {
+    alert("請輸入 Secret");
+    return;
+  }
+  
+  if(nowedit===null){
+  accounts.push({ id: Date.now(), issuer, account, secret, digits, period });
+  }else{
+   for(let a in accounts) {
+    let acc=accounts[a];
+    if ( acc.id == nowedit)accounts[a]={ id: nowedit, issuer, account, secret, digits, period };
+   }
+  }
+  save();
+  closeModal("addModal");
+  render();
+}
+
+function addFromInput() {
+  const text = document.getElementById("uriInput").value;
+  try {
+    const data = parseInput(text);
+    accounts.push({
+      id: Date.now(),
+      issuer: data.issuer,
+      account: data.account,
+      secret: data.secret,
+      digits: data.digits,
+      period: data.period
+    });
+    save();
+    closeModal("uriModal");
+    render();
+    showToast("已新增");
+  } catch (e) {
+    alert(e.message);
+  }
+}
+
+function removeAccount(id) {
+  if (!confirm("確定刪除這個帳號？")) return;
+  accounts = accounts.filter(a => a.id !== id);
+  save();
+  render();
+}
+
+function editAccount(id) {
+
+acc = accounts.filter(a => a.id == id)[0];
+nowedit=id;
+  document.getElementById("issuer").value = acc.issuer;
+  document.getElementById("account").value = acc.account;
+  document.getElementById("secret").value = acc.secret;
+  document.getElementById("digits").value = acc.digits;
+  document.getElementById("period").value = acc.period;
+  document.getElementById("addModal").classList.add("show");
+}
+
+async function render() {
+  const list = document.getElementById("list");
+  if (accounts.length === 0) {
+    list.innerHTML = `<div class="card empty">尚未新增任何帳號<br>點下方按鈕開始</div>`;
+    return;
+  }
+
+  const now = Date.now();
+  let html = "";
+
+  for (const acc of accounts) {
+    let code = "------";
+    try {
+      code = await generateTOTP(acc.secret, acc.digits, acc.period, now);
+    } catch (e) {
+      code = "錯誤："+e;
+    }
+
+    const period = acc.period || 30;
+    const remaining = period - ((now / 1000) % period);
+    const percent = (remaining / period) * 100;
+
+    html += `
+      <div class="card">
+        <div class="account-header">
+          <div>
+            <div class="issuer">${escapeHtml(acc.issuer)}</div>
+            <div class="name">${escapeHtml(acc.account)}</div>
+          </div>
+          <button class="btn btn-outline  btn-sm" onclick="editAccount(${acc.id})">編輯</button>
+          <button class="btn btn-danger btn-sm" onclick="removeAccount(${acc.id})">刪除</button>
+        </div>
+        <div class="code" onclick="copyCode('${code}')" title="點擊複製"> ${code}</div>
+        <div class="progress-wrap">
+          <div class="progress" style="width:${percent}%"></div>
+        </div>
+        <div class="timer">${Math.floor(remaining)} 秒後更新</div>
+      </div>
+    `;
+  }
+
+  list.innerHTML = html;
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+// 每秒更新
+setInterval(render, 100);
+render();
+</script>
+</body>
+</html>
